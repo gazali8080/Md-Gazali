@@ -2,7 +2,7 @@ import { IconName } from "../lib/icons";
 
 // Every cut and event of the reel, in frames at 30 fps on the 96 BPM grid
 // (beat n = round(18.75 * n)). Retime here; the scenes read from this table.
-export const AUDIO_READY = false;
+export const AUDIO_READY = true;
 
 export const T = {
   end: 600,
@@ -13,8 +13,8 @@ export const T = {
   plays: [75, 84, 94],
   calendarStamp: 103,
   // 2 answer (black)
-  cutBlack1: 112,
-  answerWords: [112, 122, 131], // it was never
+  cutBlack1: 113,
+  answerWords: [113, 122, 131], // it was never
   slam: 141,
   slamShadow: 143,
   theEdit: 150,
@@ -25,7 +25,7 @@ export const T = {
   rail: 188,
   strategyFirst: [190, 200],
   words: [
-    { cut: 225, back: 262, icon: "hook" as IconName, text: "Hook.", wordAt: 229 },
+    { cut: 225, back: 263, icon: "hook" as IconName, text: "Hook.", wordAt: 229 },
     { cut: 281, back: 319, icon: "question" as IconName, text: "Angle.", wordAt: 285 },
     { cut: 338, back: 375, icon: "calendar-open" as IconName, text: "Ask.", wordAt: 368 },
   ],
@@ -33,7 +33,7 @@ export const T = {
   tapPress: 366,
   clear: 375,
   listWords: [384, 394, 403],
-  checks: [394, 403, 412],
+  checks: [394, 403, 413],
   flash2: 431,
   // 4 payoff (black)
   payoff: 431,
