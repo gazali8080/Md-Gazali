@@ -37,7 +37,7 @@ export const HookScene: React.FC = () => {
   const bx = 96;
   const by = 720;
   const caret = 0.62 * BUBBLE + 8;
-  const line1 = measure("Coach, your clips", BUBBLE, "700");
+  const line1 = measure("your clips get views.", BUBBLE, "700");
   const bw = springWidth(frame, fps, [
     [0, Math.max(line1, measure("get views.", BUBBLE, "700") + caret)],
     [T.hookLine2[0] - 4, Math.max(line1, measure("No", BUBBLE, "700") + caret)],
@@ -48,15 +48,12 @@ export const HookScene: React.FC = () => {
     <AbsoluteFill>
       <Bubble from={0} tail="left" x={bx} y={by} width={bw} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
         <div style={{ whiteSpace: "nowrap" }}>
-          Coach, your clips
+          Coach,
           <br />
-          get views.
+          your clips get views.
           {frame < T.hookLine2[0] ? <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", marginLeft: "0.12em", backgroundColor: C.white, opacity: Math.floor(frame / 9.375) % 2 === 0 ? 1 : 0 }} /> : null}
         </div>
-        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} cursorColor={C.white} style={{ whiteSpace: "nowrap" }} />
-        <div style={{ position: "relative", height: 0 }}>
-          <DrawLine x={0} y={-6} width={measure("No booked calls.", BUBBLE, "700")} from={T.hookLine2[2]} frames={6} thickness={10} />
-        </div>
+        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} cursorColor={C.white} wordColors={[C.accent, C.accent, C.accent]} style={{ whiteSpace: "nowrap" }} />
       </Bubble>
       {T.plays.map((f, i) => (
         <IconPop key={f} name="play" size={96} x={900 - i * 80} y={636 - i * 88} from={f} fromScale={0.2} />
@@ -86,7 +83,7 @@ export const AnswerScene: React.FC = () => {
       <Halves from={T.split} axis="x" gap={48} frames={4}>
         <IconPop name="timeline" size={288} x={540} y={900} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
       </Halves>
-      <Marker from={T.marker} frames={T.split - T.marker} x0={300} x1={540} y={900} h={330} until={T.flash1} />
+      <Marker from={T.marker} frames={T.split - T.marker} x0={300} x1={552} y={900} h={330} until={T.flash1} />
       <Stamp from={T.theEdit} style={{ position: "absolute", left: 0, top: 1100, width: W, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
         the edit.
       </Stamp>
@@ -310,7 +307,7 @@ export const PayoffScene: React.FC = () => {
   const periodX = 96 + wordW + 12;
   return (
     <Drift from={T.handLeave} pxPerFrame={0.35} scalePerFrame={0.0003}>
-      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16} parkX={60} easing={Easing.out(Easing.cubic)}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={560} barW={16} parkX={44} easing={Easing.out(Easing.cubic)}>
         <div style={{ position: "absolute", left: 96, top: 760, width: W - 96, textAlign: "left", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
           <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
@@ -366,7 +363,7 @@ export const ReplyScene: React.FC = () => {
   if (frame >= T.loopReset) {
     // frame 0's state: an empty received bubble, so the loop lands on the hook
     return (
-      <Bubble from={T.loopReset} tail="left" x={96} y={720} width={measure("Coach, your clips", BUBBLE, "700") + INNER} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
+      <Bubble from={T.loopReset} tail="left" x={96} y={720} width={measure("your clips get views.", BUBBLE, "700") + INNER} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
         <div style={{ minHeight: "2.36em" }}>
           <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.white }} />
         </div>
@@ -376,7 +373,7 @@ export const ReplyScene: React.FC = () => {
   const wipe = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
   const bw0 = replyWidth(frame, fps);
   const travel = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopReset], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
-  const hookW = measure("Coach, your clips", BUBBLE, "700") + INNER;
+  const hookW = measure("your clips get views.", BUBBLE, "700") + INNER;
   const leave = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) }) : 0;
   const bw = bw0 + (hookW - bw0) * travel;
   const bx = 984 - bw0 + (96 - (984 - bw0)) * travel;

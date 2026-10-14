@@ -8,7 +8,7 @@ export const T = {
   end: 600,
   // 1 hook (paper): the editor's DM lands whole, the pain line types in azure
   hookLine1: 0,
-  hookLine2: [9, 19, 28], // No booked calls.
+  hookLine2: [9, 19, 28], // No booked calls. (azure: the pain line)
   plays: [47, 56, 66],
   calendarStamp: 75,
   calendarShake: [84, 94],
