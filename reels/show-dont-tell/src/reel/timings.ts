@@ -11,7 +11,7 @@ export const T = {
   hookLine2: [19, 28, 38], // No booked calls.
   plays: [47, 56, 66],
   calendarStamp: 75,
-  calendarShake: 78,
+  calendarShake: 75,
   // 2 answer (black)
   cutBlack1: 113,
   answerWords: [113, 122, 131], // it was never
@@ -21,7 +21,7 @@ export const T = {
   marker: 159, // the cut-marker slides across the icon
   split: 163,
   strike: 169,
-  riser1: 152,
+  riser1: 150,
   flash1: 188,
   // 3 strategy row (paper) with three cutaways to black
   row: 188,
@@ -41,7 +41,7 @@ export const T = {
   stack: 375,
   listWords: [384, 394, 403],
   checks: [394, 403, 413],
-  riser2: 395,
+  riser2: 394,
   flash2: 431,
   // 4 payoff (black)
   payoff: 431,
@@ -88,13 +88,12 @@ add("impact", T.hookLine1, 0.4);
 T.hookLine2.forEach((f) => add("type", f, 0.35));
 T.plays.forEach((f) => add("click", f, 0.3));
 add("impact", T.calendarStamp, 0.45);
-add("click", T.calendarShake, 0.25);
-add("click", T.calendarShake + 6, 0.25);
+add("click", 84, 0.25);
+add("click", 94, 0.25);
 // answer
 add("impact", T.cutBlack1, 0.7);
 T.answerWords.forEach((f) => add("type", f, 0.35));
 add("impact", T.slam, 0.8);
-add("click", T.slamShadow, 0.3);
 add("impact", T.theEdit, 0.5);
 add("whoosh", T.marker, 0.4);
 add("whoosh", T.strike, 0.35);

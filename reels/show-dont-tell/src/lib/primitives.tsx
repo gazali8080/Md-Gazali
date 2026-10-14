@@ -373,7 +373,7 @@ export const IconPop: React.FC<{
       }}
     >
       {shadow ? (
-        <div style={{ position: "absolute", left: size * 0.09, top: size * 0.09 }}>
+        <div style={{ position: "absolute", left: 14, top: 14 }}>
           <PixelIcon name={name} size={size} ink={C.accent} accent={C.accent} />
         </div>
       ) : null}

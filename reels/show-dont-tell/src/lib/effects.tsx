@@ -157,18 +157,21 @@ export const Bubble: React.FC<{
   fontSize?: number;
   stroke?: string;
   pad?: number;
+  pop?: boolean;
   children: React.ReactNode;
-}> = ({ from, until, tail, x, y, width, fontFamily, fontSize = 56, stroke = C.accent, pad = 34, children }) => {
+}> = ({ from, until, tail, x, y, width, fontFamily, fontSize = 56, stroke = C.accent, pad = 34, pop = true, children }) => {
   const frame = useCurrentFrame();
   const world = useWorld();
   if (frame < from) return null;
   if (until !== undefined && frame >= until) return null;
   const t = frame - from;
-  const pop = interpolate(t, [0, 7], [0.92, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: EASE_OUT,
-  });
+  const popScale = pop
+    ? interpolate(t, [0, 7], [0.92, 1], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: EASE_OUT,
+      })
+    : 1;
   const leave =
     until !== undefined
       ? interpolate(frame, [until - 5, until], [1, 0], {
@@ -184,7 +187,7 @@ export const Bubble: React.FC<{
         left: x,
         top: y,
         width,
-        scale: `${pop}`,
+        scale: `${popScale}`,
         opacity: leave,
         transformOrigin: tail === "left" ? "left bottom" : "right bottom",
         fontFamily,
