@@ -119,7 +119,34 @@ export const RailScene: React.FC = () => {
   );
 };
 
-// ---------- 3b. Word cutaways: black world, one icon, one word ----------
+// ---------- 3b. Word cutaways: black world, one icon, one word; each word enters
+// the way its icon does: pulled up by the hook, turned into its angle, booked by a tap ----------
+const WordStyle: React.CSSProperties = { position: "absolute", left: 0, top: 1110, width: W, textAlign: "center", fontSize: 128, fontWeight: 600, lineHeight: 1.1 };
+
+const HangWord: React.FC<{ from: number; children: React.ReactNode }> = ({ from, children }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < from) return null;
+  const s = spring({ frame: frame - from, fps, config: { damping: 7, stiffness: 120, mass: 0.9 } });
+  return (
+    <div style={{ ...WordStyle, translate: `0 ${Math.max(-36, (1 - s) * 420)}px`, opacity: interpolate(s, [0, 0.15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) }}>
+      {children}
+    </div>
+  );
+};
+
+const TurnWord: React.FC<{ from: number; children: React.ReactNode }> = ({ from, children }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < from) return null;
+  const s = spring({ frame: frame - from, fps, config: { damping: 16, stiffness: 400, mass: 0.5 } });
+  return (
+    <div style={{ ...WordStyle, rotate: `${(1 - s) * -18}deg`, scale: `${interpolate(s, [0, 1], [1.3, 1])}` }}>
+      {children}
+    </div>
+  );
+};
+
 export const WordScenes: React.FC = () => {
   const frame = useCurrentFrame();
   return (
@@ -140,8 +167,16 @@ export const WordScenes: React.FC = () => {
           <AbsoluteFill key={w.text}>
             <Marquee cx={cx} cy={cy} w={300} h={300} from={w.cut + 4} />
             <IconPop name={icon} size={256} x={cx} y={cy} from={w.cut} shadowAt={w.cut + 4} {...enter} />
-            {i === 2 ? <IconPop name="tap" size={160} x={cx + 90} y={cy + 40} from={T.tapEnter} fromDx={360} fromDy={-260} fromScale={1} /> : null}
-            <TypedLine text={w.text} from={w.cut + 6} cursorHold={60} style={{ position: "absolute", left: 0, top: 1110, width: W, textAlign: "center", fontSize: 128, fontWeight: 600 }} />
+            {i === 2 ? (
+              <IconPop name="tap" size={160} x={cx + 90} y={cy + 40} from={T.tapEnter} fromDx={360} fromDy={-260} fromScale={1} />
+            ) : null}
+            {i === 0 ? (
+              <HangWord from={w.wordAt}>{w.text}</HangWord>
+            ) : i === 1 ? (
+              <TurnWord from={w.wordAt}>{w.text}</TurnWord>
+            ) : (
+              <TypedLine text={w.text} from={w.wordAt} cursorHold={60} style={WordStyle} />
+            )}
           </AbsoluteFill>
         );
       })}

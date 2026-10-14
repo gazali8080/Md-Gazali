@@ -328,7 +328,7 @@ export const IconPop: React.FC<{
     preset === "slam"
       ? { damping: 16, stiffness: 400, mass: 0.5 }
       : preset === "swing"
-        ? { damping: 7, stiffness: 120, mass: 0.9 }
+        ? { damping: 9, stiffness: 120, mass: 0.9 }
         : { damping: 10, stiffness: 220, mass: 0.7 };
   const s = spring({ frame: t, fps, config });
   const scale = interpolate(s, [0, 1], [fromScale, 1]);

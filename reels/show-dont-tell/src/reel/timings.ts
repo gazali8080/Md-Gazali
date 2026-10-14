@@ -25,9 +25,9 @@ export const T = {
   rail: 188,
   strategyFirst: [190, 200],
   words: [
-    { cut: 225, back: 262, icon: "hook" as IconName, text: "Hook." },
-    { cut: 281, back: 319, icon: "question" as IconName, text: "Angle." },
-    { cut: 338, back: 375, icon: "calendar-open" as IconName, text: "Ask." },
+    { cut: 225, back: 262, icon: "hook" as IconName, text: "Hook.", wordAt: 229 },
+    { cut: 281, back: 319, icon: "question" as IconName, text: "Angle.", wordAt: 285 },
+    { cut: 338, back: 375, icon: "calendar-open" as IconName, text: "Ask.", wordAt: 368 },
   ],
   tapEnter: 356,
   tapPress: 366,
@@ -70,7 +70,7 @@ export type Cue = { name: "tick" | "type" | "whoosh" | "impact" | "click" | "ris
 const cues: Cue[] = [];
 const add = (name: Cue["name"], at: number, vol: number) => cues.push({ name, at, vol });
 [...T.hookLine1, ...T.hookLine2, ...T.answerWords, ...T.strategyFirst, ...T.listWords, ...T.ctaWords].forEach((f) => add("type", f, 0.35));
-T.words.forEach((w) => add("type", w.cut + 8, 0.4));
+T.words.forEach((w) => add("type", w.wordAt, 0.4));
 add("whoosh", T.underline, 0.4);
 T.plays.forEach((f) => add("click", f, 0.35));
 add("impact", T.calendarStamp, 0.45);
