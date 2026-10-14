@@ -59,7 +59,7 @@ export const HookScene: React.FC = () => {
         </div>
       </Bubble>
       {T.plays.map((f, i) => (
-        <IconPop key={f} name="play" size={96} x={900 - i * 80} y={656 - i * 88} from={f} fromScale={0.2} />
+        <IconPop key={f} name="play" size={96} x={900 - i * 80} y={636 - i * 88} from={f} fromScale={0.2} />
       ))}
       <IconPop name="calendar-open" size={120} x={920} y={1150} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={[...T.calendarShake]} />
     </AbsoluteFill>
@@ -67,11 +67,12 @@ export const HookScene: React.FC = () => {
 };
 
 // ---------- 2. Answer: black, "it was never / the edit." ----------
-const Marker: React.FC<{ from: number; frames: number; x0: number; x1: number; y: number; h: number }> = ({ from, frames, x0, x1, y, h }) => {
+const Marker: React.FC<{ from: number; frames: number; x0: number; x1: number; y: number; h: number; until?: number }> = ({ from, frames, x0, x1, y, h, until }) => {
   const frame = useCurrentFrame();
   const t = frame - from;
-  if (t < 0 || t > frames) return null;
-  const x = interpolate(t, [0, frames], [x0, x1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
+  if (t < 0) return null;
+  if (until !== undefined ? frame >= until : t > frames) return null;
+  const x = interpolate(t, [0, frames], [x0, x1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) });
   return <div style={{ position: "absolute", left: x - 4, top: y - h / 2, width: 8, height: h, backgroundColor: C.accent }} />;
 };
 
@@ -85,7 +86,7 @@ export const AnswerScene: React.FC = () => {
       <Halves from={T.split} axis="x" gap={48} frames={4}>
         <IconPop name="timeline" size={288} x={540} y={900} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
       </Halves>
-      <Marker from={T.marker} frames={9} x0={400} x1={680} y={900} h={320} />
+      <Marker from={T.marker} frames={T.split - T.marker} x0={300} x1={540} y={900} h={330} until={T.flash1} />
       <Stamp from={T.theEdit} style={{ position: "absolute", left: 0, top: 1100, width: W, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
         the edit.
       </Stamp>
@@ -105,7 +106,7 @@ const ROW: Array<{ name: IconName; x: number }> = [
   { name: "dm", x: 924 },
 ];
 const ROW_Y = 920;
-const ROW_SIZE = 120;
+const ROW_SIZE = 96;
 const STACK: Record<string, { x: number; y: number }> = {
   hook: { x: 300, y: 720 },
   question: { x: 300, y: 920 },
@@ -147,7 +148,7 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   return (
     <div style={{ position: "absolute", left: px - size / 2, top: py - size / 2, width: size, height: size, scale: `1 ${scaleY}` }}>
       {lifted ? (
-        <div style={{ position: "absolute", left: 12, top: 12 }}>
+        <div style={{ position: "absolute", left: size / 12, top: size / 12 }}>
           <PixelIcon name={shown} size={size} ink={C.accent} accent={C.accent} />
         </div>
       ) : null}
@@ -170,7 +171,7 @@ export const RowScene: React.FC = () => {
   const listText = ["Hook.", "Who.", "Ask."];
   return (
     <AbsoluteFill>
-      <TypedLine text="Strategy first." from={T.strategyFirst[0]} at={[...T.strategyFirst]} until={T.stack} land="snap" style={{ position: "absolute", left: 0, top: 700, width: W, textAlign: "center", fontSize: BODY, fontWeight: 700, lineHeight: 1.1 }} />
+      <TypedLine text="Strategy first." from={T.strategyFirst[0]} at={[...T.strategyFirst]} until={T.stack} land="snap" style={{ position: "absolute", left: 0, top: 640, width: W, textAlign: "center", fontSize: BODY, fontWeight: 700, lineHeight: 1.1 }} />
       {ROW.map((r, i) => (
         <RowIcon key={r.name} name={r.name} x={r.x} index={i} />
       ))}
@@ -180,7 +181,7 @@ export const RowScene: React.FC = () => {
         </Line>
       ))}
       {T.checks.map((f, i) => (
-        <IconPop key={f} name="check" size={84} x={860} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
+        <IconPop key={f} name="check" size={96} x={852} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
       ))}
     </AbsoluteFill>
   );
@@ -196,7 +197,7 @@ const HangWord: React.FC<{ from: number; top: number; children: React.ReactNode 
   if (frame < from) return null;
   const s = spring({ frame: frame - from, fps, config: { damping: 9, stiffness: 120, mass: 0.9 } });
   return (
-    <div style={{ ...WordCenter, top, translate: `0 ${Math.max(-30, (1 - s) * 360)}px`, opacity: interpolate(s, [0, 0.15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) }}>
+    <div style={{ ...WordCenter, top, translate: `0 ${Math.max(-16, (1 - s) * 120)}px`, color: frame - from < 2 ? C.accent : undefined }}>
       {children}
     </div>
   );
@@ -243,7 +244,7 @@ export const WordScenes: React.FC = () => {
       ) : null}
       {frame >= Cw.cut && frame < Cw.back ? (
         <AbsoluteFill>
-          <IconPop name={pressed ? "calendar" : "calendar-open"} size={252} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" accent={frame >= T.tapPress && frame < T.tapPress + 2 ? C.white : undefined} />
+          <IconPop name={pressed ? "calendar" : "calendar-open"} size={252} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" accent={frame >= T.tapPress && frame < T.tapPress + 2 ? C.navy : undefined} />
           <TypedLine text={Cw.text} from={Cw.wordAt} land="snap" style={{ ...WordCenter, top: 660 }} />
           <Hand from={T.tapEnter} tipX={592} tipY={1102} fromDx={640} pressAt={T.tapPress} />
           <TapRing at={T.tapPress} x={586} y={1102} r0={10} r1={120} stroke={10} life={10} />
@@ -305,7 +306,7 @@ export const PayoffScene: React.FC = () => {
   const periodScale = frame >= T.period ? interpolate(s, [0, 1], [1.4, 1]) : 0;
   const wordW = measure("strategy", SERIF, "400", DISPLAY);
   const periodX = 96 + wordW + 12;
-  const parked = frame >= T.payoff + T.playheadFrames + 3;
+  const parked = frame >= T.handEnter;
   return (
     <Drift from={T.handLeave} pxPerFrame={0.1} scalePerFrame={0.0003}>
       <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16}>
@@ -329,7 +330,7 @@ const Dots: React.FC<{ from: number; until: number }> = ({ from, until }) => {
   return (
     <span style={{ display: "inline-flex", gap: 14, alignItems: "center", height: "1.18em" }}>
       {[0, 1, 2].map((i) => (
-        <span key={i} style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: C.accent, opacity: i === active ? 1 : 0.35 }} />
+        <span key={i} style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: C.accent, opacity: i === active ? 1 : 0.35 }} />
       ))}
     </span>
   );
@@ -352,7 +353,7 @@ const springWidth = (frame: number, fps: number, states: Array<[number, number]>
 // Each width change starts five frames before its word lands, so nothing is clipped.
 const replyWidth = (frame: number, fps: number) =>
   springWidth(frame, fps, [
-    [T.cutPaper, 3 * 18 + 2 * 14 + 20],
+    [T.cutPaper, 3 * 24 + 2 * 14 + 20],
     [T.ctaWords[0] - 5, measure("DM", BODY, "700") + 0.62 * BODY + 8],
     [T.ctaWords[1] - 5, measure("DM STRATEGY", BODY, "700") + 0.62 * BODY + 8],
   ]);
@@ -388,7 +389,7 @@ export const ReplyScene: React.FC = () => {
           {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
         </div>
       </Bubble>
-      <IconPop name="dm" size={108} x={930} y={690} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <IconPop name="dm" size={108} x={930} y={676} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
     </Drift>
   );
 };

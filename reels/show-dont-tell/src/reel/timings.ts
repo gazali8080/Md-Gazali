@@ -8,7 +8,7 @@ export const T = {
   end: 600,
   // 1 hook (paper): the editor's DM lands whole, the pain line types in azure
   hookLine1: 0,
-  hookLine2: [19, 28, 38], // No booked calls.
+  hookLine2: [9, 19, 28], // No booked calls.
   plays: [47, 56, 66],
   calendarStamp: 75,
   calendarShake: [84, 94],
@@ -18,7 +18,7 @@ export const T = {
   slam: 141,
   slamShadow: 143,
   theEdit: 150,
-  marker: 159, // the cut-marker slides across the icon
+  marker: 159, // the cut-marker slides into the icon and parks in the cut
   split: 163,
   strike: 169,
   riser1: 150,
@@ -130,6 +130,7 @@ add("impact", T.flash2, 0.6);
 // payoff
 add("whoosh", T.payoff, 0.5);
 add("whoosh", T.handEnter, 0.3);
+add("whoosh", T.handLeave, 0.25);
 add("tick", T.handHover, 0.25);
 add("chime", T.period, 0.5);
 add("click", T.period, 0.4);
