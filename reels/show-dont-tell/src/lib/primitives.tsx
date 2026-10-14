@@ -98,6 +98,7 @@ export const TypedLine: React.FC<{
   blink?: number;
   style?: React.CSSProperties;
   cursorColor?: string;
+  land?: "cursor" | "snap";
 }> = ({
   text,
   from,
@@ -109,6 +110,7 @@ export const TypedLine: React.FC<{
   blink = 8,
   style,
   cursorColor,
+  land = "cursor",
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(" ");
@@ -137,6 +139,7 @@ export const TypedLine: React.FC<{
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         });
+        const snapColor = land === "snap" && age < 2 ? C.accent : undefined;
         return (
           <span
             key={i}
@@ -144,13 +147,14 @@ export const TypedLine: React.FC<{
               display: "inline-block",
               translate: `0 ${settle}px`,
               marginRight: "0.28em",
+              color: snapColor,
             }}
           >
             {w}
           </span>
         );
       })}
-      <Cursor visible={cursorOn} color={cursorColor} />
+      {land === "cursor" ? <Cursor visible={cursorOn} color={cursorColor} /> : null}
     </div>
   );
 };

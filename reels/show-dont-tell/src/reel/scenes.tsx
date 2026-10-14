@@ -5,7 +5,7 @@ import { C, W } from "../lib/theme";
 import { DISPLAY, UI } from "../lib/fonts";
 import { IconName, PixelIcon } from "../lib/icons";
 import { Drift, Flash, IconPop, Line, SerifWord, TypedLine, World } from "../lib/primitives";
-import { Bubble, Halves } from "../lib/effects";
+import { Bubble, CommentCta, Halves } from "../lib/effects";
 import { DrawLine, IconRail, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
 
@@ -26,7 +26,7 @@ export const HookScene: React.FC = () => {
   const bookedW = measure("booked calls.", HOOK_FONT, "500");
   return (
     <AbsoluteFill>
-      <Bubble from={0} tail="left" x={bx} y={by} width={bw} fontFamily={UI} fontSize={HOOK_FONT} pad={HOOK_PAD}>
+      <Bubble from={0} tail="right" x={bx} y={by} width={bw} fontFamily={UI} fontSize={HOOK_FONT} pad={HOOK_PAD}>
         <div style={{ minHeight: lineH * (frame >= T.hookLine2[0] ? 2 : 1) }}>
           <TypedLine text="Your clips get views." from={T.hookLine1[0]} at={[...T.hookLine1]} cursorHold={T.hookLine2[0] - T.hookLine1[3] - 1} />
           <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={40} />
@@ -35,10 +35,7 @@ export const HookScene: React.FC = () => {
           </div>
         </div>
       </Bubble>
-      {T.plays.map((f, i) => (
-        <IconPop key={f} name="play" size={96} x={860 + i * 60} y={590 - i * 70} from={f} fromScale={0.2} />
-      ))}
-      <IconPop name="calendar-open" size={120} x={920} y={by + 5 + HOOK_PAD + lineH * 2 + 80} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={T.calendarStamp + 3} />
+      <IconPop name="calendar-open" size={120} x={180} y={by + 5 + HOOK_PAD + lineH * 2 + 80} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={T.calendarStamp + 3} />
     </AbsoluteFill>
   );
 };
@@ -61,7 +58,7 @@ export const AnswerScene: React.FC = () => {
   const editW = measure("the edit.", size, "600");
   return (
     <AbsoluteFill style={{ fontSize: size, fontWeight: 600, lineHeight: 1.15 }}>
-      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} cursorHold={T.theEdit - T.answerWords[2] - 1} style={{ position: "absolute", left: 96, top: 640, width: W - 192 }} />
+      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} land="snap" style={{ position: "absolute", left: 96, top: 640, width: W - 192 }} />
       <Halves from={T.split} axis="x" gap={48} frames={5}>
         <IconPop name="timeline" size={240} x={540} y={960} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
       </Halves>
@@ -74,8 +71,8 @@ export const AnswerScene: React.FC = () => {
 };
 
 // ---------- 3. Rail: "Strategy first." over seven icons; three lift as they are named ----------
-const RAIL_ICONS: IconName[] = ["phone-clip", "play", "hook", "question", "calendar-open", "stopwatch", "dm"];
-const RAIL_BOOKED: IconName[] = ["phone-clip", "play", "hook", "question", "calendar", "stopwatch", "dm"];
+const RAIL_ICONS: IconName[] = ["play", "hook", "question", "phone-clip", "calendar-open", "stopwatch", "dm"];
+const RAIL_BOOKED: IconName[] = ["play", "hook", "question", "phone-clip", "calendar", "stopwatch", "dm"];
 const RAIL_Y = 1000;
 
 export const RailScene: React.FC = () => {
@@ -101,11 +98,11 @@ export const RailScene: React.FC = () => {
         from={T.rail}
         lifts={[
           { name: "hook", from: T.words[0].back },
-          { name: "question", from: T.words[1].back },
+          { name: "phone-clip", from: T.words[1].back },
           { name: cal, from: T.words[2].back },
         ]}
         clearAt={T.clear}
-        keep={["hook", "question", cal]}
+        keep={["hook", "phone-clip", cal]}
       />
       {T.words.map((w, i) => (
         <Line key={w.text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 240, top: rows[i] - 48, fontSize: 80, fontWeight: 600, lineHeight: 1.2 }}>
@@ -175,7 +172,7 @@ export const WordScenes: React.FC = () => {
             ) : i === 1 ? (
               <TurnWord from={w.wordAt}>{w.text}</TurnWord>
             ) : (
-              <TypedLine text={w.text} from={w.wordAt} cursorHold={60} style={WordStyle} />
+              <TypedLine text={w.text} from={w.wordAt} land="snap" style={WordStyle} />
             )}
           </AbsoluteFill>
         );
@@ -191,7 +188,7 @@ export const PayoffScene: React.FC = () => {
   if (frame < T.payoff || frame >= T.cutNavy) return null;
   const s = spring({ frame: frame - T.period, fps, config: { damping: 12, stiffness: 300, mass: 0.5 } });
   const periodScale = frame >= T.period ? interpolate(s, [0, 1], [1.4, 1]) : 0;
-  const icons: IconName[] = ["hook", "question", "calendar"];
+  const icons: IconName[] = ["hook", "phone-clip", "calendar"];
   return (
     <AbsoluteFill>
       <PlayheadReveal from={T.payoff} frames={36} barY={880} barH={360}>
@@ -207,18 +204,17 @@ export const PayoffScene: React.FC = () => {
   );
 };
 
-// ---------- 5. CTA: the reply bubble ----------
+// ---------- 5. CTA: the viewer's DM composer, keyword typed and sent ----------
 export const CtaScene: React.FC = () => {
   const frame = useCurrentFrame();
   if (frame < T.cutNavy) return null;
   return (
     <Drift from={T.dmIcon} pxPerFrame={0.12} scalePerFrame={0.0002}>
-      <Bubble from={T.cutNavy} until={T.loopOut} tail="right" x={96} y={760} width={888} fontFamily={UI} fontSize={88} pad={36}>
-        <div style={{ fontWeight: 700, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
-          <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} />
-        </div>
-      </Bubble>
-      <IconPop name="dm" size={120} x={150} y={700} from={T.dmIcon} until={T.loopOut} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <Line from={T.cutNavy} enter="cut" style={{ position: "absolute", left: 96, top: 700, width: W - 192, fontSize: 64, fontWeight: 500, color: C.dim }}>
+        Send me one word.
+      </Line>
+      <CommentCta keyword="STRATEGY" from={T.ctaWords[0]} perLetter={2} pressAt={T.dmIcon + 6} top={820} fontFamily={UI} label="DM" />
+      <IconPop name="dm" size={120} x={930} y={700} from={T.dmIcon + 10} fromScale={0.2} shadowAt={T.dmIcon + 13} />
     </Drift>
   );
 };

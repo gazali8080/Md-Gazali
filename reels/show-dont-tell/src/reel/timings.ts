@@ -10,7 +10,6 @@ export const T = {
   hookLine1: [0, 9, 19, 28], // Your clips get views.
   hookLine2: [38, 47, 56], // No booked calls.
   underline: 66,
-  plays: [75, 84, 94],
   calendarStamp: 103,
   // 2 answer (black)
   cutBlack1: 113,
@@ -26,7 +25,7 @@ export const T = {
   strategyFirst: [190, 200],
   words: [
     { cut: 225, back: 263, icon: "hook" as IconName, text: "Hook.", wordAt: 229 },
-    { cut: 281, back: 319, icon: "question" as IconName, text: "Angle.", wordAt: 285 },
+    { cut: 281, back: 319, icon: "phone-clip" as IconName, text: "Angle.", wordAt: 285 },
     { cut: 338, back: 375, icon: "calendar-open" as IconName, text: "Ask.", wordAt: 368 },
   ],
   tapEnter: 356,
@@ -72,7 +71,6 @@ const add = (name: Cue["name"], at: number, vol: number) => cues.push({ name, at
 [...T.hookLine1, ...T.hookLine2, ...T.answerWords, ...T.strategyFirst, ...T.listWords, ...T.ctaWords].forEach((f) => add("type", f, 0.35));
 T.words.forEach((w) => add("type", w.wordAt, 0.4));
 add("whoosh", T.underline, 0.4);
-T.plays.forEach((f) => add("click", f, 0.35));
 add("impact", T.calendarStamp, 0.45);
 add("impact", T.cutBlack1, 0.7);
 add("impact", T.slam, 0.8);
@@ -99,7 +97,9 @@ add("whoosh", T.payoff, 0.5);
 add("chime", T.period, 0.5);
 T.payoffIcons.forEach((f) => add("click", f, 0.35));
 add("impact", T.cutNavy, 0.45);
-add("click", T.dmIcon, 0.35);
+for (let i = 0; i < 8; i++) add("type", T.ctaWords[0] + i * 2, 0.3);
+add("click", T.dmIcon + 6, 0.5);
+add("click", T.dmIcon + 10, 0.35);
 add("tick", T.loopOut, 0.3);
 export const CUES = cues;
 
