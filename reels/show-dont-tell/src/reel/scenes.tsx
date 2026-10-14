@@ -40,9 +40,9 @@ export const HookScene: React.FC = () => {
   const line1 = measure("Coach, your clips", BUBBLE, "600");
   const bw = springWidth(frame, fps, [
     [0, Math.max(line1, measure("get views.", BUBBLE, "600") + caret)],
-    [T.hookLine2[0], Math.max(line1, measure("No", BUBBLE, "600") + caret)],
-    [T.hookLine2[1], Math.max(line1, measure("No booked", BUBBLE, "600") + caret)],
-    [T.hookLine2[2], Math.max(line1, measure("No booked calls.", BUBBLE, "600") + caret)],
+    [T.hookLine2[0] - 4, Math.max(line1, measure("No", BUBBLE, "600") + caret)],
+    [T.hookLine2[1] - 4, Math.max(line1, measure("No booked", BUBBLE, "600") + caret)],
+    [T.hookLine2[2] - 4, Math.max(line1, measure("No booked calls.", BUBBLE, "600") + caret)],
   ]);
   return (
     <AbsoluteFill>
@@ -339,11 +339,12 @@ const springWidth = (frame: number, fps: number, states: Array<[number, number]>
   }
   return Math.min(888, w + INNER);
 };
+// Each width change starts five frames before its word lands, so nothing is clipped.
 const replyWidth = (frame: number, fps: number) =>
   springWidth(frame, fps, [
     [T.cutPaper, 3 * 18 + 2 * 14 + 20],
-    [T.ctaWords[0], measure("DM", BODY, "700") + 0.62 * BODY + 8],
-    [T.ctaWords[1], measure("DM STRATEGY", BODY, "700") + 0.62 * BODY + 8],
+    [T.ctaWords[0] - 5, measure("DM", BODY, "700") + 0.62 * BODY + 8],
+    [T.ctaWords[1] - 5, measure("DM STRATEGY", BODY, "700") + 0.62 * BODY + 8],
   ]);
 
 export const ReplyScene: React.FC = () => {
