@@ -93,13 +93,13 @@ export const CommentCta: React.FC<{
       <div
         style={{
           flex: 1,
-          height: 150,
+          height: 170,
           border: `5px solid ${C.white}`,
           borderRadius: 999,
           display: "flex",
           alignItems: "center",
-          paddingLeft: 44,
-          fontSize: 60,
+          paddingLeft: 48,
+          fontSize: 72,
           fontWeight: 600,
           color: C.white,
           letterSpacing: "0.02em",
@@ -121,8 +121,8 @@ export const CommentCta: React.FC<{
       </div>
       <div
         style={{
-          width: 150,
-          height: 150,
+          width: 170,
+          height: 170,
           borderRadius: 999,
           border: `5px solid ${C.accent}`,
           backgroundColor: filled ? C.accent : "transparent",

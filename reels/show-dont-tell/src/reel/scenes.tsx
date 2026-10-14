@@ -9,7 +9,7 @@ import { Bubble, CommentCta, Halves } from "../lib/effects";
 import { DrawLine, IconRail, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
 
-const HOOK_FONT = 76;
+const HOOK_FONT = 72;
 const HOOK_PAD = 36;
 const measure = (text: string, fontSize: number, fontWeight: string, fontFamily = UI) =>
   measureText({ text, fontFamily, fontSize, fontWeight }).width;
@@ -210,11 +210,11 @@ export const CtaScene: React.FC = () => {
   if (frame < T.cutNavy) return null;
   return (
     <Drift from={T.dmIcon} pxPerFrame={0.12} scalePerFrame={0.0002}>
-      <Line from={T.cutNavy} enter="cut" style={{ position: "absolute", left: 96, top: 700, width: W - 192, fontSize: 64, fontWeight: 500, color: C.dim }}>
+      <Line from={T.cutNavy} enter="cut" style={{ position: "absolute", left: 240, top: 660, width: W - 336, fontSize: 68, fontWeight: 500, color: C.dim, lineHeight: 1.2 }}>
         Send me one word.
       </Line>
+      <IconPop name="dm" size={112} x={150} y={700} from={T.cutNavy} fromScale={0.2} shadowAt={T.dmIcon + 10} />
       <CommentCta keyword="STRATEGY" from={T.ctaWords[0]} perLetter={2} pressAt={T.dmIcon + 6} top={820} fontFamily={UI} label="DM" />
-      <IconPop name="dm" size={120} x={930} y={700} from={T.dmIcon + 10} fromScale={0.2} shadowAt={T.dmIcon + 13} />
     </Drift>
   );
 };

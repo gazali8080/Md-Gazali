@@ -68,23 +68,23 @@ export const Flash: React.FC<{ from: number; hold?: number; fall?: number }> = (
 
 // ---------- type ----------
 
-export const Cursor: React.FC<{ visible: boolean; em?: number; color?: string }> = ({
+export const CursorBlock: React.FC<{ visible: boolean; em?: number; color?: string }> = ({
   visible,
   em = 1,
   color = C.accent,
-}) => (
-  <span
-    style={{
-      display: "inline-block",
-      width: `${0.5 * em}em`,
-      height: `${0.95 * em}em`,
-      backgroundColor: color,
-      marginLeft: "0.12em",
-      verticalAlign: "-0.12em",
-      opacity: visible ? 1 : 0,
-    }}
-  />
-);
+}) =>
+  visible ? (
+    <span
+      style={{
+        display: "inline-block",
+        width: `${0.5 * em}em`,
+        height: `${0.95 * em}em`,
+        backgroundColor: color,
+        marginLeft: "0.12em",
+        verticalAlign: "-0.12em",
+      }}
+    />
+  ) : null;
 
 // Words land one by one, typewriter style, with a blinking block cursor.
 export const TypedLine: React.FC<{
@@ -122,8 +122,8 @@ export const TypedLine: React.FC<{
     : Math.min(words.length, Math.floor(t / perWord) + 1);
   const doneAt = at ? at[at.length - 1] - from : (words.length - 1) * perWord;
   if (shown === 0) return null;
-  const cursorOn =
-    t <= doneAt + cursorHold && Math.floor(t / blink) % 2 === 0;
+  const cursorStill = t <= doneAt + cursorHold;
+  const cursorOn = cursorStill && Math.floor(t / blink) % 2 === 0;
   let leave = 1;
   if (until !== undefined && leaveFrames > 0) {
     leave = interpolate(frame, [until - leaveFrames, until], [1, 0], {
@@ -146,7 +146,7 @@ export const TypedLine: React.FC<{
             style={{
               display: "inline-block",
               translate: `0 ${settle}px`,
-              marginRight: "0.28em",
+              marginRight: i < shown - 1 ? "0.28em" : 0,
               color: snapColor,
             }}
           >
@@ -154,7 +154,9 @@ export const TypedLine: React.FC<{
           </span>
         );
       })}
-      {land === "cursor" ? <Cursor visible={cursorOn} color={cursorColor} /> : null}
+      {land === "cursor" && cursorStill ? (
+        <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: cursorColor ?? C.accent, marginLeft: "0.12em", opacity: cursorOn ? 1 : 0 }} />
+      ) : null}
     </div>
   );
 };
