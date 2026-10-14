@@ -91,6 +91,7 @@ export const TypedLine: React.FC<{
   text: string;
   from: number;
   perWord?: number;
+  at?: number[]; // absolute frames per word; overrides perWord
   until?: number; // frame after which the line is gone
   leaveFrames?: number;
   cursorHold?: number; // frames the cursor stays after the last word
@@ -101,6 +102,7 @@ export const TypedLine: React.FC<{
   text,
   from,
   perWord = 9,
+  at,
   until,
   leaveFrames = 0,
   cursorHold = 20,
@@ -113,8 +115,11 @@ export const TypedLine: React.FC<{
   const t = frame - from;
   if (t < 0) return null;
   if (until !== undefined && frame >= until) return null;
-  const shown = Math.min(words.length, Math.floor(t / perWord) + 1);
-  const doneAt = (words.length - 1) * perWord;
+  const shown = at
+    ? at.filter((f) => frame >= f).length
+    : Math.min(words.length, Math.floor(t / perWord) + 1);
+  const doneAt = at ? at[at.length - 1] - from : (words.length - 1) * perWord;
+  if (shown === 0) return null;
   const cursorOn =
     t <= doneAt + cursorHold && Math.floor(t / blink) % 2 === 0;
   let leave = 1;
@@ -127,7 +132,7 @@ export const TypedLine: React.FC<{
   return (
     <div style={{ opacity: leave, ...style }}>
       {words.slice(0, shown).map((w, i) => {
-        const age = t - i * perWord;
+        const age = at ? frame - at[i] : t - i * perWord;
         const settle = interpolate(age, [0, 3], [4, 0], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
@@ -276,37 +281,88 @@ export const FocusRing: React.FC<{
   );
 };
 
-// One icon that pops in with overshoot; optional jitter for a few frames.
+// One icon that arrives with overshoot. Defaults pop from small; a slam comes
+// from large (fromScale 1.6) and an entrance can start offset (fromDx/fromDy)
+// or rotated. An azure hard shadow can snap in at `shadowAt`.
 export const IconPop: React.FC<{
   name: IconName;
   size: number;
   x: number;
   y: number;
   from: number;
+  until?: number;
+  fromScale?: number;
+  fromDx?: number;
+  fromDy?: number;
+  fromRotate?: number;
   jitterFrames?: number;
+  shadowAt?: number;
+  preset?: "pop" | "slam" | "swing";
   ink?: string;
   accent?: string;
-}> = ({ name, size, x, y, from, jitterFrames = 0, ink, accent }) => {
+  shakeAt?: number;
+}> = ({
+  name,
+  size,
+  x,
+  y,
+  from,
+  until,
+  fromScale = 0.3,
+  fromDx = 0,
+  fromDy = 0,
+  fromRotate = 0,
+  jitterFrames = 0,
+  shadowAt,
+  preset = "pop",
+  ink,
+  accent,
+  shakeAt,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame - from;
   if (t < 0) return null;
-  const s = spring({ frame: t, fps, config: { damping: 10, stiffness: 220, mass: 0.7 } });
-  const scale = interpolate(s, [0, 1], [0.3, 1]);
+  if (until !== undefined && frame >= until) return null;
+  const config =
+    preset === "slam"
+      ? { damping: 16, stiffness: 400, mass: 0.5 }
+      : preset === "swing"
+        ? { damping: 7, stiffness: 120, mass: 0.9 }
+        : { damping: 10, stiffness: 220, mass: 0.7 };
+  const s = spring({ frame: t, fps, config });
+  const scale = interpolate(s, [0, 1], [fromScale, 1]);
+  const dx = fromDx * (1 - s);
+  const dy = fromDy * (1 - s);
+  const rot = fromRotate * (1 - s);
   const jx = t < jitterFrames ? (random(`jx-${name}-${t}`) - 0.5) * 18 : 0;
   const jy = t < jitterFrames ? (random(`jy-${name}-${t}`) - 0.5) * 18 : 0;
+  let shake = 0;
+  if (shakeAt !== undefined && frame >= shakeAt && frame < shakeAt + 8) {
+    const u = frame - shakeAt;
+    shake = [6, -6, 5, -5, 3, -3, 1, 0][u];
+  }
+  const shadow = shadowAt !== undefined && frame >= shadowAt;
   return (
     <div
       style={{
         position: "absolute",
-        left: x - size / 2 + jx,
-        top: y - size / 2 + jy,
+        left: x - size / 2 + jx + dx + shake,
+        top: y - size / 2 + jy + dy,
         width: size,
         height: size,
         scale: `${scale}`,
+        rotate: `${rot}deg`,
       }}
     >
-      <PixelIcon name={name} size={size} ink={ink} accent={accent} />
+      {shadow ? (
+        <div style={{ position: "absolute", left: size * 0.09, top: size * 0.09 }}>
+          <PixelIcon name={name} size={size} ink={C.accent} accent={C.accent} />
+        </div>
+      ) : null}
+      <div style={{ position: "absolute", left: 0, top: 0 }}>
+        <PixelIcon name={name} size={size} ink={ink} accent={accent} />
+      </div>
     </div>
   );
 };

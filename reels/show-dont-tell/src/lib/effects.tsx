@@ -155,8 +155,9 @@ export const Bubble: React.FC<{
   fontFamily: string;
   fontSize?: number;
   stroke?: string;
+  pad?: number;
   children: React.ReactNode;
-}> = ({ from, until, tail, x, y, width, fontFamily, fontSize = 56, stroke = C.accent, children }) => {
+}> = ({ from, until, tail, x, y, width, fontFamily, fontSize = 56, stroke = C.accent, pad = 34, children }) => {
   const frame = useCurrentFrame();
   if (frame < from) return null;
   if (until !== undefined && frame >= until) return null;
@@ -191,7 +192,7 @@ export const Bubble: React.FC<{
         style={{
           border: `5px solid ${stroke}`,
           borderRadius: r,
-          padding: "34px 44px",
+          padding: `${pad}px ${pad + 10}px`,
           fontSize,
           fontWeight: 500,
           lineHeight: 1.22,
