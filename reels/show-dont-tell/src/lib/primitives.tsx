@@ -408,7 +408,7 @@ export const IconRing: React.FC<{
         let x = cx + Math.cos(a) * radius;
         let y = cy + Math.sin(a) * radius * 0.62; // squashed ring, like a tilted carousel
         const depth = (Math.sin(a) + 1) / 2; // 0 back, 1 front
-        let scale = interpolate(s, [0, 1], [0.2, 1]) * (0.72 + depth * 0.4);
+        const scale = interpolate(s, [0, 1], [0.2, 1]) * (0.72 + depth * 0.4);
         let rot = 0;
         let opacity = 0.75 + depth * 0.25;
         if (scatterAt !== undefined && frame >= scatterAt) {
