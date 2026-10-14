@@ -3,9 +3,9 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { C } from "../lib/theme";
 import { UI } from "../lib/fonts";
 import { Flash, World } from "../lib/primitives";
-import { Score, Sfx } from "../lib/sound";
+import { Score, Sfx, Voice } from "../lib/sound";
 import { AnswerScene, HookScene, PayoffScene, ReplyScene, RowScene, WordScenes } from "./scenes";
-import { AUDIO_READY, CUES, FLASHES, SCORE_DIPS, WORLDS } from "./timings";
+import { AUDIO_READY, CUES, FLASHES, SCORE_DIPS, VO, VO_GAIN, WORLDS, isSpeaking } from "./timings";
 
 export const Reel: React.FC = () => {
   const frame = useCurrentFrame();
@@ -25,9 +25,12 @@ export const Reel: React.FC = () => {
       ))}
       {AUDIO_READY ? (
         <>
-          <Score gain={0.9} dips={SCORE_DIPS} />
+          <Score gain={0.6} dips={SCORE_DIPS} />
           {CUES.map((c, i) => (
-            <Sfx key={`${c.name}-${c.at}-${i}`} name={c.name} from={c.at} volume={c.vol} />
+            <Sfx key={`${c.name}-${c.at}-${i}`} name={c.name} from={c.at} volume={c.vol * (isSpeaking(c.at) ? 0.6 : 1)} />
+          ))}
+          {VO.map((v) => (
+            <Voice key={v.file} file={v.file} from={v.from} volume={VO_GAIN} />
           ))}
         </>
       ) : null}

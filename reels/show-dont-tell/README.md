@@ -24,6 +24,8 @@ The paper world is white `#F4F6FB` with navy `#050B1B` ink; the flash world is b
 
 The score and effects are synthesized in code: `npm run audio` regenerates `public/audio/score.wav`, the eight effects in `public/audio/sfx`, and `public/audio/beats.json`, whose beat times are measured from the rendered score with an onset detector, not assumed. Cues are listed in `src/reel/timings.ts`.
 
+The voiceover is the client's own ElevenLabs voice clone ("MD GAZALI V", model eleven_v4). Each line is its own clip in `public/audio/vo/` so its first word can be placed on a visual event; the `VO` table in `src/reel/timings.ts` holds the script, the frame each clip starts on and the frame its last word ends. Clips were trimmed, lightly compressed (3:1 above -18 dBFS) and levelled to -18 dBFS RMS with peaks at -5 dBFS. The score sits at 0.6 and ducks to 0.35 under every line; effects that land while the voice speaks are at 0.6. To swap a take, open the ElevenLabs flow "Show Don't Tell reel VO", export the take, and re-measure its onset before changing `from`.
+
 ## Commands
 
 ```bash

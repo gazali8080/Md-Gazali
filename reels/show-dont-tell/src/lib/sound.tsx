@@ -48,7 +48,9 @@ export const Score: React.FC<{ gain?: number; dips?: Array<[number, number, numb
         extrapolateLeft: "clamp",
         extrapolateRight: "clamp",
       });
-      v = Math.min(v, Math.max(inRamp, outRamp) === 1 ? level : Math.min(inRamp, outRamp));
+      // inRamp is `level` once past the in-edge and outRamp is `level` before the out-edge,
+      // so the max of the two is the ramped envelope of this dip.
+      v = Math.min(v, Math.max(inRamp, outRamp));
     }
   }
   return (
@@ -62,3 +64,15 @@ export const Score: React.FC<{ gain?: number; dips?: Array<[number, number, numb
     />
   );
 };
+
+// One voiceover line, placed so its first word sits on the frame in VO.
+export const Voice: React.FC<{ file: string; from: number; volume?: number }> = ({ file, from, volume = 1 }) => (
+  <Audio
+    name={`vo:${file}@${from}`}
+    src={staticFile(`audio/vo/${file}.wav`)}
+    from={from}
+    volume={volume}
+    premountFor={30}
+    onError={() => "fallback"}
+  />
+);

@@ -145,5 +145,26 @@ add("tick", 581, 0.3);
 add("whoosh", T.loopOut, 0.3);
 export const CUES = cues;
 
-// Score level under each world: a little quieter under the black flash world.
-export const SCORE_DIPS: Array<[number, number, number]> = WORLDS.filter((w) => w.kind === "flash").map((w) => [w.from, w.until, 0.72]);
+// Voiceover (ElevenLabs, the client's own cloned voice). One clip per line so every line lands on its
+// visual: `from` is the clip's first frame, `until` the frame its last word ends (measured from the wav).
+export type VoLine = { file: string; from: number; until: number; text: string };
+export const VO: VoLine[] = [
+  { file: "l1", from: 0, until: 106, text: "Coach. Your clips get views. Your calendar gets nothing." },
+  { file: "l2", from: 111, until: 168, text: "It was never… the edit." }, // "the edit" lands on the stamp at 152
+  { file: "l3", from: 185, until: 222, text: "Strategy first." },
+  { file: "l4", from: 227, until: 274, text: "Hook them in one second." }, // "Hook" on the Hook. cut
+  { file: "l5", from: 280, until: 319, text: "Talk to ONE person." }, // on the Who. cut
+  { file: "l6", from: 330, until: 374, text: "Then ask for the call." }, // "ask" on the Ask. word
+  { file: "l7", from: 381, until: 457, text: "Three decisions… before I touch a frame." }, // over the checklist
+  { file: "l8", from: 472, until: 518, text: "That's strategy." }, // "strategy" on the azure period
+  { file: "l9", from: 524, until: 596, text: "DM me \"strategy\". Let's fix yours." }, // on the reply bubble
+];
+export const VO_GAIN = 1.0;
+export const isSpeaking = (frame: number): boolean => VO.some((v) => frame >= v.from && frame < v.until);
+
+// Score level under each world and under the voice: a little quieter under the black flash world,
+// well under the voice while it speaks (the min of overlapping dips wins).
+export const SCORE_DIPS: Array<[number, number, number]> = [
+  ...WORLDS.filter((w) => w.kind === "flash").map((w): [number, number, number] => [w.from, w.until, 0.72]),
+  ...VO.map((v): [number, number, number] => [v.from - 3, v.until + 6, 0.35]),
+];
