@@ -249,7 +249,7 @@ export const WordScenes: React.FC = () => {
           <IconPop name={pressed ? "calendar" : "calendar-open"} size={252} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" accent={frame >= T.tapPress && frame < T.tapPress + 2 ? C.navy : undefined} />
           <TypedLine text={Cw.text} from={Cw.wordAt} land="snap" style={{ ...WordCenter, top: 660 }} />
           <Hand from={T.tapEnter} tipX={682} tipY={1102} fromDx={640} pressAt={T.tapPress} />
-          <TapRing at={T.tapPress} x={540} y={1102} r0={10} r1={120} stroke={10} life={10} />
+          <TapRing at={T.tapPress} x={540} y={1102} r0={10} r1={110} stroke={10} life={10} />
         </AbsoluteFill>
       ) : null}
     </>
@@ -377,6 +377,7 @@ export const ReplyScene: React.FC = () => {
   const bw0 = replyWidth(frame, fps);
   const travel = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopReset], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
   const hookW = measure("Coach, your clips", BUBBLE, "700") + INNER;
+  const leave = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) }) : 0;
   const bw = bw0 + (hookW - bw0) * travel;
   const bx = 984 - bw0 + (96 - (984 - bw0)) * travel;
   const byy = 760 + (720 - 760) * travel;
@@ -384,7 +385,10 @@ export const ReplyScene: React.FC = () => {
   return (
     <Drift from={T.dmIcon + 5} pxPerFrame={0.35} scalePerFrame={0.0002}>
       <Bubble from={T.cutPaper} tail={travel > 0.5 ? "left" : "right"} x={bx} y={byy} width={bw} fontFamily={UI} fontSize={BODY} pad={PAD}>
-        <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
+        <div style={{ position: "relative", overflow: "hidden", minHeight: `${1.18 + 1.18 * travel}em`, whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
+          {travel > 0.5 ? (
+            <span style={{ position: "absolute", left: 0, top: 0, display: "inline-block", width: "0.62em", height: "0.95em", backgroundColor: C.white }} />
+          ) : null}
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />
             <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} cursorColor={C.white} wordColors={[undefined, C.accent]} style={{ letterSpacing: "0.03em" }} />
@@ -395,7 +399,9 @@ export const ReplyScene: React.FC = () => {
           {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
         </div>
       </Bubble>
-      <IconPop name="dm" size={108} x={930} y={676} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <div style={{ position: "absolute", inset: 0, translate: `${leave * 320}px ${-leave * 320}px` }}>
+        <IconPop name="dm" size={108} x={930} y={676} from={T.dmIcon} until={T.loopReset} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      </div>
     </Drift>
   );
 };

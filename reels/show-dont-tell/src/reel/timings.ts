@@ -53,9 +53,9 @@ export const T = {
   payoffRule: 506,
   // 5 reply (paper)
   cutPaper: 525,
-  dots: [525, 534],
-  ctaWords: [544, 553],
-  dmIcon: 563,
+  dots: [525],
+  ctaWords: [534, 544],
+  dmIcon: 553,
   loopOut: 591,
   loopReset: 597,
 } as const;
