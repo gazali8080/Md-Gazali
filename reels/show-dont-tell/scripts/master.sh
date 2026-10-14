@@ -3,7 +3,7 @@
 # Usage: scripts/master.sh out/reel.mp4 out/reel-master.mp4
 set -euo pipefail
 IN="$1"; OUT="$2"
-TARGET_I=-14; TARGET_TP=-1; TARGET_LRA=11
+TARGET_I=-14; TARGET_TP=-1.5; TARGET_LRA=11
 echo "pass 1: measuring $IN"
 JSON=$(ffmpeg -nostats -hide_banner -i "$IN" -af "loudnorm=I=$TARGET_I:TP=$TARGET_TP:LRA=$TARGET_LRA:print_format=json" -f null - 2>&1 | sed -n '/^{/,/^}/p')
 get() { echo "$JSON" | sed -n "s/.*\"$1\" *: *\"\([^\"]*\)\".*/\1/p"; }
