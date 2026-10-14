@@ -11,7 +11,7 @@ export const T = {
   hookLine2: [19, 28, 38], // No booked calls.
   plays: [47, 56, 66],
   calendarStamp: 75,
-  calendarShake: 75,
+  calendarShake: [84, 94],
   // 2 answer (black)
   cutBlack1: 113,
   answerWords: [113, 122, 131], // it was never
@@ -36,8 +36,8 @@ export const T = {
     { at: 272, names: ["phone-clip", "dm"] as IconName[] },
     { at: 328, names: ["play", "stopwatch"] as IconName[] },
   ],
-  tapEnter: 338,
-  tapPress: 347,
+  tapEnter: 356,
+  tapPress: 366,
   stack: 375,
   listWords: [384, 394, 403],
   checks: [394, 403, 413],
@@ -50,7 +50,6 @@ export const T = {
   handHover: 478,
   period: 488,
   handLeave: 497,
-  scrub: 506,
   // 5 reply (paper)
   cutPaper: 525,
   dots: [525, 534],
@@ -60,24 +59,24 @@ export const T = {
   loopReset: 597,
 } as const;
 
-export type WorldKind = "paper" | "black";
+export type WorldKind = "paper" | "flash";
 export const WORLDS: Array<{ from: number; until: number; kind: WorldKind }> = [
   { from: 0, until: T.cutBlack1, kind: "paper" },
-  { from: T.cutBlack1, until: T.flash1, kind: "black" },
+  { from: T.cutBlack1, until: T.flash1, kind: "flash" },
   { from: T.flash1, until: T.words[0].cut, kind: "paper" },
-  { from: T.words[0].cut, until: T.words[0].back, kind: "black" },
+  { from: T.words[0].cut, until: T.words[0].back, kind: "flash" },
   { from: T.words[0].back, until: T.words[1].cut, kind: "paper" },
-  { from: T.words[1].cut, until: T.words[1].back, kind: "black" },
+  { from: T.words[1].cut, until: T.words[1].back, kind: "flash" },
   { from: T.words[1].back, until: T.words[2].cut, kind: "paper" },
-  { from: T.words[2].cut, until: T.words[2].back, kind: "black" },
+  { from: T.words[2].cut, until: T.words[2].back, kind: "flash" },
   { from: T.words[2].back, until: T.flash2, kind: "paper" },
-  { from: T.flash2, until: T.cutPaper, kind: "black" },
+  { from: T.flash2, until: T.cutPaper, kind: "flash" },
   { from: T.cutPaper, until: T.end, kind: "paper" },
 ];
 
-export const FLASHES: Array<{ at: number; hold: number }> = [
-  { at: T.flash1, hold: 3 },
-  { at: T.flash2, hold: 0 },
+export const FLASHES: Array<{ at: number; hold: number; fall: number }> = [
+  { at: T.flash1, hold: 2, fall: 3 },
+  { at: T.flash2, hold: 1, fall: 2 },
 ];
 
 export type Cue = { name: "tick" | "type" | "whoosh" | "impact" | "click" | "riser" | "chime" | "flash"; at: number; vol: number };
@@ -88,8 +87,7 @@ add("impact", T.hookLine1, 0.4);
 T.hookLine2.forEach((f) => add("type", f, 0.35));
 T.plays.forEach((f) => add("click", f, 0.3));
 add("impact", T.calendarStamp, 0.45);
-add("click", 84, 0.25);
-add("click", 94, 0.25);
+T.calendarShake.forEach((f) => add("click", f, 0.25));
 // answer
 add("impact", T.cutBlack1, 0.7);
 T.answerWords.forEach((f) => add("type", f, 0.35));
@@ -132,7 +130,6 @@ add("impact", T.flash2, 0.6);
 // payoff
 add("whoosh", T.payoff, 0.5);
 add("whoosh", T.handEnter, 0.3);
-add("whoosh", T.scrub, 0.3);
 add("tick", T.handHover, 0.25);
 add("chime", T.period, 0.5);
 add("click", T.period, 0.4);
@@ -146,4 +143,4 @@ add("whoosh", T.loopOut, 0.3);
 export const CUES = cues;
 
 // Score level under each world: a little quieter under the black flash world.
-export const SCORE_DIPS: Array<[number, number, number]> = WORLDS.filter((w) => w.kind === "black").map((w) => [w.from, w.until, 0.72]);
+export const SCORE_DIPS: Array<[number, number, number]> = WORLDS.filter((w) => w.kind === "flash").map((w) => [w.from, w.until, 0.72]);

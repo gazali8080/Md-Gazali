@@ -11,7 +11,7 @@ export const Reel: React.FC = () => {
   const frame = useCurrentFrame();
   const world = WORLDS.find((w) => frame >= w.from && frame < w.until)?.kind ?? "paper";
   return (
-    <AbsoluteFill style={{ fontFamily: UI, backgroundColor: C.black }}>
+    <AbsoluteFill style={{ fontFamily: UI, backgroundColor: C.navy }}>
       <World kind={world}>
         <HookScene />
         <AnswerScene />
@@ -21,7 +21,7 @@ export const Reel: React.FC = () => {
         <ReplyScene />
       </World>
       {FLASHES.map((f) => (
-        <Flash key={f.at} from={f.at} hold={f.hold} />
+        <Flash key={f.at} from={f.at} hold={f.hold} fall={f.fall} />
       ))}
       {AUDIO_READY ? (
         <>

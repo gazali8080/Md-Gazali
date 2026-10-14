@@ -12,7 +12,7 @@ import { IconName, PixelIcon } from "./icons";
 
 // ---------- worlds ----------
 
-// The paper world is white with navy ink; the flash world is black with white ink.
+// The paper world is navy with white ink; the flash world is white with navy ink.
 export const WorldCtx = React.createContext<{ bg: string; ink: string }>({ bg: C.navy, ink: C.white });
 export const useWorld = () => React.useContext(WorldCtx);
 
@@ -38,12 +38,12 @@ export const Grain: React.FC<{ opacity?: number }> = ({ opacity = 0.07 }) => {
   );
 };
 
-// White "paper" world (navy ink) or black "flash" world (white ink).
+// Navy "paper" world (white ink) or white "flash" world (navy ink).
 export const World: React.FC<{
-  kind: "paper" | "black";
+  kind: "paper" | "flash";
   children?: React.ReactNode;
 }> = ({ kind, children }) => {
-  const theme = kind === "paper" ? { bg: C.white, ink: C.navy } : { bg: C.black, ink: C.white };
+  const theme = kind === "paper" ? { bg: C.navy, ink: C.white } : { bg: C.white, ink: C.navy };
   return (
     <WorldCtx.Provider value={theme}>
       <AbsoluteFill style={{ backgroundColor: theme.bg, color: theme.ink }}>
@@ -54,7 +54,7 @@ export const World: React.FC<{
   );
 };
 
-// White flash: full for `hold` frames, then falls off.
+// Black blink between the two worlds: full for `hold` frames, then falls off.
 export const Flash: React.FC<{ from: number; hold?: number; fall?: number }> = ({
   from,
   hold = 2,
@@ -71,7 +71,7 @@ export const Flash: React.FC<{ from: number; hold?: number; fall?: number }> = (
           extrapolateRight: "clamp",
         });
   return (
-    <AbsoluteFill style={{ backgroundColor: C.white, opacity, pointerEvents: "none" }} />
+    <AbsoluteFill style={{ backgroundColor: C.black, opacity, pointerEvents: "none" }} />
   );
 };
 
@@ -317,7 +317,7 @@ export const IconPop: React.FC<{
   preset?: "pop" | "slam" | "swing";
   ink?: string;
   accent?: string;
-  shakeAt?: number;
+  shakeAt?: number | number[];
 }> = ({
   name,
   size,
@@ -355,9 +355,9 @@ export const IconPop: React.FC<{
   const jx = t < jitterFrames ? (random(`jx-${name}-${t}`) - 0.5) * 18 : 0;
   const jy = t < jitterFrames ? (random(`jy-${name}-${t}`) - 0.5) * 18 : 0;
   let shake = 0;
-  if (shakeAt !== undefined && frame >= shakeAt && frame < shakeAt + 8) {
-    const u = frame - shakeAt;
-    shake = [6, -6, 5, -5, 3, -3, 1, 0][u];
+  const shakes = shakeAt === undefined ? [] : Array.isArray(shakeAt) ? shakeAt : [shakeAt];
+  for (const at of shakes) {
+    if (frame >= at && frame < at + 8) shake = [6, -6, 5, -5, 3, -3, 1, 0][frame - at];
   }
   const shadow = shadowAt !== undefined && frame >= shadowAt;
   return (

@@ -140,7 +140,8 @@ export const Marquee: React.FC<{
   from: number;
   until?: number;
   flicker?: boolean;
-}> = ({ cx, cy, w, h, from, until, flicker = false }) => {
+  tickAt?: number;
+}> = ({ cx, cy, w, h, from, until, flicker = false, tickAt }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   if (frame < from) return null;
@@ -150,6 +151,7 @@ export const Marquee: React.FC<{
   const scale = interpolate(s, [0, 1], [1.3, 1]);
   if (flicker && t % 4 >= 2) return null;
   const hs = 16;
+  const tick = tickAt !== undefined && frame >= tickAt && frame < tickAt + 3 ? 8 : 0;
   return (
     <svg
       width={w + hs * 2}
@@ -159,7 +161,7 @@ export const Marquee: React.FC<{
     >
       <rect x={0} y={0} width={w} height={h} fill="none" stroke={C.accent} strokeWidth={4} />
       {[[0, 0], [w, 0], [0, h], [w, h]].map(([x, y]) => (
-        <rect key={`${x}-${y}`} x={x - hs / 2} y={y - hs / 2} width={hs} height={hs} fill={C.accent} />
+        <rect key={`${x}-${y}`} x={x - hs / 2 + (x === 0 ? -tick : tick)} y={y - hs / 2 + (y === 0 ? -tick : tick)} width={hs} height={hs} fill={C.accent} />
       ))}
     </svg>
   );

@@ -4,7 +4,7 @@ import { measureText } from "@remotion/layout-utils";
 import { C, EASE_OUT, EASE_SNAP, W } from "../lib/theme";
 import { DISPLAY, UI } from "../lib/fonts";
 import { IconName, PixelIcon } from "../lib/icons";
-import { Drift, IconPop, Line, TypedLine } from "../lib/primitives";
+import { Drift, IconPop, Line, TypedLine, useWorld } from "../lib/primitives";
 import { Bubble, Halves } from "../lib/effects";
 import { DrawLine, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
@@ -47,13 +47,13 @@ export const HookScene: React.FC = () => {
   return (
     <AbsoluteFill>
       <Bubble from={0} tail="left" x={bx} y={by} width={bw} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
-        <Stamp from={T.hookLine1} style={{ whiteSpace: "nowrap" }}>
+        <div style={{ whiteSpace: "nowrap" }}>
           Coach, your clips
           <br />
           get views.
-          {frame < T.hookLine2[0] ? <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", marginLeft: "0.12em", backgroundColor: C.accent, opacity: Math.floor(frame / 8) % 2 === 0 ? 1 : 0 }} /> : null}
-        </Stamp>
-        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} style={{ whiteSpace: "nowrap" }} />
+          {frame < T.hookLine2[0] ? <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", marginLeft: "0.12em", backgroundColor: C.accent, opacity: Math.floor(frame / 9.375) % 2 === 0 ? 1 : 0 }} /> : null}
+        </div>
+        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} style={{ whiteSpace: "nowrap" }} />
         <div style={{ position: "relative", height: 0 }}>
           <DrawLine x={0} y={-6} width={measure("No booked calls.", BUBBLE, "600")} from={T.hookLine2[2]} frames={6} thickness={10} />
         </div>
@@ -61,7 +61,7 @@ export const HookScene: React.FC = () => {
       {T.plays.map((f, i) => (
         <IconPop key={f} name="play" size={96} x={900 - i * 80} y={656 - i * 88} from={f} fromScale={0.2} />
       ))}
-      <IconPop name="calendar-open" size={120} x={920} y={1150} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={T.calendarShake} />
+      <IconPop name="calendar-open" size={120} x={920} y={1150} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={[...T.calendarShake]} />
     </AbsoluteFill>
   );
 };
@@ -81,15 +81,15 @@ export const AnswerScene: React.FC = () => {
   const editW = measure("the edit.", DISPLAY_WORD, "700");
   return (
     <AbsoluteFill style={{ textAlign: "center" }}>
-      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} land="snap" style={{ position: "absolute", left: 0, top: 560, width: W, fontSize: DISPLAY_WORD, fontWeight: 600, lineHeight: 1.1 }} />
+      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} land="snap" style={{ position: "absolute", left: 0, top: 620, width: W, fontSize: BODY, fontWeight: 500, letterSpacing: "0.01em", lineHeight: 1.1 }} />
       <Halves from={T.split} axis="x" gap={48} frames={4}>
-        <IconPop name="timeline" size={240} x={540} y={900} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
+        <IconPop name="timeline" size={288} x={540} y={900} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
       </Halves>
-      <Marker from={T.marker} frames={9} x0={420} x1={660} y={900} h={300} />
+      <Marker from={T.marker} frames={9} x0={400} x1={680} y={900} h={320} />
       <Stamp from={T.theEdit} style={{ position: "absolute", left: 0, top: 1100, width: W, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
         the edit.
       </Stamp>
-      <DrawLine x={540 - editW / 2} y={1100 + DISPLAY_WORD * 0.6} width={editW} from={T.strike} frames={10} thickness={8} />
+      <DrawLine x={540 - editW / 2} y={1100 + DISPLAY_WORD * 0.6} width={editW} from={T.strike} frames={10} thickness={12} />
     </AbsoluteFill>
   );
 };
@@ -203,15 +203,16 @@ const HangWord: React.FC<{ from: number; top: number; children: React.ReactNode 
 };
 
 // A tap: the hand dips and an azure ring expands from the fingertip.
-const TapRing: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
+const TapRing: React.FC<{ at: number; x: number; y: number; r0?: number; r1?: number; stroke?: number; life?: number }> = ({ at, x, y, r0 = 6, r1 = 52, stroke = 6, life = 8 }) => {
   const frame = useCurrentFrame();
   const t = frame - at;
-  if (t < 0 || t > 8) return null;
-  const r = interpolate(t, [0, 5], [6, 52], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
-  const o = interpolate(t, [3, 8], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  if (t < 0 || t > life) return null;
+  const r = interpolate(t, [0, life * 0.6], [r0, r1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
+  const o = interpolate(t, [life * 0.4, life], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const box = r1 * 2 + stroke * 2;
   return (
-    <svg width={140} height={140} viewBox="-70 -70 140 140" style={{ position: "absolute", left: x - 70, top: y - 70, opacity: o }}>
-      <circle r={r} fill="none" stroke={C.accent} strokeWidth={6} />
+    <svg width={box} height={box} viewBox={`${-box / 2} ${-box / 2} ${box} ${box}`} style={{ position: "absolute", left: x - box / 2, top: y - box / 2, opacity: o }}>
+      <circle r={r} fill="none" stroke={C.accent} strokeWidth={stroke} />
     </svg>
   );
 };
@@ -236,16 +237,16 @@ export const WordScenes: React.FC = () => {
           <Stamp from={B.cut} style={{ position: "absolute", left: 96, top: 700, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
             {B.text}
           </Stamp>
-          <IconPop name="question" size={252} x={264} y={1040} from={B.iconAt} fromScale={1.3} preset="slam" />
-          <Marquee cx={264} cy={1040} w={324} h={324} from={B.marqueeAt} />
+          <IconPop name="question" size={252} x={264} y={1120} from={B.iconAt} fromScale={1.3} preset="slam" />
+          <Marquee cx={264} cy={1120} w={324} h={324} from={B.marqueeAt} tickAt={B.marqueeAt + 9} />
         </AbsoluteFill>
       ) : null}
       {frame >= Cw.cut && frame < Cw.back ? (
         <AbsoluteFill>
           <IconPop name={pressed ? "calendar" : "calendar-open"} size={252} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" accent={frame >= T.tapPress && frame < T.tapPress + 2 ? C.white : undefined} />
           <TypedLine text={Cw.text} from={Cw.wordAt} land="snap" style={{ ...WordCenter, top: 660 }} />
-          <Hand from={T.tapEnter} tipX={548} tipY={1092} fromDx={640} pressAt={T.tapPress} />
-          <TapRing at={T.tapPress} x={548} y={1100} />
+          <Hand from={T.tapEnter} tipX={592} tipY={1102} fromDx={640} pressAt={T.tapPress} />
+          <TapRing at={T.tapPress} x={586} y={1102} r0={10} r1={120} stroke={10} life={10} />
         </AbsoluteFill>
       ) : null}
     </>
@@ -268,21 +269,29 @@ const Hand: React.FC<{ from: number; tipX: number; tipY: number; fromDx: number;
   const frame = useCurrentFrame();
   if (frame < from) return null;
   const t = frame - from;
+  const world = useWorld();
   let dx = interpolate(t, [0, 8], [fromDx, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   let dy = 0;
   let scale = 1;
   if (pressAt !== undefined && frame >= pressAt) {
     const u = frame - pressAt;
-    scale = interpolate(u, [0, 2, 4], [1, 0.9, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-    dy = u < 3 ? 8 : 0;
+    scale = interpolate(u, [0, 2, 4], [1, 0.92, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    dx += u < 3 ? -8 : 0;
   }
   if (hoverFrom !== undefined && frame >= hoverFrom) dy += Math.floor((frame - hoverFrom) / 2) % 2 === 0 ? 0 : 2;
   if (leaveAt !== undefined && frame >= leaveAt) {
     dx += interpolate(frame - leaveAt, [0, 6], [0, 700], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) });
   }
   return (
-    <div style={{ position: "absolute", left: tipX - HAND / 2 + dx, top: tipY - 7 + dy, width: HAND, height: HAND, scale: `${scale}`, transformOrigin: "50% 4%" }}>
-      <PixelIcon name="tap" size={HAND} />
+    <div style={{ position: "absolute", left: tipX - HAND / 2 + dx, top: tipY - 7 + dy, width: HAND, height: HAND, scale: `${scale}`, rotate: "-90deg", transformOrigin: "50% 4%" }}>
+      {[[-14, 0], [14, 0], [0, -14], [0, 14]].map(([ox, oy]) => (
+        <div key={`${ox}-${oy}`} style={{ position: "absolute", left: ox, top: oy }}>
+          <PixelIcon name="tap" size={HAND} ink={world.bg} accent={world.bg} />
+        </div>
+      ))}
+      <div style={{ position: "absolute", left: 0, top: 0 }}>
+        <PixelIcon name="tap" size={HAND} />
+      </div>
     </div>
   );
 };
@@ -295,18 +304,19 @@ export const PayoffScene: React.FC = () => {
   const s = spring({ frame: frame - T.period, fps, config: { damping: 12, stiffness: 300, mass: 0.5 } });
   const periodScale = frame >= T.period ? interpolate(s, [0, 1], [1.4, 1]) : 0;
   const wordW = measure("strategy", SERIF, "400", DISPLAY);
-  const periodX = 540 + wordW / 2 + 12;
+  const periodX = 96 + wordW + 12;
+  const parked = frame >= T.payoff + T.playheadFrames + 3;
   return (
     <Drift from={T.handLeave} pxPerFrame={0.1} scalePerFrame={0.0003}>
-      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={200} x1={880} barY={960} barH={1080} barW={16}>
-        <div style={{ position: "absolute", left: 0, top: 760, width: W, textAlign: "center", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16}>
+        <div style={{ position: "absolute", left: 96, top: 760, width: W - 96, textAlign: "left", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
-          <span style={{ display: "inline-block", scale: `${periodScale}` }}>.</span>
+          <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
         </div>
       </PlayheadReveal>
-      <Hand from={T.handEnter} tipX={periodX + 6} tipY={978} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
-      <TapRing at={T.period} x={periodX + 8} y={966} />
-      <Marker from={T.scrub} frames={18} x0={880} x1={200} y={960} h={1080} />
+      {parked ? <div style={{ position: "absolute", left: 70, top: 420, width: 4, height: 1080, backgroundColor: C.accent }} /> : null}
+      <Hand from={T.handEnter} tipX={periodX + 34} tipY={972} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
+      <TapRing at={T.period} x={periodX + 10} y={966} />
     </Drift>
   );
 };
@@ -367,7 +377,7 @@ export const ReplyScene: React.FC = () => {
   return (
     <Drift from={T.dmIcon + 5} pxPerFrame={0.35} scalePerFrame={0.0002}>
       <Bubble from={T.cutPaper} tail="right" x={984 - bw} y={760} width={bw} fontFamily={UI} fontSize={BODY} pad={PAD}>
-        <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap" }}>
+        <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />
             <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} />
@@ -378,7 +388,7 @@ export const ReplyScene: React.FC = () => {
           {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
         </div>
       </Bubble>
-      <IconPop name="dm" size={108} x={930} y={742} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <IconPop name="dm" size={108} x={930} y={690} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
     </Drift>
   );
 };
