@@ -51,9 +51,9 @@ export const HookScene: React.FC = () => {
           Coach, your clips
           <br />
           get views.
-          {frame < T.hookLine2[0] ? <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", marginLeft: "0.12em", backgroundColor: C.accent, opacity: Math.floor(frame / 9.375) % 2 === 0 ? 1 : 0 }} /> : null}
+          {frame < T.hookLine2[0] ? <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", marginLeft: "0.12em", backgroundColor: C.white, opacity: Math.floor(frame / 9.375) % 2 === 0 ? 1 : 0 }} /> : null}
         </div>
-        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} style={{ whiteSpace: "nowrap" }} />
+        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} cursorColor={C.white} style={{ whiteSpace: "nowrap" }} />
         <div style={{ position: "relative", height: 0 }}>
           <DrawLine x={0} y={-6} width={measure("No booked calls.", BUBBLE, "700")} from={T.hookLine2[2]} frames={6} thickness={10} />
         </div>
@@ -108,9 +108,9 @@ const ROW: Array<{ name: IconName; x: number }> = [
 const ROW_Y = 920;
 const ROW_SIZE = 96;
 const STACK: Record<string, { x: number; y: number }> = {
-  hook: { x: 300, y: 720 },
-  question: { x: 300, y: 920 },
-  "calendar-open": { x: 300, y: 1120 },
+  hook: { x: 144, y: 720 },
+  question: { x: 144, y: 920 },
+  "calendar-open": { x: 144, y: 1120 },
 };
 const LIFT_AT: Record<string, number> = { hook: T.lifts.hook, question: T.lifts.question, "calendar-open": T.lifts.calendar };
 
@@ -120,8 +120,8 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   const del = T.deletePairs.find((d) => d.names.includes(name));
   if (del && frame >= del.at + 6) return null;
   // entrance from the right, staggered
-  const tIn = frame - T.row - index * 2;
-  const enter = interpolate(tIn, [0, 10], [1080, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  const tIn = frame - T.row - index;
+  const enter = interpolate(tIn, [0, 8], [1080, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const liftAt = LIFT_AT[name];
   const lifted = liftAt !== undefined && frame >= liftAt;
   const liftY = lifted ? interpolate(frame, [liftAt, liftAt + 4], [0, -64], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
@@ -178,12 +178,12 @@ export const RowScene: React.FC = () => {
         <RowIcon key={r.name} name={r.name} x={r.x} index={i} />
       ))}
       {listText.map((text, i) => (
-        <Line key={text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 440, top: rows[i] - BODY * 0.6, fontSize: BODY, fontWeight: 700, lineHeight: 1.2 }}>
+        <Line key={text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 284, top: rows[i] - BODY * 0.6, fontSize: BODY, fontWeight: 700, lineHeight: 1.2 }}>
           {text}
         </Line>
       ))}
       {T.checks.map((f, i) => (
-        <IconPop key={f} name="check" size={96} x={852} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
+        <IconPop key={f} name="check" size={96} x={936} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
       ))}
     </AbsoluteFill>
   );
@@ -248,8 +248,8 @@ export const WordScenes: React.FC = () => {
         <AbsoluteFill>
           <IconPop name={pressed ? "calendar" : "calendar-open"} size={252} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" accent={frame >= T.tapPress && frame < T.tapPress + 2 ? C.navy : undefined} />
           <TypedLine text={Cw.text} from={Cw.wordAt} land="snap" style={{ ...WordCenter, top: 660 }} />
-          <Hand from={T.tapEnter} tipX={592} tipY={1102} fromDx={640} pressAt={T.tapPress} />
-          <TapRing at={T.tapPress} x={586} y={1102} r0={10} r1={120} stroke={10} life={10} />
+          <Hand from={T.tapEnter} tipX={682} tipY={1102} fromDx={640} pressAt={T.tapPress} />
+          <TapRing at={T.tapPress} x={540} y={1102} r0={10} r1={120} stroke={10} life={10} />
         </AbsoluteFill>
       ) : null}
     </>
@@ -316,7 +316,7 @@ export const PayoffScene: React.FC = () => {
           <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
         </div>
       </PlayheadReveal>
-      <DrawLine x={96} y={760 + SERIF * 1.13} width={wordW} from={T.payoffRule} frames={8} thickness={12} />
+      <DrawLine x={96} y={760 + SERIF * 1.17} width={wordW + 12 + measure(".", SERIF, "400", DISPLAY)} from={T.payoffRule} frames={8} thickness={12} />
       <Hand from={T.handEnter} tipX={periodX + 34} tipY={972} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
       <TapRing at={T.period} x={periodX + 10} y={966} />
     </Drift>
@@ -368,7 +368,7 @@ export const ReplyScene: React.FC = () => {
     return (
       <Bubble from={T.loopReset} tail="left" x={96} y={720} width={measure("Coach, your clips", BUBBLE, "700") + INNER} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
         <div style={{ minHeight: "2.36em" }}>
-          <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
+          <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.white }} />
         </div>
       </Bubble>
     );
@@ -387,7 +387,7 @@ export const ReplyScene: React.FC = () => {
         <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />
-            <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} wordColors={[undefined, C.accent]} style={{ letterSpacing: "0.03em" }} />
+            <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} cursorColor={C.white} wordColors={[undefined, C.accent]} style={{ letterSpacing: "0.03em" }} />
             <div style={{ position: "relative", height: 0 }}>
               <DrawLine x={dmOffset + 0.03 * BODY * 2} y={-6} width={measure("STRATEGY", BODY, "700") + 0.03 * BODY * 8} from={T.ctaWords[1]} frames={6} thickness={10} />
             </div>
