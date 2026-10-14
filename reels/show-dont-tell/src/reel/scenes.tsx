@@ -1,10 +1,10 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { measureText } from "@remotion/layout-utils";
-import { C, EASE_OUT, EASE_SNAP, W } from "../lib/theme";
+import { C, EASE_IN_OUT, EASE_OUT, EASE_SNAP, W } from "../lib/theme";
 import { DISPLAY, UI } from "../lib/fonts";
 import { IconName, PixelIcon } from "../lib/icons";
-import { Drift, IconPop, Line, TypedLine, useWorld } from "../lib/primitives";
+import { Drift, IconPop, TypedLine, useWorld } from "../lib/primitives";
 import { Bubble, Halves } from "../lib/effects";
 import { DrawLine, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
@@ -175,9 +175,7 @@ export const RowScene: React.FC = () => {
         <RowIcon key={r.name} name={r.name} x={r.x} index={i} />
       ))}
       {listText.map((text, i) => (
-        <Line key={text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 284, top: rows[i] - BODY * 0.6, fontSize: BODY, fontWeight: 700, lineHeight: 1.2 }}>
-          {text}
-        </Line>
+        <TypedLine key={text} text={text} from={T.listWords[i]} land="snap" style={{ position: "absolute", left: 284, top: rows[i] - BODY * 0.6, fontSize: BODY, fontWeight: 700, lineHeight: 1.2 }} />
       ))}
       {T.checks.map((f, i) => (
         <IconPop key={f} name="check" size={96} x={936} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
@@ -267,9 +265,9 @@ const DropLine: React.FC<{ from: number; x: number; toY: number }> = ({ from, x,
 const HAND = 168;
 const Hand: React.FC<{ from: number; tipX: number; tipY: number; fromDx: number; pressAt?: number; hoverFrom?: number; leaveAt?: number }> = ({ from, tipX, tipY, fromDx, pressAt, hoverFrom, leaveAt }) => {
   const frame = useCurrentFrame();
+  const world = useWorld();
   if (frame < from) return null;
   const t = frame - from;
-  const world = useWorld();
   let dx = interpolate(t, [0, 8], [fromDx, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   let dy = 0;
   let scale = 1;
@@ -307,7 +305,7 @@ export const PayoffScene: React.FC = () => {
   const periodX = 96 + wordW + 12;
   return (
     <Drift from={T.handLeave} pxPerFrame={0.35} scalePerFrame={0.0003}>
-      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={560} barW={16} parkX={44} easing={Easing.out(Easing.cubic)}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={560} barW={16} parkX={44} easing={EASE_IN_OUT}>
         <div style={{ position: "absolute", left: 96, top: 760, width: W - 96, textAlign: "left", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
           <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
@@ -374,7 +372,7 @@ export const ReplyScene: React.FC = () => {
   const bw0 = replyWidth(frame, fps);
   const travel = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopReset], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
   const hookW = measure("your clips get views.", BUBBLE, "700") + INNER;
-  const leave = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) }) : 0;
+  const leave = frame >= T.loopOut - 3 ? interpolate(frame, [T.loopOut - 3, T.loopOut + 3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) }) : 0;
   const bw = bw0 + (hookW - bw0) * travel;
   const bx = 984 - bw0 + (96 - (984 - bw0)) * travel;
   const byy = 760 + (720 - 760) * travel;
@@ -383,7 +381,7 @@ export const ReplyScene: React.FC = () => {
     <Drift from={T.dmIcon + 5} pxPerFrame={0.35} scalePerFrame={0.0002}>
       <Bubble from={T.cutPaper} tail={travel > 0.5 ? "left" : "right"} x={bx} y={byy} width={bw} fontFamily={UI} fontSize={BODY} pad={PAD}>
         <div style={{ position: "relative", overflow: "hidden", minHeight: `${1.18 + 1.18 * travel}em`, whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
-          {travel > 0.5 ? (
+          {wipe >= 1 ? (
             <span style={{ position: "absolute", left: 0, top: 0, display: "inline-block", width: "0.62em", height: "0.95em", backgroundColor: C.white }} />
           ) : null}
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
@@ -393,7 +391,7 @@ export const ReplyScene: React.FC = () => {
               <DrawLine x={dmOffset + 0.03 * BODY * 2} y={-6} width={measure("STRATEGY", BODY, "700") + 0.03 * BODY * 8} from={T.ctaWords[1]} frames={6} thickness={10} />
             </div>
           </div>
-          {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
+          {wipe > 0 && wipe < 0.97 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
         </div>
       </Bubble>
       <div style={{ position: "absolute", inset: 0, translate: `${leave * 320}px ${-leave * 320}px` }}>

@@ -9,9 +9,9 @@ export const T = {
   // 1 hook (paper): the editor's DM lands whole, the pain line types in azure
   hookLine1: 0,
   hookLine2: [9, 19, 28], // No booked calls. (azure: the pain line)
-  plays: [47, 56, 66],
-  calendarStamp: 75,
-  calendarShake: [84, 94],
+  plays: [38, 47, 56],
+  calendarStamp: 66,
+  calendarShake: [75, 84],
   // 2 answer (black)
   cutBlack1: 113,
   answerWords: [113, 122, 131], // it was never
@@ -57,7 +57,7 @@ export const T = {
   ctaWords: [534, 544],
   dmIcon: 553,
   loopOut: 591,
-  loopReset: 597,
+  loopReset: 598,
 } as const;
 
 export type WorldKind = "paper" | "flash";
