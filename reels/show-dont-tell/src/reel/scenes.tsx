@@ -83,13 +83,13 @@ export const AnswerScene: React.FC = () => {
 
 // ---------- 3. Strategy row (paper): seven icons; three are named and lifted, the rest deleted ----------
 const ROW: Array<{ name: IconName; x: number }> = [
-  { name: "phone-clip", x: 144 },
-  { name: "play", x: 276 },
-  { name: "hook", x: 408 },
+  { name: "phone-clip", x: 156 },
+  { name: "play", x: 284 },
+  { name: "hook", x: 412 },
   { name: "question", x: 540 },
-  { name: "calendar-open", x: 672 },
-  { name: "stopwatch", x: 804 },
-  { name: "dm", x: 936 },
+  { name: "calendar-open", x: 668 },
+  { name: "stopwatch", x: 796 },
+  { name: "dm", x: 924 },
 ];
 const ROW_Y = 1000;
 const ROW_SIZE = 116;
@@ -110,7 +110,7 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   const enter = interpolate(tIn, [0, 10], [1080, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const liftAt = LIFT_AT[name];
   const lifted = liftAt !== undefined && frame >= liftAt;
-  const liftY = lifted ? interpolate(frame, [liftAt, liftAt + 3], [0, -24], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
+  const liftY = lifted ? interpolate(frame, [liftAt, liftAt + 4], [0, -64], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
   const bob = !lifted && frame >= T.row + 20 ? (Math.floor(frame / 9) % 2 === index % 2 ? 4 : -4) : 0;
   // CRT-style deletion: azure flash for a frame, then collapse to a line
   let scaleY = 1;
@@ -134,7 +134,7 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   return (
     <div style={{ position: "absolute", left: px - size / 2, top: py - size / 2, width: size, height: size, scale: `1 ${scaleY}` }}>
       {lifted ? (
-        <div style={{ position: "absolute", left: 10, top: 10 }}>
+        <div style={{ position: "absolute", left: 12, top: 12 }}>
           <PixelIcon name={shown} size={size} ink={C.accent} accent={C.accent} />
         </div>
       ) : null}
@@ -291,6 +291,7 @@ export const PayoffScene: React.FC = () => {
       </PlayheadReveal>
       <Hand from={T.handEnter} x={periodX + 60} y={1070} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
       <TapRing at={T.period} x={periodX + 4} y={1000} />
+      <Marker from={T.scrub} frames={18} x0={880} x1={200} y={960} h={1080} />
     </Drift>
   );
 };
@@ -317,14 +318,16 @@ export const ReplyScene: React.FC = () => {
     // frame 0's state: an empty received bubble, so the loop lands on the hook
     return (
       <Bubble from={T.loopReset} tail="left" x={96} y={720} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
-        <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
+        <div style={{ minHeight: "2.36em" }}>
+          <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
+        </div>
       </Bubble>
     );
   }
   const wipe = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
   return (
-    <Drift from={T.dmIcon + 5} pxPerFrame={0.1} scalePerFrame={0.00015}>
-      <Bubble from={T.cutPaper} tail="right" x={96} y={760} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
+    <Drift from={T.dmIcon + 5} pxPerFrame={0.35} scalePerFrame={0.0002}>
+      <Bubble from={T.cutPaper} tail="right" x={96} y={760} width={888} fontFamily={UI} fontSize={BODY} pad={PAD}>
         <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em" }}>
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />
@@ -333,7 +336,7 @@ export const ReplyScene: React.FC = () => {
           {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
         </div>
       </Bubble>
-      <IconPop name="dm" size={104} x={936} y={742} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <IconPop name="dm" size={104} x={932} y={742} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
       <div style={{ display: "none" }}>{world.bg}</div>
     </Drift>
   );

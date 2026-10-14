@@ -36,8 +36,8 @@ export const T = {
     { at: 272, names: ["phone-clip", "dm"] as IconName[] },
     { at: 328, names: ["play", "stopwatch"] as IconName[] },
   ],
-  tapEnter: 356,
-  tapPress: 366,
+  tapEnter: 338,
+  tapPress: 347,
   stack: 375,
   listWords: [384, 394, 403],
   checks: [394, 403, 413],
@@ -50,6 +50,7 @@ export const T = {
   handHover: 478,
   period: 488,
   handLeave: 497,
+  scrub: 506,
   // 5 reply (paper)
   cutPaper: 525,
   dots: [525, 534],
@@ -76,7 +77,7 @@ export const WORLDS: Array<{ from: number; until: number; kind: WorldKind }> = [
 
 export const FLASHES: Array<{ at: number; hold: number }> = [
   { at: T.flash1, hold: 3 },
-  { at: T.flash2, hold: 2 },
+  { at: T.flash2, hold: 0 },
 ];
 
 export type Cue = { name: "tick" | "type" | "whoosh" | "impact" | "click" | "riser" | "chime" | "flash"; at: number; vol: number };
@@ -132,6 +133,7 @@ add("impact", T.flash2, 0.6);
 // payoff
 add("whoosh", T.payoff, 0.5);
 add("whoosh", T.handEnter, 0.3);
+add("whoosh", T.scrub, 0.3);
 add("tick", T.handHover, 0.25);
 add("chime", T.period, 0.5);
 add("click", T.period, 0.4);
