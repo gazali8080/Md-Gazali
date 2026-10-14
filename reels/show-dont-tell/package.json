@@ -1,7 +1,7 @@
 {
   "name": "show-dont-tell",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Show, don't tell: an original kinetic-typography reel for @gazali.visuals",
   "repository": {},
   "license": "UNLICENSED",
   "private": true,
@@ -28,6 +28,10 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "audio": "python3 scripts/synth_audio.py",
+    "sheet": "node scripts/contact-sheet.mjs --comp=Reel --out=out/contact",
+    "render": "remotion render Reel out/reel.mp4",
+    "master": "bash scripts/master.sh out/reel.mp4 out/reel-master.mp4"
   }
 }
