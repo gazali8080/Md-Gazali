@@ -10,7 +10,7 @@ import { DrawLine, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
 
 // Type scale: 72 (bubble text), 80 (headline, list), 128 (display words), 250 (serif payoff).
-const BUBBLE = 72;
+const BUBBLE = 80;
 const BODY = 80;
 const DISPLAY_WORD = 128;
 const SERIF = 250;
@@ -37,12 +37,12 @@ export const HookScene: React.FC = () => {
   const bx = 96;
   const by = 720;
   const caret = 0.62 * BUBBLE + 8;
-  const line1 = measure("Coach, your clips", BUBBLE, "600");
+  const line1 = measure("Coach, your clips", BUBBLE, "700");
   const bw = springWidth(frame, fps, [
-    [0, Math.max(line1, measure("get views.", BUBBLE, "600") + caret)],
-    [T.hookLine2[0] - 4, Math.max(line1, measure("No", BUBBLE, "600") + caret)],
-    [T.hookLine2[1] - 4, Math.max(line1, measure("No booked", BUBBLE, "600") + caret)],
-    [T.hookLine2[2] - 4, Math.max(line1, measure("No booked calls.", BUBBLE, "600") + caret)],
+    [0, Math.max(line1, measure("get views.", BUBBLE, "700") + caret)],
+    [T.hookLine2[0] - 4, Math.max(line1, measure("No", BUBBLE, "700") + caret)],
+    [T.hookLine2[1] - 4, Math.max(line1, measure("No booked", BUBBLE, "700") + caret)],
+    [T.hookLine2[2] - 4, Math.max(line1, measure("No booked calls.", BUBBLE, "700") + caret)],
   ]);
   return (
     <AbsoluteFill>
@@ -55,13 +55,13 @@ export const HookScene: React.FC = () => {
         </div>
         <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} blink={9} style={{ whiteSpace: "nowrap" }} />
         <div style={{ position: "relative", height: 0 }}>
-          <DrawLine x={0} y={-6} width={measure("No booked calls.", BUBBLE, "600")} from={T.hookLine2[2]} frames={6} thickness={10} />
+          <DrawLine x={0} y={-6} width={measure("No booked calls.", BUBBLE, "700")} from={T.hookLine2[2]} frames={6} thickness={10} />
         </div>
       </Bubble>
       {T.plays.map((f, i) => (
         <IconPop key={f} name="play" size={96} x={900 - i * 80} y={636 - i * 88} from={f} fromScale={0.2} />
       ))}
-      <IconPop name="calendar-open" size={120} x={920} y={1150} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={[...T.calendarShake]} />
+      <IconPop name="calendar-open" size={120} x={880} y={1190} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={[...T.calendarShake]} />
     </AbsoluteFill>
   );
 };
@@ -118,7 +118,7 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const del = T.deletePairs.find((d) => d.names.includes(name));
-  if (del && frame >= del.at + 3) return null;
+  if (del && frame >= del.at + 6) return null;
   // entrance from the right, staggered
   const tIn = frame - T.row - index * 2;
   const enter = interpolate(tIn, [0, 10], [1080, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
@@ -128,11 +128,13 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   const bob = !lifted && frame >= T.row + 20 ? (Math.floor(frame / 9.375) % 2 === index % 2 ? 4 : -4) : 0;
   // CRT-style deletion: azure flash for a frame, then collapse to a line
   let scaleY = 1;
+  let scaleX = 1;
   let flash = false;
   if (del && frame >= del.at) {
     const u = frame - del.at;
     flash = u === 0;
-    scaleY = interpolate(u, [1, 3], [1, 0.02], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    scaleY = interpolate(u, [1, 4], [1, 0.02], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    scaleX = interpolate(u, [4, 6], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   }
   // the survivors spring into a stack
   let px = x + enter;
@@ -146,7 +148,7 @@ const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name,
   const shown: IconName = name === "calendar-open" && frame >= T.stack ? "calendar" : name;
   const size = ROW_SIZE;
   return (
-    <div style={{ position: "absolute", left: px - size / 2, top: py - size / 2, width: size, height: size, scale: `1 ${scaleY}` }}>
+    <div style={{ position: "absolute", left: px - size / 2, top: py - size / 2, width: size, height: size, scale: `${scaleX} ${scaleY}` }}>
       {lifted ? (
         <div style={{ position: "absolute", left: size / 12, top: size / 12 }}>
           <PixelIcon name={shown} size={size} ink={C.accent} accent={C.accent} />
@@ -306,16 +308,15 @@ export const PayoffScene: React.FC = () => {
   const periodScale = frame >= T.period ? interpolate(s, [0, 1], [1.4, 1]) : 0;
   const wordW = measure("strategy", SERIF, "400", DISPLAY);
   const periodX = 96 + wordW + 12;
-  const parked = frame >= T.handEnter;
   return (
-    <Drift from={T.handLeave} pxPerFrame={0.1} scalePerFrame={0.0003}>
-      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16}>
+    <Drift from={T.handLeave} pxPerFrame={0.35} scalePerFrame={0.0003}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16} parkX={60}>
         <div style={{ position: "absolute", left: 96, top: 760, width: W - 96, textAlign: "left", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
           <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
         </div>
       </PlayheadReveal>
-      {parked ? <div style={{ position: "absolute", left: 70, top: 420, width: 4, height: 1080, backgroundColor: C.accent }} /> : null}
+      <DrawLine x={96} y={760 + SERIF * 0.98} width={wordW} from={T.payoffRule} frames={8} thickness={12} />
       <Hand from={T.handEnter} tipX={periodX + 34} tipY={972} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
       <TapRing at={T.period} x={periodX + 10} y={966} />
     </Drift>
@@ -354,8 +355,8 @@ const springWidth = (frame: number, fps: number, states: Array<[number, number]>
 const replyWidth = (frame: number, fps: number) =>
   springWidth(frame, fps, [
     [T.cutPaper, 3 * 24 + 2 * 14 + 20],
-    [T.ctaWords[0] - 5, measure("DM", BODY, "700") + 0.62 * BODY + 8],
-    [T.ctaWords[1] - 5, measure("DM STRATEGY", BODY, "700") + 0.62 * BODY + 8],
+    [T.ctaWords[0] - 5, measure("DM", BODY, "700") + 0.03 * BODY * 2 + 0.62 * BODY + 8],
+    [T.ctaWords[1] - 5, measure("DM STRATEGY", BODY, "700") + 0.03 * BODY * 11 + 0.62 * BODY + 8],
   ]);
 
 export const ReplyScene: React.FC = () => {
@@ -365,7 +366,7 @@ export const ReplyScene: React.FC = () => {
   if (frame >= T.loopReset) {
     // frame 0's state: an empty received bubble, so the loop lands on the hook
     return (
-      <Bubble from={T.loopReset} tail="left" x={96} y={720} width={measure("Coach, your clips", BUBBLE, "600") + INNER} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
+      <Bubble from={T.loopReset} tail="left" x={96} y={720} width={measure("Coach, your clips", BUBBLE, "700") + INNER} fontFamily={UI} fontSize={BUBBLE} pad={PAD} pop={false}>
         <div style={{ minHeight: "2.36em" }}>
           <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
         </div>
@@ -381,9 +382,9 @@ export const ReplyScene: React.FC = () => {
         <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />
-            <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} />
+            <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} wordColors={[undefined, C.accent]} style={{ letterSpacing: "0.03em" }} />
             <div style={{ position: "relative", height: 0 }}>
-              <DrawLine x={dmOffset} y={-6} width={measure("STRATEGY", BODY, "700")} from={T.ctaWords[1]} frames={6} thickness={10} />
+              <DrawLine x={dmOffset + 0.03 * BODY * 2} y={-6} width={measure("STRATEGY", BODY, "700") + 0.03 * BODY * 8} from={T.ctaWords[1]} frames={6} thickness={10} />
             </div>
           </div>
           {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}

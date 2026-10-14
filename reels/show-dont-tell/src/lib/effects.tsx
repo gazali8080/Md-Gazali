@@ -199,7 +199,7 @@ export const Bubble: React.FC<{
           borderRadius: r,
           padding: `${pad}px ${pad + 10}px`,
           fontSize,
-          fontWeight: 600,
+          fontWeight: 700,
           lineHeight: 1.18,
           backgroundColor: world.bg,
         }}

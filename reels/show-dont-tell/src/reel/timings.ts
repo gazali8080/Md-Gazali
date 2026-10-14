@@ -50,6 +50,7 @@ export const T = {
   handHover: 478,
   period: 488,
   handLeave: 497,
+  payoffRule: 506,
   // 5 reply (paper)
   cutPaper: 525,
   dots: [525, 534],
@@ -131,6 +132,7 @@ add("impact", T.flash2, 0.6);
 add("whoosh", T.payoff, 0.5);
 add("whoosh", T.handEnter, 0.3);
 add("whoosh", T.handLeave, 0.25);
+add("whoosh", T.payoffRule, 0.3);
 add("tick", T.handHover, 0.25);
 add("chime", T.period, 0.5);
 add("click", T.period, 0.4);

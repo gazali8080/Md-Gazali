@@ -176,9 +176,10 @@ export const PlayheadReveal: React.FC<{
   barW?: number;
   barH?: number;
   barY?: number;
+  parkX?: number; // after the sweep the same bar returns here and stays (the in-point)
   style?: React.CSSProperties;
   children: React.ReactNode;
-}> = ({ from, frames = 10, x0 = 80, x1 = 1000, barW = 20, barH = 300, barY = 860, style, children }) => {
+}> = ({ from, frames = 10, x0 = 80, x1 = 1000, barW = 20, barH = 300, barY = 860, parkX, style, children }) => {
   const frame = useCurrentFrame();
   if (frame < from) return null;
   const t = frame - from;
@@ -187,14 +188,15 @@ export const PlayheadReveal: React.FC<{
     extrapolateRight: "clamp",
     easing: Easing.inOut(Easing.cubic),
   });
-  const done = t > frames + 2;
+  const done = t >= frames;
+  const barX = done && parkX !== undefined ? parkX : x;
   return (
     <>
       <div style={{ position: "absolute", inset: 0, clipPath: done ? undefined : `inset(0 ${1080 - x}px 0 0)`, ...style }}>
         {children}
       </div>
-      {!done ? (
-        <div style={{ position: "absolute", left: x - barW / 2, top: barY - barH / 2, width: barW, height: barH, backgroundColor: C.accent }} />
+      {!done || parkX !== undefined ? (
+        <div style={{ position: "absolute", left: barX - barW / 2, top: barY - barH / 2, width: barW, height: barH, backgroundColor: C.accent }} />
       ) : null}
     </>
   );
