@@ -316,7 +316,7 @@ export const ReplyScene: React.FC = () => {
   if (frame >= T.loopReset) {
     // frame 0's state: an empty received bubble, so the loop lands on the hook
     return (
-      <Bubble from={T.loopReset} tail="left" x={96} y={640} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
+      <Bubble from={T.loopReset} tail="left" x={96} y={720} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
         <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
       </Bubble>
     );
