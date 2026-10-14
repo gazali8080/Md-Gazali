@@ -8,7 +8,7 @@ import { Bubble, CommentCta, Glitch, Halves } from "./lib/effects";
 
 // Visual test bed for the building blocks; not part of the reel.
 export const PrimitivesTest: React.FC = () => (
-  <World kind="navy">
+  <World kind="paper">
     <AbsoluteFill style={{ fontFamily: UI, color: C.white }}>
       <Glitch from={28} frames={8}>
         <TypedLine

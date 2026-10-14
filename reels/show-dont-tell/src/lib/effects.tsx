@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, interpolate, random, useCurrentFrame } from "remotion";
 import { C } from "./theme";
 import { EASE_OUT } from "./theme";
+import { useWorld } from "./primitives";
 
 // VHS-style glitch: for `frames` after `from`, the child is cut into horizontal
 // strips that slip sideways, with a faint accent/white split. Then it is clean.
@@ -106,7 +107,7 @@ export const CommentCta: React.FC<{
           whiteSpace: "nowrap",
         }}
       >
-        <span style={{ color: C.dim, fontWeight: 500, marginRight: "0.4em" }}>{label}</span>
+        <span style={{ color: C.accent, fontWeight: 500, marginRight: "0.4em" }}>{label}</span>
         <span>{keyword.slice(0, shown)}</span>
         <span
           style={{
@@ -159,6 +160,7 @@ export const Bubble: React.FC<{
   children: React.ReactNode;
 }> = ({ from, until, tail, x, y, width, fontFamily, fontSize = 56, stroke = C.accent, pad = 34, children }) => {
   const frame = useCurrentFrame();
+  const world = useWorld();
   if (frame < from) return null;
   if (until !== undefined && frame >= until) return null;
   const t = frame - from;
@@ -194,10 +196,9 @@ export const Bubble: React.FC<{
           borderRadius: r,
           padding: `${pad}px ${pad + 10}px`,
           fontSize,
-          fontWeight: 500,
-          lineHeight: 1.22,
-          color: C.white,
-          backgroundColor: "rgba(5,11,27,0.6)",
+          fontWeight: 600,
+          lineHeight: 1.18,
+          backgroundColor: world.bg,
         }}
       >
         {children}
@@ -214,8 +215,8 @@ export const Bubble: React.FC<{
           scale: tail === "right" ? "-1 1" : "1 1",
         }}
       >
-        <path d="M4 0 L54 0 L10 38 Z" fill={C.navy} stroke={stroke} strokeWidth={5} strokeLinejoin="miter" />
-        <rect x={6} y={-6} width={46} height={10} fill={C.navy} />
+        <path d="M4 0 L54 0 L10 38 Z" fill={world.bg} stroke={stroke} strokeWidth={5} strokeLinejoin="miter" />
+        <rect x={6} y={-6} width={46} height={10} fill={world.bg} />
       </svg>
     </div>
   );

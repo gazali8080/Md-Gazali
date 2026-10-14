@@ -1,5 +1,6 @@
 import React from "react";
 import { C } from "./theme";
+import { useWorld } from "./primitives";
 
 // Original pixel icons on a 12x12 grid. "." empty, "#" ink, "a" accent.
 export type IconName =
@@ -210,7 +211,9 @@ export const PixelIcon: React.FC<{
   ink?: string;
   accent?: string;
   style?: React.CSSProperties;
-}> = ({ name, size, ink = C.white, accent = C.accent, style }) => {
+}> = ({ name, size, ink, accent = C.accent, style }) => {
+  const world = useWorld();
+  const inkColor = ink ?? world.ink;
   const rows = GRIDS[name];
   const n = rows.length;
   return (
@@ -230,7 +233,7 @@ export const PixelIcon: React.FC<{
               y={y}
               width={1}
               height={1}
-              fill={ch === "a" ? accent : ink}
+              fill={ch === "a" ? accent : inkColor}
             />
           ),
         ),

@@ -1,222 +1,340 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { measureText } from "@remotion/layout-utils";
-import { C, W } from "../lib/theme";
+import { C, EASE_OUT, EASE_SNAP, W } from "../lib/theme";
 import { DISPLAY, UI } from "../lib/fonts";
 import { IconName, PixelIcon } from "../lib/icons";
-import { Drift, Flash, IconPop, Line, SerifWord, TypedLine, World } from "../lib/primitives";
-import { Bubble, CommentCta, Halves } from "../lib/effects";
-import { DrawLine, IconRail, Marquee, PlayheadReveal } from "../lib/rail";
+import { Drift, IconPop, Line, TypedLine, useWorld } from "../lib/primitives";
+import { Bubble, Halves } from "../lib/effects";
+import { DrawLine, Marquee, PlayheadReveal } from "../lib/rail";
 import { T } from "./timings";
 
-const HOOK_FONT = 72;
-const HOOK_PAD = 36;
+// Type scale: 72 (bubble text), 80 (headline, list), 128 (display words), 250 (serif payoff).
+const BUBBLE = 72;
+const BODY = 80;
+const DISPLAY_WORD = 128;
+const SERIF = 250;
+const PAD = 36;
 const measure = (text: string, fontSize: number, fontWeight: string, fontFamily = UI) =>
   measureText({ text, fontFamily, fontSize, fontWeight }).width;
 
-// ---------- 1. Hook: the coach's own complaint, typed into a DM bubble ----------
-export const HookScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  if (frame >= T.cutBlack1) return null;
-  const bx = 96;
-  const by = 640;
-  const bw = 888;
-  const lineH = HOOK_FONT * 1.22;
-  const noW = measure("No ", HOOK_FONT, "500");
-  const bookedW = measure("booked calls.", HOOK_FONT, "500");
-  return (
-    <AbsoluteFill>
-      <Bubble from={0} tail="right" x={bx} y={by} width={bw} fontFamily={UI} fontSize={HOOK_FONT} pad={HOOK_PAD}>
-        <div style={{ minHeight: lineH * (frame >= T.hookLine2[0] ? 2 : 1) }}>
-          <TypedLine text="Your clips get views." from={T.hookLine1[0]} at={[...T.hookLine1]} cursorHold={T.hookLine2[0] - T.hookLine1[3] - 1} />
-          <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={40} />
-          <div style={{ position: "relative", height: 0 }}>
-            <DrawLine x={noW} y={-10} width={bookedW} from={T.underline} />
-          </div>
-        </div>
-      </Bubble>
-      <IconPop name="calendar-open" size={120} x={180} y={by + 5 + HOOK_PAD + lineH * 2 + 80} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={T.calendarStamp + 3} />
-    </AbsoluteFill>
-  );
-};
-
-// A word that lands all at once with a scale kick.
+// A word or line that lands all at once with a scale kick.
 const Stamp: React.FC<{ from: number; until?: number; style?: React.CSSProperties; children: React.ReactNode }> = ({ from, until, style, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   if (frame < from) return null;
   if (until !== undefined && frame >= until) return null;
   const s = spring({ frame: frame - from, fps, config: { damping: 14, stiffness: 300, mass: 0.5 } });
-  return <div style={{ scale: `${interpolate(s, [0, 1], [1.15, 1])}`, ...style }}>{children}</div>;
+  const kick = frame - from === 1 ? 4 : 0;
+  return <div style={{ scale: `${interpolate(s, [0, 1], [1.15, 1])}`, translate: `0 ${kick}px`, ...style }}>{children}</div>;
 };
 
-// ---------- 2. Answer: black world, "it was never the edit." ----------
-export const AnswerScene: React.FC = () => {
+// ---------- 1. Hook: the editor's DM, received ----------
+export const HookScene: React.FC = () => {
   const frame = useCurrentFrame();
-  if (frame < T.cutBlack1 || frame >= T.flash1) return null;
-  const size = 96;
-  const editW = measure("the edit.", size, "600");
+  if (frame >= T.cutBlack1) return null;
+  const bx = 96;
+  const by = 720;
   return (
-    <AbsoluteFill style={{ fontSize: size, fontWeight: 600, lineHeight: 1.15 }}>
-      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} land="snap" style={{ position: "absolute", left: 96, top: 640, width: W - 192 }} />
-      <Halves from={T.split} axis="x" gap={48} frames={5}>
-        <IconPop name="timeline" size={240} x={540} y={960} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
-      </Halves>
-      <Stamp from={T.theEdit} style={{ position: "absolute", left: 96, top: 1160, width: W - 192 }}>
-        the edit.
-      </Stamp>
-      <DrawLine x={96} y={1160 + size * 0.62} width={editW} from={T.strike} frames={10} thickness={7} />
+    <AbsoluteFill>
+      <Bubble from={0} tail="left" x={bx} y={by} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
+        <Stamp from={T.hookLine1}>
+          Coach, your clips
+          <br />
+          get views.
+        </Stamp>
+        <TypedLine text="No booked calls." from={T.hookLine2[0]} at={[...T.hookLine2]} cursorHold={200} style={{ color: C.accent }} />
+      </Bubble>
+      {T.plays.map((f, i) => (
+        <IconPop key={f} name="play" size={88} x={900 - i * 80} y={680 - i * 88} from={f} fromScale={0.2} />
+      ))}
+      <IconPop name="calendar-open" size={120} x={920} y={1150} from={T.calendarStamp} fromScale={1.3} preset="slam" shakeAt={T.calendarShake} />
     </AbsoluteFill>
   );
 };
 
-// ---------- 3. Rail: "Strategy first." over seven icons; three lift as they are named ----------
-const RAIL_ICONS: IconName[] = ["play", "hook", "question", "phone-clip", "calendar-open", "stopwatch", "dm"];
-const RAIL_BOOKED: IconName[] = ["play", "hook", "question", "phone-clip", "calendar", "stopwatch", "dm"];
-const RAIL_Y = 1000;
-
-export const RailScene: React.FC = () => {
+// ---------- 2. Answer: black, "it was never / the edit." ----------
+const Marker: React.FC<{ from: number; frames: number; x0: number; x1: number; y: number; h: number }> = ({ from, frames, x0, x1, y, h }) => {
   const frame = useCurrentFrame();
-  const inNavy =
+  const t = frame - from;
+  if (t < 0 || t > frames) return null;
+  const x = interpolate(t, [0, frames], [x0, x1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
+  return <div style={{ position: "absolute", left: x - 4, top: y - h / 2, width: 8, height: h, backgroundColor: C.accent }} />;
+};
+
+export const AnswerScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  if (frame < T.cutBlack1 || frame >= T.flash1) return null;
+  const editW = measure("the edit.", DISPLAY_WORD, "700");
+  return (
+    <AbsoluteFill style={{ textAlign: "center" }}>
+      <TypedLine text="it was never" from={T.answerWords[0]} at={[...T.answerWords]} land="snap" style={{ position: "absolute", left: 0, top: 560, width: W, fontSize: DISPLAY_WORD, fontWeight: 600, lineHeight: 1.1 }} />
+      <Halves from={T.split} axis="x" gap={48} frames={4}>
+        <IconPop name="timeline" size={240} x={540} y={900} from={T.slam} fromScale={1.6} preset="slam" shadowAt={T.slamShadow} />
+      </Halves>
+      <Marker from={T.marker} frames={9} x0={420} x1={660} y={900} h={300} />
+      <Stamp from={T.theEdit} style={{ position: "absolute", left: 0, top: 1100, width: W, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
+        the edit.
+      </Stamp>
+      <DrawLine x={540 - editW / 2} y={1100 + DISPLAY_WORD * 0.6} width={editW} from={T.strike} frames={10} thickness={8} />
+    </AbsoluteFill>
+  );
+};
+
+// ---------- 3. Strategy row (paper): seven icons; three are named and lifted, the rest deleted ----------
+const ROW: Array<{ name: IconName; x: number }> = [
+  { name: "phone-clip", x: 144 },
+  { name: "play", x: 276 },
+  { name: "hook", x: 408 },
+  { name: "question", x: 540 },
+  { name: "calendar-open", x: 672 },
+  { name: "stopwatch", x: 804 },
+  { name: "dm", x: 936 },
+];
+const ROW_Y = 1000;
+const ROW_SIZE = 116;
+const STACK: Record<string, { x: number; y: number }> = {
+  hook: { x: 300, y: 760 },
+  question: { x: 300, y: 960 },
+  "calendar-open": { x: 300, y: 1160 },
+};
+const LIFT_AT: Record<string, number> = { hook: T.lifts.hook, question: T.lifts.question, "calendar-open": T.lifts.calendar };
+
+const RowIcon: React.FC<{ name: IconName; x: number; index: number }> = ({ name, x, index }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const del = T.deletePairs.find((d) => d.names.includes(name));
+  if (del && frame >= del.at + 3) return null;
+  // entrance from the right, staggered
+  const tIn = frame - T.row - index * 2;
+  const enter = interpolate(tIn, [0, 10], [1080, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  const liftAt = LIFT_AT[name];
+  const lifted = liftAt !== undefined && frame >= liftAt;
+  const liftY = lifted ? interpolate(frame, [liftAt, liftAt + 3], [0, -24], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
+  const bob = !lifted && frame >= T.row + 20 ? (Math.floor(frame / 9) % 2 === index % 2 ? 4 : -4) : 0;
+  // CRT-style deletion: azure flash for a frame, then collapse to a line
+  let scaleY = 1;
+  let flash = false;
+  if (del && frame >= del.at) {
+    const u = frame - del.at;
+    flash = u === 0;
+    scaleY = interpolate(u, [1, 3], [1, 0.02], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  }
+  // the survivors spring into a stack
+  let px = x + enter;
+  let py = ROW_Y + liftY + bob;
+  const target = STACK[name];
+  if (target && frame >= T.stack) {
+    const s = spring({ frame: frame - T.stack, fps, config: { damping: 12, stiffness: 150, mass: 0.8 } });
+    px = x + (target.x - x) * s;
+    py = ROW_Y + liftY + (target.y - ROW_Y - liftY) * s;
+  }
+  const shown: IconName = name === "calendar-open" && frame >= T.stack ? "calendar" : name;
+  const size = ROW_SIZE;
+  return (
+    <div style={{ position: "absolute", left: px - size / 2, top: py - size / 2, width: size, height: size, scale: `1 ${scaleY}` }}>
+      {lifted ? (
+        <div style={{ position: "absolute", left: 10, top: 10 }}>
+          <PixelIcon name={shown} size={size} ink={C.accent} accent={C.accent} />
+        </div>
+      ) : null}
+      <div style={{ position: "absolute", left: 0, top: 0 }}>
+        <PixelIcon name={shown} size={size} ink={flash ? C.accent : undefined} />
+      </div>
+    </div>
+  );
+};
+
+export const RowScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const onPaper =
     (frame >= T.flash1 && frame < T.words[0].cut) ||
     (frame >= T.words[0].back && frame < T.words[1].cut) ||
     (frame >= T.words[1].back && frame < T.words[2].cut) ||
     (frame >= T.words[2].back && frame < T.flash2);
-  if (!inNavy) return null;
-  const booked = frame >= T.words[2].back;
-  const icons = booked ? RAIL_BOOKED : RAIL_ICONS;
-  const cal: IconName = booked ? "calendar" : "calendar-open";
-  const rows = [RAIL_Y - 160, RAIL_Y, RAIL_Y + 160];
+  if (!onPaper) return null;
+  const rows = [STACK.hook.y, STACK.question.y, STACK["calendar-open"].y];
+  const listText = ["Hook.", "Who.", "Ask."];
   return (
     <AbsoluteFill>
-      <TypedLine text="Strategy first." from={T.strategyFirst[0]} at={[...T.strategyFirst]} until={T.words[0].cut} cursorHold={30} style={{ position: "absolute", left: 96, top: 700, width: W - 192, fontSize: 84, fontWeight: 600 }} />
-      <IconRail
-        icons={icons}
-        y={RAIL_Y}
-        size={96}
-        pitch={132}
-        from={T.rail}
-        lifts={[
-          { name: "hook", from: T.words[0].back },
-          { name: "phone-clip", from: T.words[1].back },
-          { name: cal, from: T.words[2].back },
-        ]}
-        clearAt={T.clear}
-        keep={["hook", "phone-clip", cal]}
-      />
-      {T.words.map((w, i) => (
-        <Line key={w.text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 240, top: rows[i] - 48, fontSize: 80, fontWeight: 600, lineHeight: 1.2 }}>
-          {w.text}
+      <TypedLine text="Strategy first." from={T.strategyFirst[0]} at={[...T.strategyFirst]} until={T.stack} land="snap" style={{ position: "absolute", left: 0, top: 560, width: W, textAlign: "center", fontSize: BODY, fontWeight: 700, lineHeight: 1.1 }} />
+      {ROW.map((r, i) => (
+        <RowIcon key={r.name} name={r.name} x={r.x} index={i} />
+      ))}
+      {listText.map((text, i) => (
+        <Line key={text} from={T.listWords[i]} enter="cut" style={{ position: "absolute", left: 420, top: rows[i] - BODY * 0.6, fontSize: BODY, fontWeight: 700, lineHeight: 1.2 }}>
+          {text}
         </Line>
       ))}
       {T.checks.map((f, i) => (
-        <IconPop key={f} name="check" size={72} x={880} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
+        <IconPop key={f} name="check" size={72} x={820} y={rows[i]} from={f} fromScale={1.2} preset="slam" />
       ))}
     </AbsoluteFill>
   );
 };
 
-// ---------- 3b. Word cutaways: black world, one icon, one word; each word enters
-// the way its icon does: pulled up by the hook, turned into its angle, booked by a tap ----------
-const WordStyle: React.CSSProperties = { position: "absolute", left: 0, top: 1110, width: W, textAlign: "center", fontSize: 128, fontWeight: 600, lineHeight: 1.1 };
+// ---------- 3b. Cutaways: black, three different compositions ----------
+const WordCenter: React.CSSProperties = { position: "absolute", left: 0, width: W, textAlign: "center", fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 };
 
-const HangWord: React.FC<{ from: number; children: React.ReactNode }> = ({ from, children }) => {
+// Pulled up by the hook that just swung in.
+const HangWord: React.FC<{ from: number; top: number; children: React.ReactNode }> = ({ from, top, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   if (frame < from) return null;
-  const s = spring({ frame: frame - from, fps, config: { damping: 7, stiffness: 120, mass: 0.9 } });
+  const s = spring({ frame: frame - from, fps, config: { damping: 9, stiffness: 120, mass: 0.9 } });
   return (
-    <div style={{ ...WordStyle, translate: `0 ${Math.max(-36, (1 - s) * 420)}px`, opacity: interpolate(s, [0, 0.15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) }}>
+    <div style={{ ...WordCenter, top, translate: `0 ${Math.max(-30, (1 - s) * 360)}px`, opacity: interpolate(s, [0, 0.15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) }}>
       {children}
     </div>
   );
 };
 
-const TurnWord: React.FC<{ from: number; children: React.ReactNode }> = ({ from, children }) => {
+// A tap: the hand dips and an azure ring expands from the fingertip.
+const TapRing: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  if (frame < from) return null;
-  const s = spring({ frame: frame - from, fps, config: { damping: 16, stiffness: 400, mass: 0.5 } });
+  const t = frame - at;
+  if (t < 0 || t > 8) return null;
+  const r = interpolate(t, [0, 5], [6, 52], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
+  const o = interpolate(t, [3, 8], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
-    <div style={{ ...WordStyle, rotate: `${(1 - s) * -18}deg`, scale: `${interpolate(s, [0, 1], [1.3, 1])}` }}>
-      {children}
-    </div>
+    <svg width={140} height={140} viewBox="-70 -70 140 140" style={{ position: "absolute", left: x - 70, top: y - 70, opacity: o }}>
+      <circle r={r} fill="none" stroke={C.accent} strokeWidth={6} />
+    </svg>
   );
 };
 
 export const WordScenes: React.FC = () => {
   const frame = useCurrentFrame();
+  const [A, B, Cw] = T.words;
+  const pressed = frame >= T.tapPress;
   return (
     <>
-      {T.words.map((w, i) => {
-        if (frame < w.cut || frame >= w.back) return null;
-        const cx = 540;
-        const cy = 860;
-        const pressed = i === 2 && frame >= T.tapPress;
-        const icon: IconName = i === 2 && pressed ? "calendar" : w.icon;
-        const enter =
-          i === 0
-            ? { preset: "swing" as const, fromDy: -520, fromScale: 1 }
-            : i === 1
-              ? { preset: "slam" as const, fromScale: 1.3, fromRotate: -18 }
-              : { preset: "slam" as const, fromScale: 1.3 };
-        return (
-          <AbsoluteFill key={w.text}>
-            <Marquee cx={cx} cy={cy} w={300} h={300} from={w.cut + 4} />
-            <IconPop name={icon} size={256} x={cx} y={cy} from={w.cut} shadowAt={w.cut + 4} {...enter} />
-            {i === 2 ? (
-              <IconPop name="tap" size={160} x={cx + 90} y={cy + 40} from={T.tapEnter} fromDx={360} fromDy={-260} fromScale={1} />
-            ) : null}
-            {i === 0 ? (
-              <HangWord from={w.wordAt}>{w.text}</HangWord>
-            ) : i === 1 ? (
-              <TurnWord from={w.wordAt}>{w.text}</TurnWord>
-            ) : (
-              <TypedLine text={w.text} from={w.wordAt} land="snap" style={WordStyle} />
-            )}
-          </AbsoluteFill>
-        );
-      })}
+      {frame >= A.cut && frame < A.back ? (
+        <AbsoluteFill>
+          <DropLine from={A.cut} x={540} toY={820 - 128} />
+          <IconPop name="hook" size={256} x={540} y={820} from={A.cut} preset="swing" fromDy={-520} fromScale={1} shadowAt={A.shadowAt} />
+          <HangWord from={A.wordAt} top={1060}>
+            {A.text}
+          </HangWord>
+        </AbsoluteFill>
+      ) : null}
+      {frame >= B.cut && frame < B.back ? (
+        <AbsoluteFill>
+          <Stamp from={B.cut} style={{ position: "absolute", left: 96, top: 700, fontSize: DISPLAY_WORD, fontWeight: 700, lineHeight: 1.1 }}>
+            {B.text}
+          </Stamp>
+          <IconPop name="question" size={256} x={224} y={1040} from={B.iconAt} fromScale={1.3} preset="slam" />
+          <Marquee cx={224} cy={1040} w={320} h={320} from={B.marqueeAt} />
+        </AbsoluteFill>
+      ) : null}
+      {frame >= Cw.cut && frame < Cw.back ? (
+        <AbsoluteFill>
+          <IconPop name={pressed ? "calendar" : "calendar-open"} size={256} x={540} y={1060} from={Cw.cut} fromScale={1.3} preset="slam" />
+          <TypedLine text={Cw.text} from={Cw.wordAt} land="snap" style={{ ...WordCenter, top: 660 }} />
+          <Hand from={T.tapEnter} x={620} y={1120} fromDx={640} pressAt={T.tapPress} />
+          <TapRing at={T.tapPress} x={596} y={1046} />
+        </AbsoluteFill>
+      ) : null}
     </>
   );
 };
 
-// ---------- 4. Payoff: a playhead reveals the serif word ----------
+// A thin accent line that drops from the top edge (the hook's line).
+const DropLine: React.FC<{ from: number; x: number; toY: number }> = ({ from, x, toY }) => {
+  const frame = useCurrentFrame();
+  const t = frame - from;
+  if (t < 0) return null;
+  const h = interpolate(t, [0, 8], [0, toY], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
+  return <div style={{ position: "absolute", left: x - 2, top: 0, width: 4, height: h, backgroundColor: C.accent }} />;
+};
+
+// The pixel hand: enters from the right on a straight line, presses at pressAt, can hover and leave.
+const Hand: React.FC<{ from: number; x: number; y: number; fromDx: number; pressAt?: number; hoverFrom?: number; leaveAt?: number }> = ({ from, x, y, fromDx, pressAt, hoverFrom, leaveAt }) => {
+  const frame = useCurrentFrame();
+  if (frame < from) return null;
+  const t = frame - from;
+  let dx = interpolate(t, [0, 8], [fromDx, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  let dy = 0;
+  let scale = 1;
+  if (pressAt !== undefined && frame >= pressAt) {
+    const u = frame - pressAt;
+    scale = interpolate(u, [0, 2, 4], [1, 0.9, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    dy = u < 3 ? 8 : 0;
+  }
+  if (hoverFrom !== undefined && frame >= hoverFrom) dy += Math.floor((frame - hoverFrom) / 2) % 2 === 0 ? 0 : 2;
+  if (leaveAt !== undefined && frame >= leaveAt) {
+    dx += interpolate(frame - leaveAt, [0, 6], [0, 700], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) });
+  }
+  return (
+    <div style={{ position: "absolute", left: x - 80 + dx, top: y - 80 + dy, width: 160, height: 160, scale: `${scale}` }}>
+      <PixelIcon name="tap" size={160} />
+    </div>
+  );
+};
+
+// ---------- 4. Payoff: a playhead reveals the serif word; the hand taps the period into place ----------
 export const PayoffScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  if (frame < T.payoff || frame >= T.cutNavy) return null;
+  if (frame < T.payoff || frame >= T.cutPaper) return null;
   const s = spring({ frame: frame - T.period, fps, config: { damping: 12, stiffness: 300, mass: 0.5 } });
   const periodScale = frame >= T.period ? interpolate(s, [0, 1], [1.4, 1]) : 0;
-  const icons: IconName[] = ["hook", "phone-clip", "calendar"];
+  const wordW = measure("strategy", SERIF, "400", DISPLAY);
+  const periodX = 540 + wordW / 2 + 12;
   return (
-    <AbsoluteFill>
-      <PlayheadReveal from={T.payoff} frames={36} barY={880} barH={360}>
-        <div style={{ position: "absolute", left: 0, top: 720, width: W, textAlign: "center", fontFamily: DISPLAY, fontSize: 250, lineHeight: 1.1, color: C.white }}>
+    <Drift from={T.handLeave} pxPerFrame={0.1} scalePerFrame={0.0003}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={200} x1={880} barY={960} barH={1080} barW={16}>
+        <div style={{ position: "absolute", left: 0, top: 760, width: W, textAlign: "center", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
           <span style={{ display: "inline-block", scale: `${periodScale}` }}>.</span>
         </div>
       </PlayheadReveal>
-      {T.payoffIcons.map((f, i) => (
-        <IconPop key={f} name={icons[i]} size={96} x={400 + i * 140} y={1150} from={f} fromScale={0.2} shadowAt={f + 2} />
-      ))}
-    </AbsoluteFill>
-  );
-};
-
-// ---------- 5. CTA: the viewer's DM composer, keyword typed and sent ----------
-export const CtaScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  if (frame < T.cutNavy) return null;
-  return (
-    <Drift from={T.dmIcon} pxPerFrame={0.12} scalePerFrame={0.0002}>
-      <Line from={T.cutNavy} enter="cut" style={{ position: "absolute", left: 240, top: 660, width: W - 336, fontSize: 68, fontWeight: 500, color: C.dim, lineHeight: 1.2 }}>
-        Send me one word.
-      </Line>
-      <IconPop name="dm" size={112} x={150} y={700} from={T.cutNavy} fromScale={0.2} shadowAt={T.dmIcon + 10} />
-      <CommentCta keyword="STRATEGY" from={T.ctaWords[0]} perLetter={2} pressAt={T.dmIcon + 6} top={820} fontFamily={UI} label="DM" />
+      <Hand from={T.handEnter} x={periodX + 60} y={1070} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
+      <TapRing at={T.period} x={periodX + 4} y={1000} />
     </Drift>
   );
 };
 
-export { World, Flash, SerifWord, PixelIcon };
+// ---------- 5. Reply: the viewer's DM, typing dots, then the keyword ----------
+const Dots: React.FC<{ from: number; until: number }> = ({ from, until }) => {
+  const frame = useCurrentFrame();
+  if (frame < from || frame >= until) return null;
+  const active = Math.floor((frame - from) / 5) % 3;
+  return (
+    <span style={{ display: "inline-flex", gap: 14, alignItems: "center", height: "1.18em" }}>
+      {[0, 1, 2].map((i) => (
+        <span key={i} style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: C.accent, opacity: i === active ? 1 : 0.35 }} />
+      ))}
+    </span>
+  );
+};
+
+export const ReplyScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const world = useWorld();
+  if (frame < T.cutPaper) return null;
+  if (frame >= T.loopReset) {
+    // frame 0's state: an empty received bubble, so the loop lands on the hook
+    return (
+      <Bubble from={T.loopReset} tail="left" x={96} y={640} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
+        <span style={{ display: "inline-block", width: "0.62em", height: "0.95em", verticalAlign: "-0.12em", backgroundColor: C.accent }} />
+      </Bubble>
+    );
+  }
+  const wipe = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
+  return (
+    <Drift from={T.dmIcon + 5} pxPerFrame={0.1} scalePerFrame={0.00015}>
+      <Bubble from={T.cutPaper} tail="right" x={96} y={760} width={888} fontFamily={UI} fontSize={BUBBLE} pad={PAD}>
+        <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em" }}>
+          <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
+            <Dots from={T.dots[0]} until={T.ctaWords[0]} />
+            <TypedLine text="DM STRATEGY" from={T.ctaWords[0]} at={[...T.ctaWords]} cursorHold={200} blink={9} wordColors={[undefined, C.accent]} />
+          </div>
+          {wipe > 0 ? <div style={{ position: "absolute", top: 0, bottom: 0, left: `${(1 - wipe) * 100}%`, width: 6, backgroundColor: C.accent }} /> : null}
+        </div>
+      </Bubble>
+      <IconPop name="dm" size={104} x={936} y={742} from={T.dmIcon} until={T.loopOut + 3} fromScale={0.2} shadowAt={T.dmIcon + 3} />
+      <div style={{ display: "none" }}>{world.bg}</div>
+    </Drift>
+  );
+};

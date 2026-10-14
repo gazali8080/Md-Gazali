@@ -6,7 +6,6 @@ export const C = {
   black: "#000000",
   white: "#F4F6FB",
   accent: "#4A8CFF",
-  dim: "#7E88A6",
 } as const;
 
 export const W = 1080;

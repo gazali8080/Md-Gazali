@@ -6,7 +6,7 @@ import { World } from "./lib/primitives";
 import { DrawLine, IconRail, Marquee, PlayheadReveal } from "./lib/rail";
 
 export const RailTest: React.FC = () => (
-  <World kind="navy">
+  <World kind="paper">
     <AbsoluteFill style={{ fontFamily: UI, color: C.white }}>
       <IconRail
         icons={["phone-clip", "play", "comment", "stopwatch", "tap", "hook", "timeline", "dm", "calendar"]}

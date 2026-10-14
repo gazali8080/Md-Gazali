@@ -12,6 +12,10 @@ import { IconName, PixelIcon } from "./icons";
 
 // ---------- worlds ----------
 
+// The paper world is white with navy ink; the flash world is black with white ink.
+export const WorldCtx = React.createContext<{ bg: string; ink: string }>({ bg: C.navy, ink: C.white });
+export const useWorld = () => React.useContext(WorldCtx);
+
 export const Grain: React.FC<{ opacity?: number }> = ({ opacity = 0.07 }) => {
   const frame = useCurrentFrame();
   const seed = Math.floor(frame / 2) % 97;
@@ -34,16 +38,21 @@ export const Grain: React.FC<{ opacity?: number }> = ({ opacity = 0.07 }) => {
   );
 };
 
-// Navy "paper" world or black "flash" world.
+// White "paper" world (navy ink) or black "flash" world (white ink).
 export const World: React.FC<{
-  kind: "navy" | "black";
+  kind: "paper" | "black";
   children?: React.ReactNode;
-}> = ({ kind, children }) => (
-  <AbsoluteFill style={{ backgroundColor: kind === "navy" ? C.navy : C.black }}>
-    {kind === "navy" ? <Grain /> : null}
-    {children}
-  </AbsoluteFill>
-);
+}> = ({ kind, children }) => {
+  const theme = kind === "paper" ? { bg: C.white, ink: C.navy } : { bg: C.black, ink: C.white };
+  return (
+    <WorldCtx.Provider value={theme}>
+      <AbsoluteFill style={{ backgroundColor: theme.bg, color: theme.ink }}>
+        {kind === "paper" ? <Grain opacity={0.06} /> : null}
+        {children}
+      </AbsoluteFill>
+    </WorldCtx.Provider>
+  );
+};
 
 // White flash: full for `hold` frames, then falls off.
 export const Flash: React.FC<{ from: number; hold?: number; fall?: number }> = ({
@@ -99,6 +108,7 @@ export const TypedLine: React.FC<{
   style?: React.CSSProperties;
   cursorColor?: string;
   land?: "cursor" | "snap";
+  wordColors?: Array<string | undefined>;
 }> = ({
   text,
   from,
@@ -111,6 +121,7 @@ export const TypedLine: React.FC<{
   style,
   cursorColor,
   land = "cursor",
+  wordColors,
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(" ");
@@ -139,7 +150,7 @@ export const TypedLine: React.FC<{
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         });
-        const snapColor = land === "snap" && age < 2 ? C.accent : undefined;
+        const snapColor = land === "snap" && age < 2 ? C.accent : wordColors?.[i];
         return (
           <span
             key={i}
