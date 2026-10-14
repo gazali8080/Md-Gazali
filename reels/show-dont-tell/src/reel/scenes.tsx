@@ -310,13 +310,13 @@ export const PayoffScene: React.FC = () => {
   const periodX = 96 + wordW + 12;
   return (
     <Drift from={T.handLeave} pxPerFrame={0.35} scalePerFrame={0.0003}>
-      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16} parkX={60}>
+      <PlayheadReveal from={T.payoff} frames={T.playheadFrames} x0={60} x1={periodX + 100} barY={960} barH={1080} barW={16} parkX={60} easing={Easing.out(Easing.cubic)}>
         <div style={{ position: "absolute", left: 96, top: 760, width: W - 96, textAlign: "left", fontFamily: DISPLAY, fontStyle: "italic", fontSize: SERIF, lineHeight: 1.1 }}>
           strategy
           <span style={{ color: C.accent, display: "inline-block", scale: `${periodScale}` }}>.</span>
         </div>
       </PlayheadReveal>
-      <DrawLine x={96} y={760 + SERIF * 0.98} width={wordW} from={T.payoffRule} frames={8} thickness={12} />
+      <DrawLine x={96} y={760 + SERIF * 1.13} width={wordW} from={T.payoffRule} frames={8} thickness={12} />
       <Hand from={T.handEnter} tipX={periodX + 34} tipY={972} fromDx={420} pressAt={T.period} hoverFrom={T.handHover} leaveAt={T.handLeave} />
       <TapRing at={T.period} x={periodX + 10} y={966} />
     </Drift>
@@ -374,11 +374,16 @@ export const ReplyScene: React.FC = () => {
     );
   }
   const wipe = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopOut + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
-  const bw = replyWidth(frame, fps);
+  const bw0 = replyWidth(frame, fps);
+  const travel = frame >= T.loopOut ? interpolate(frame, [T.loopOut, T.loopReset], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_SNAP }) : 0;
+  const hookW = measure("Coach, your clips", BUBBLE, "700") + INNER;
+  const bw = bw0 + (hookW - bw0) * travel;
+  const bx = 984 - bw0 + (96 - (984 - bw0)) * travel;
+  const byy = 760 + (720 - 760) * travel;
   const dmOffset = measure("DM", BODY, "700") + 0.28 * BODY;
   return (
     <Drift from={T.dmIcon + 5} pxPerFrame={0.35} scalePerFrame={0.0002}>
-      <Bubble from={T.cutPaper} tail="right" x={984 - bw} y={760} width={bw} fontFamily={UI} fontSize={BODY} pad={PAD}>
+      <Bubble from={T.cutPaper} tail={travel > 0.5 ? "left" : "right"} x={bx} y={byy} width={bw} fontFamily={UI} fontSize={BODY} pad={PAD}>
         <div style={{ position: "relative", overflow: "hidden", minHeight: "1.18em", whiteSpace: "nowrap", paddingBottom: 8, marginBottom: -8 }}>
           <div style={{ translate: `${-wipe * 900}px 0`, fontWeight: 700 }}>
             <Dots from={T.dots[0]} until={T.ctaWords[0]} />

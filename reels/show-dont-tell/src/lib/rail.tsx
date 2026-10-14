@@ -176,20 +176,24 @@ export const PlayheadReveal: React.FC<{
   barW?: number;
   barH?: number;
   barY?: number;
-  parkX?: number; // after the sweep the same bar returns here and stays (the in-point)
+  parkX?: number; // after the sweep the same bar rewinds here and stays (the in-point)
+  easing?: (t: number) => number;
   style?: React.CSSProperties;
   children: React.ReactNode;
-}> = ({ from, frames = 10, x0 = 80, x1 = 1000, barW = 20, barH = 300, barY = 860, parkX, style, children }) => {
+}> = ({ from, frames = 10, x0 = 80, x1 = 1000, barW = 20, barH = 300, barY = 860, parkX, easing = Easing.inOut(Easing.cubic), style, children }) => {
   const frame = useCurrentFrame();
   if (frame < from) return null;
   const t = frame - from;
   const x = interpolate(t, [0, frames], [x0, x1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
-    easing: Easing.inOut(Easing.cubic),
+    easing,
   });
   const done = t >= frames;
-  const barX = done && parkX !== undefined ? parkX : x;
+  const barX =
+    done && parkX !== undefined
+      ? interpolate(t, [frames, frames + 4], [x1, parkX], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) })
+      : x;
   return (
     <>
       <div style={{ position: "absolute", inset: 0, clipPath: done ? undefined : `inset(0 ${1080 - x}px 0 0)`, ...style }}>

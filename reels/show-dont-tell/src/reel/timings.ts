@@ -25,7 +25,7 @@ export const T = {
   flash1: 188,
   // 3 strategy row (paper) with three cutaways to black
   row: 188,
-  strategyFirst: [188, 197],
+  strategyFirst: [197, 206],
   words: [
     { cut: 225, back: 263, icon: "hook" as IconName, text: "Hook.", wordAt: 234, shadowAt: 234 },
     { cut: 281, back: 319, icon: "question" as IconName, text: "Who.", wordAt: 281, iconAt: 291, marqueeAt: 300 },
