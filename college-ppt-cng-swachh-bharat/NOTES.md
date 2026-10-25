@@ -1,10 +1,10 @@
 # CNG Vehicles in Delhi and Swachh Bharat Abhiyan — working notes
 
-Not part of the presentation. Student: Aliza (Roll No. 25501012), BA Programme, Economics and Political Science.
+Not part of the presentation. Student: Aliza Khan (Roll No. 25501012), BA Programme, Economics and Political Science.
 
 ## Files
-- `CNG_Delhi_Swachh_Bharat_Aliza.pptx`: editable 16:9 deck, 8 slides, with speaker notes on every slide
-- `CNG_Delhi_Swachh_Bharat_Aliza.pdf`: PDF preview, rendered with LibreOffice
+- `CNG_Delhi_Swachh_Bharat_Aliza_Khan.pptx`: editable 16:9 deck, 8 slides, with speaker notes on every slide
+- `CNG_Delhi_Swachh_Bharat_Aliza_Khan.pdf`: PDF preview, rendered with LibreOffice
 
 ## Voice note (74 s, Hindi/Hinglish)
 Transcribed locally with Whisper large-v3. Parts of the audio are unclear, so this is a summary of what can be heard, not a word-for-word record:
