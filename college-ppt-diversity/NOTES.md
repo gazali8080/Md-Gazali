@@ -48,7 +48,8 @@ Constitution of India; Census of India 2011 (language, religion, migration); Guh
 - `validate.py` passed.
 - The chart, diagrams, tables and text are native and editable.
 - Speaker notes are present on all 10 slides.
-- Photos are from Wikimedia Commons, credited on the slides (CC BY-SA).
+- Photos are from Wikimedia Commons, credited on the slides (CC BY-SA, GODL-India).
+- **Representation check (after review):** the title slide now shows Hindu, Muslim and Naga traditions: a Pongal kolam, Eid prayers at Fatehpuri Masjid in Delhi, and the Hornbill Festival. The festivals card names Diwali, Eid, Christmas and Gurpurab, so the slide no longer shows only the Sankranti harvest festival.
 
 ## Before presenting
 - The Hindi line uses the **Nirmala UI** font, which comes with Windows and Office. Check it once on the presentation computer.
