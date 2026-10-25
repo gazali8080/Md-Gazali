@@ -17,7 +17,10 @@ def two_col(n, key):
     exp = A[key]
     if isinstance(next(iter(exp.values())), dict): exp = {k: v["avg"] for k, v in exp.items()}
     extra = set(body) - set(exp) - {"Total Result"}
-    if extra: print("FAIL extra rows", n, extra); 
+    if extra:
+        global fails
+        fails += 1
+        print("FAIL extra rows", n, extra)
     for k, v in exp.items(): check(f"Q{n} {k}", body.get(k, "nan"), v)
     return body, len(extra)
 b, e = two_col(1, "Q1"); check("Q1 total", b["Total Result"], A["totals"]["orig_revenue"])
@@ -44,5 +47,6 @@ for n, key, tot in ((7, "Q7", A["totals"]["orig_revenue"]), (8, "Q8", A["totals"
     assert set(body) - {"Total Result"} == set(A[key]), (n, body.keys())
     for k, v in A[key].items(): check(f"Q{n} {k}", body[k], v)
     check(f"Q{n} total", body["Total Result"], tot)
-b, e = two_col(10, "Q10"); print("Q10 filter:", rows(10)[1])
+for n in (10, 11):
+    b, e = two_col(n, "Q10"); print(f"Q{n} filter:", rows(n)[1])
 print("FAILURES:", fails)

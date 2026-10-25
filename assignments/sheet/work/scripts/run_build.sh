@@ -19,7 +19,9 @@ for attempt in 1 2 3 4 5 6 7 8; do
   echo "attempt $attempt failed, retrying"
 done
 test -f work/pivots.xlsx
-python3 -I work/scripts/fix_xml.py work/pivots.xlsx output/Pivot_Table_Assignment_Solution.xlsx
+python3 -I work/scripts/fix_xml.py work/pivots.xlsx work/fixed.xlsx
+python3 -I work/scripts/excel_extras.py work/fixed.xlsx output/Pivot_Table_Assignment_Solution.xlsx work/answers.json
+python3 -I work/scripts/validate_parts.py output/Pivot_Table_Assignment_Solution.xlsx
 python3 -I work/scripts/verify.py output/Pivot_Table_Assignment_Solution.xlsx
 fresh_office
 python3 work/scripts/roundtrip.py output/Pivot_Table_Assignment_Solution.xlsx work/roundtrip.xlsx

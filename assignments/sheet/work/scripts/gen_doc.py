@@ -98,16 +98,17 @@ table(["Region", "Before (Q8)", "Added", "After (Q9)"],
 w("The five APAC rows add $764 and the seven EMEA rows add $637, which confirms that all 12 transactions are included.\n")
 
 w("## Question 10: Pie chart of $ sales per store in the USA\n")
-w("Pivot: **Country** as a report filter set to USA, **Store** in Rows, **Sum of Actual Price** in Values, "
-  "plotted as a pie chart (**PivotTable Analyze → PivotChart → Pie**).\n")
+w("Pivot: **Country** as a report filter set to USA, **Store** in Rows, **Sum of Actual Price** in Values. "
+  "The pie is a PivotChart built on this pivot (**PivotTable Analyze → PivotChart → Pie**), so it redraws whenever the pivot changes.\n")
 usa = A["Q10"]; tot = sum(usa.values())
 table(["Store", "Sales", "Share"], [[k, money(v), f"{v / tot:.1%}"] for k, v in sorted(usa.items())] + [["**Total**", f"**{money(tot)}**", "**100%**"]])
 w("![Pie chart of sales per store in the USA](q10_pie.png){ width=4.2in }\n")
 w("San Fransisco, Los Angeles and Kansas City each bring in about 17% of US sales. Houston and Rochester together make up less than 8%.\n")
 
 w("## Question 11: Add a slicer that filters the chart by Item\n")
-w("Click inside the Q10 pivot table, go to **Insert → Slicer**, tick **Item** and click **OK** "
-  "(Microsoft, n.d.-c). The slicer is connected to the pivot table, and the PivotChart is built on that pivot table. "
+w("The Q11 tab repeats the Q10 pivot table with its own pie PivotChart, so the Q10 answer stays unfiltered. "
+  "A slicer on **Item** was added to it (click inside the pivot, **Insert → Slicer**, tick **Item**, **OK**; Microsoft, n.d.-c). "
+  "The slicer is connected to the pivot table, and the PivotChart is built on that pivot table. "
   "So clicking an item in the slicer, for example *Refrigerator*, redraws the pie to show only that item's sales per US store. "
   "Holding Ctrl selects several items, and the *Clear Filter* button on the slicer shows all items again.\n")
 

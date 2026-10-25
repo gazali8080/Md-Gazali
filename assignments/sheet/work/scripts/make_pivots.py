@@ -117,6 +117,24 @@ def pivot(doc, sheet_name, name, src_sheet, last_row, rows=(), cols=(), page=Non
     return t
 
 
+def add_pie(doc, sheet_name, pt_name, n_rows):
+    """Pie chart over the pivot's store rows; fix_xml.py later turns it into a real PivotChart."""
+    sheet = doc.Sheets.getByName(sheet_name)
+    r = sheet.getDataPilotTables().getByName(pt_name).getOutputRange()
+    first, last = r.EndRow - n_rows, r.EndRow - 1
+    assert sheet.getCellByPosition(0, first - 1).getString() == "Store", "unexpected pivot layout"
+    rng = sheet.getCellRangeByPosition(0, first - 1, 1, last).getRangeAddress()
+    rect = Rectangle()
+    rect.X, rect.Y, rect.Width, rect.Height = 1000, sheet.getCellByPosition(0, last + 3).Position.Y, 15000, 9500
+    sheet.getCharts().addNewByName(sheet_name + "_Pie", rect, (rng,), True, True)
+    chart = sheet.getCharts().getByName(sheet_name + "_Pie").getEmbeddedObject()
+    chart.setDiagram(chart.createInstance("com.sun.star.chart.PieDiagram"))
+    chart.HasMainTitle = True
+    chart.getTitle().String = "Sales ($) per store in the USA"
+    chart.HasLegend = True
+    chart.getDiagram().DataCaption = 5   # VALUE | PERCENT labels
+
+
 def main():
     src, out = map(os.path.abspath, sys.argv[1:3])
     desktop = connect()
@@ -145,22 +163,12 @@ def build(doc, out):
     pivot(doc, "Q7", "PT_Q7", O, 2340, collapse="Region", expect=sorted(A["Q7"]), **region_layout)
     pivot(doc, "Q8", "PT_Q8", D, 2340, collapse="Region", expect=sorted(A["Q8"], key=str.lower), **region_layout)
     pivot(doc, "Q9", "PT_Q9", D, 2352, collapse="Region", expect=sorted(A["Q9"], key=str.lower), **region_layout)
-    pivot(doc, "Q10", "PT_Q10", D, 2352, rows=["Store"], page=("Country", "USA"), data="Actual Price", at=(0, 3),
-          expect=sorted(A["Q10"]))
+    for sheet_name in ("Q10", "Q11"):   # Q11 repeats the Q10 pivot so it can carry its own PivotChart + slicer
+        pivot(doc, sheet_name, "PT_" + sheet_name, D, 2352, rows=["Store"], page=("Country", "USA"),
+              data="Actual Price", at=(0, 3), expect=sorted(A["Q10"]))
 
-    sheet = doc.Sheets.getByName("Q10")
-    r = sheet.getDataPilotTables().getByName("PT_Q10").getOutputRange()
-    first, last = r.EndRow - 8, r.EndRow - 1          # 8 store rows above "Total Result"
-    assert sheet.getCellByPosition(0, first - 1).getString() == "Store", "unexpected Q10 layout"
-    rng = sheet.getCellRangeByPosition(0, first - 1, 1, last).getRangeAddress()
-    rect = Rectangle(); rect.X, rect.Y, rect.Width, rect.Height = 1000, sheet.getCellByPosition(0, last + 3).Position.Y, 15000, 9500
-    sheet.getCharts().addNewByName("Q10_Pie", rect, (rng,), True, True)
-    chart = sheet.getCharts().getByName("Q10_Pie").getEmbeddedObject()
-    chart.setDiagram(chart.createInstance("com.sun.star.chart.PieDiagram"))
-    chart.HasMainTitle = True
-    chart.getTitle().String = "Sales ($) per store in the USA"
-    chart.HasLegend = True
-    chart.getDiagram().DataCaption = 5   # VALUE | PERCENT labels
+    for sheet_name, pt in (("Q10", "PT_Q10"), ("Q11", "PT_Q11")):
+        add_pie(doc, sheet_name, pt, len(A["Q10"]))
     doc.calculateAll()
     doc.storeToURL(uno.systemPathToFileUrl(out), (prop("FilterName", "Calc MS Excel 2007 XML"),))
     print("saved", out)

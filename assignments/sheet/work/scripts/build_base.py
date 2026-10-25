@@ -107,12 +107,13 @@ NOTES = {
         "APAC rises by $764 (5 rows) to $167,794; EMEA by $637 (7 rows) to $306,351.",
         "Total is now $679,417 from 2,351 transactions."],
     10: ["How it is built", "Report filter: Country = USA   Rows: Store   Values: Sum of Actual Price",
-         "Pie chart created from this pivot (8 USA stores, $90,192).",
-         "To make it a PivotChart in Excel: click inside the pivot > PivotTable Analyze > PivotChart > Pie."],
-    11: ["Steps (a slicer cannot be generated outside Excel/Sheets, so add it on your own copy)",
-         "Excel: first turn the Q10 chart into a PivotChart (Q10 tab note), then click inside the Q10 pivot",
-         "> Insert > Slicer > tick Item > OK. Clicking an item filters the pivot and its PivotChart.",
-         "Google Sheets: click the pivot > Data > Add a slicer > choose column Item."],
+         "Pie PivotChart built on this pivot table (8 USA stores, $90,192).",
+         "It follows the pivot: change the filter or refresh and the chart redraws."],
+    11: ["How it is built", "Same pivot as Q10 (Country = USA, Store, Sum of Actual Price) with its own pie PivotChart,",
+         "so the Q10 answer stays unfiltered.",
+         "Slicer on Item (right) is connected to this pivot table, so it filters the PivotChart too.",
+         "Click an item, e.g. Refrigerator, to see only that item's sales per US store.",
+         "Ctrl+click selects several items; the Clear Filter button (top right of the slicer) shows all again."],
 }
 for n, lines in NOTES.items():
     s = wb[f"Q{n}"]
