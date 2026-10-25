@@ -1,0 +1,332 @@
+{
+ "rows": {
+  "original": 2339,
+  "final": 2351
+ },
+ "Q1": {
+  "Amsterdam": 14850,
+  "Athens": 11167,
+  "Bangalore": 16255,
+  "Bangkok": 13302,
+  "Berlin": 16397,
+  "Birmingham": 12568,
+  "Bogota": 16247,
+  "Bucharest": 13102,
+  "Buenos Aires": 15724,
+  "Cairo": 12816,
+  "Capetown": 15686,
+  "Chicago": 12852,
+  "Delhi": 16552,
+  "Dubai": 11520,
+  "Dublin": 17896,
+  "Guangzhou": 10641,
+  "Ho Chi Minh City": 10698,
+  "Houston": 3671,
+  "Istanbul": 12263,
+  "Jerusalem": 10932,
+  "Kansas City": 15163,
+  "Kuala Lumpur": 12700,
+  "Lima": 11257,
+  "London": 16987,
+  "Los Angeles": 15424,
+  "Madria": 17477,
+  "Mexico City": 11917,
+  "Moscow": 21083,
+  "New York": 14197,
+  "Osaka": 14835,
+  "Paris": 16374,
+  "Prague": 16686,
+  "Riyadh": 12205,
+  "Rochester": 3095,
+  "Rome": 11910,
+  "San Fransisco": 15800,
+  "Santiago": 13040,
+  "Sao Paolo": 13051,
+  "Seattle": 9990,
+  "Seoul": 15677,
+  "Shanghai": 15643,
+  "Shenzhen": 9957,
+  "Sydney": 14886,
+  "Tel Aviv": 15277,
+  "Tijuana": 17253,
+  "Tokyo": 15884,
+  "Toronto": 11938,
+  "Vancouver": 4653,
+  "Vienna": 13672,
+  "Warsaw": 14846
+ },
+ "Q2": {
+  "Air conditioner": 195,
+  "Blender": 196,
+  "Ceiling fan": 180,
+  "Coffee grinder": 189,
+  "Dishwasher": 174,
+  "Iron": 239,
+  "Microwave": 203,
+  "Oven": 194,
+  "Refrigerator": 184,
+  "Toaster": 190,
+  "Vacuum Cleaner": 196,
+  "Washing Machine": 199
+ },
+ "Q3": {
+  "Air conditioner": {
+   "APAC": 33306,
+   "EMEA": 51576,
+   "LATAM": 16282,
+   "NA": 21259,
+   "Grand Total": 122423
+  },
+  "Blender": {
+   "APAC": 1939,
+   "EMEA": 3886,
+   "LATAM": 1504,
+   "NA": 1390,
+   "Grand Total": 8719
+  },
+  "Ceiling fan": {
+   "APAC": 5462,
+   "EMEA": 11194,
+   "LATAM": 3298,
+   "NA": 4572,
+   "Grand Total": 24526
+  },
+  "Coffee grinder": {
+   "APAC": 3319,
+   "EMEA": 4910,
+   "LATAM": 1655,
+   "NA": 1972,
+   "Grand Total": 11856
+  },
+  "Dishwasher": {
+   "APAC": 16220,
+   "EMEA": 40105,
+   "LATAM": 11890,
+   "NA": 8990,
+   "Grand Total": 77205
+  },
+  "Iron": {
+   "APAC": 1633,
+   "EMEA": 2682,
+   "LATAM": 944,
+   "NA": 1204,
+   "Grand Total": 6463
+  },
+  "Microwave": {
+   "APAC": 3836,
+   "EMEA": 6412,
+   "LATAM": 2099,
+   "NA": 2211,
+   "Grand Total": 14558
+  },
+  "Oven": {
+   "APAC": 23760,
+   "EMEA": 38665,
+   "LATAM": 15295,
+   "NA": 18345,
+   "Grand Total": 96065
+  },
+  "Refrigerator": {
+   "APAC": 36610,
+   "EMEA": 66030,
+   "LATAM": 19170,
+   "NA": 18420,
+   "Grand Total": 140230
+  },
+  "Toaster": {
+   "APAC": 1987,
+   "EMEA": 3239,
+   "LATAM": 1351,
+   "NA": 1948,
+   "Grand Total": 8525
+  },
+  "Vacuum Cleaner": {
+   "APAC": 9238,
+   "EMEA": 20143,
+   "LATAM": 7249,
+   "NA": 7136,
+   "Grand Total": 43766
+  },
+  "Washing Machine": {
+   "APAC": 29720,
+   "EMEA": 56872,
+   "LATAM": 17752,
+   "NA": 19336,
+   "Grand Total": 123680
+  },
+  "Grand Total": {
+   "APAC": 167030,
+   "EMEA": 305714,
+   "LATAM": 98489,
+   "NA": 106783,
+   "Grand Total": 678016
+  }
+ },
+ "Q4": {
+  "Microwave": {
+   "APAC": 3836,
+   "EMEA": 6412,
+   "LATAM": 2099,
+   "Grand Total": 12347
+  },
+  "Oven": {
+   "APAC": 23760,
+   "EMEA": 38665,
+   "LATAM": 15295,
+   "Grand Total": 77720
+  },
+  "Refrigerator": {
+   "APAC": 36610,
+   "EMEA": 66030,
+   "LATAM": 19170,
+   "Grand Total": 121810
+  },
+  "Grand Total": {
+   "APAC": 64206,
+   "EMEA": 111107,
+   "LATAM": 36564,
+   "Grand Total": 211877
+  }
+ },
+ "Q5": {
+  "Gary Percival": {
+   "avg": 0.068333,
+   "n": 2
+  },
+  "David Finnie": {
+   "avg": 0.081587,
+   "n": 6
+  },
+  "Sandra Rew": {
+   "avg": 0.1,
+   "n": 2
+  },
+  "Russell Thorley": {
+   "avg": 0.105238,
+   "n": 7
+  },
+  "Alison Lazar": {
+   "avg": 0.1075,
+   "n": 5
+  },
+  "Paul Puri": {
+   "avg": 0.110286,
+   "n": 5
+  },
+  "Margaret Buck": {
+   "avg": 0.121458,
+   "n": 4
+  },
+  "Shelley Mannix": {
+   "avg": 0.128095,
+   "n": 3
+  },
+  "Lisa Manning": {
+   "avg": 0.147,
+   "n": 5
+  },
+  "Ronald Curtis": {
+   "avg": 0.151746,
+   "n": 6
+  },
+  "Philip Mishra": {
+   "avg": 0.155,
+   "n": 4
+  },
+  "Antony Westlake": {
+   "avg": 0.17,
+   "n": 4
+  },
+  "Basil Nolan": {
+   "avg": 0.285,
+   "n": 4
+  }
+ },
+ "Q5_overall": 0.133463,
+ "Q6": {
+  "APAC|Australia|Sydney": 14886,
+  "APAC|China|Guangzhou": 10641,
+  "APAC|China|Shanghai": 15643,
+  "APAC|China|Shenzhen": 9957,
+  "APAC|India|Bangalore": 16255,
+  "APAC|India|Delhi": 16552,
+  "APAC|Japan|Osaka": 14835,
+  "APAC|Japan|Tokyo": 15884,
+  "APAC|Malaysia|Kuala Lumpur": 12700,
+  "APAC|South Korea|Seoul": 15677,
+  "APAC|Thailand|Bangkok": 13302,
+  "APAC|Vietnam|Ho Chi Minh City": 10698,
+  "EMEA|Austria|Vienna": 13672,
+  "EMEA|Czech Republic|Prague": 16686,
+  "EMEA|Egypt|Cairo": 12816,
+  "EMEA|France|Paris": 16374,
+  "EMEA|Germany|Berlin": 16397,
+  "EMEA|Greece|Athens": 11167,
+  "EMEA|Ireland|Dublin": 17896,
+  "EMEA|Israel|Jerusalem": 10932,
+  "EMEA|Israel|Tel Aviv": 15277,
+  "EMEA|Italy|Rome": 11910,
+  "EMEA|Netherlands|Amsterdam": 14850,
+  "EMEA|Poland|Warsaw": 14846,
+  "EMEA|Romania|Bucharest": 13102,
+  "EMEA|Russia|Moscow": 21083,
+  "EMEA|Saudi Arabia|Riyadh": 12205,
+  "EMEA|South Africa|Capetown": 15686,
+  "EMEA|Spain|Madria": 17477,
+  "EMEA|Turkey|Istanbul": 12263,
+  "EMEA|UAE|Dubai": 11520,
+  "EMEA|UK|Birmingham": 12568,
+  "EMEA|UK|London": 16987,
+  "LATAM|Argentina|Buenos Aires": 15724,
+  "LATAM|Brazil|Sao Paolo": 13051,
+  "LATAM|Chile|Santiago": 13040,
+  "LATAM|Columbia|Bogota": 16247,
+  "LATAM|Mexico|Mexico City": 11917,
+  "LATAM|Mexico|Tijuana": 17253,
+  "LATAM|Peru|Lima": 11257,
+  "NA|Canada|Toronto": 11938,
+  "NA|Canada|Vancouver": 4653,
+  "NA|USA|Chicago": 12852,
+  "NA|USA|Houston": 3671,
+  "NA|USA|Kansas City": 15163,
+  "NA|USA|Los Angeles": 15424,
+  "NA|USA|New York": 14197,
+  "NA|USA|Rochester": 3095,
+  "NA|USA|San Fransisco": 15800,
+  "NA|USA|Seattle": 9990
+ },
+ "Q7": {
+  "APAC": 167030,
+  "EMEA": 305714,
+  "LATAM": 98489,
+  "NA": 106783
+ },
+ "Q8": {
+  "APAC": 167030,
+  "Americas": 205272,
+  "EMEA": 305714
+ },
+ "Q9": {
+  "APAC": 167794,
+  "Americas": 205272,
+  "EMEA": 306351
+ },
+ "Q9_added": {
+  "APAC": 764,
+  "EMEA": 637
+ },
+ "Q10": {
+  "Chicago": 12852,
+  "Houston": 3671,
+  "Kansas City": 15163,
+  "Los Angeles": 15424,
+  "New York": 14197,
+  "Rochester": 3095,
+  "San Fransisco": 15800,
+  "Seattle": 9990
+ },
+ "totals": {
+  "orig_revenue": 678016.0,
+  "final_revenue": 679417.0
+ }
+}

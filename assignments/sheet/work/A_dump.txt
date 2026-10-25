@@ -1,0 +1,259 @@
+
+######## TAB 'Questions'  (38 non-empty rows, dims A1:U1000, state=visible)
+  B1=You are the proud owner of  home appliances retailer. 
+  K3=You have decided to use Pivot Table to analyze your data and see how business can be improved. 
+  K4=Your data contains information about the type of product sold, the Date each product was sold, its List Price (in $), its actual Sale Price ($), the Discount %, 
+  K5=And also - Where it was sold - City, Country and Region (APAC = Asia Pacific, EMEA - Europe, Middle East and Africa, NA = North America, LATAM = Latin America)
+  K6=The data is located in the following sheet: | O6=Data
+  K8=Now, time to answer some questions… (You can place your pivot tables in a new worksheet)
+  A10=1 | K10=How much in $ did you sell in each city? 
+  A12=2 | K12=Per each home appliance item, how many items were sold by your company?
+  A14=3 | K14=Now, create a table which shows a breakdown of Total Revenue from each of Items Sold (in Rows), and the Regions each item was sold (in Columns).
+  A16=4 | K16=Now, based on your last Pivot Table, Apply filter so only Microwave, Oven and Refrigerators will show in "Item". 
+  K17=Additionally, remove NA from the "Region" field. 
+  A19=5 | K19=Now, show the Average Discount % per Sales Person. Apply an external filter that will show only sales made in Columbia. Sort the results in Ascending Order. Who's the best sales agent? 
+  A21=6 | K21=Create a report detailing the $ Sales by Region, Country and Store, in the following format:
+  K23=Region | L23=Country | M23=Store | N23=Sales
+  K24=EMEA | L24=Russia | M24=Moscow | N24=123
+  K25=APAC | L25=Japan | M25=Tokyo | N25=456
+  K27=and so on…
+  A29=7 | K29=Based on the table from the previous question, and without removing any field - How can you change the pivot to group the values to be shown on a Region basis only? For Example:
+  K31=EMEA | L31=123
+  K32=APAC | L32=456
+  A34=8 | K34=As part of a re-organization process, you have decided that NA (North America) and LATAM (Latin America) should be consolidated into one entity called "Americas". 
+  K35=Rename the data accordingly to have the Pivot from previous question show the new "Americas" value instead of LATAM and NA.
+  A37=9 | K37=You found out that your Financial Controller, whom you fired last week for falling asleep during work hours, has ommitted the following transactions from APAC and EMEA from your books. Add them to the bottom of your data, and make sure that the last Pivot Table includes these rows! 
+  L39=Country | M39=Region | N39=Date | O39=Item | P39=Salesperson | Q39=List Price | R39=Actual Price | S39=Discount % | U39=No need to copy this row!
+  K40=Capetown | L40=South Africa | M40=EMEA | N40=2018-06-10 | O40=Coffee grinder | P40=Noel Bull | Q40=50 | R40=20 | S40=0.6
+  K41=Sydney | L41=Australia | M41=APAC | N41=2018-06-12 | O41=Iron | P41=Christine Davies | Q41=50 | R41=18 | S41=0.64
+  K42=Sydney | L42=Australia | M42=APAC | N42=2018-06-13 | O42=Toaster | P42=Susan Luker | Q42=150 | R42=68 | S42=0.546667
+  K43=Riyadh | L43=Saudi Arabia | M43=EMEA | N43=2018-06-14 | O43=Toaster | P43=Victoria Sherwin | Q43=500 | R43=175 | S43=0.65
+  K44=Tel Aviv | L44=Israel | M44=EMEA | N44=2018-06-15 | O44=Toaster | P44=David Isaacs | Q44=30 | R44=14 | S44=0.533333
+  K45=Istanbul | L45=Turkey | M45=EMEA | N45=2018-06-16 | O45=Ceiling fan | P45=George Sherwin | Q45=700 | R45=315 | S45=0.55
+  K46=Kuala Lumpur | L46=Malaysia | M46=APAC | N46=2018-06-17 | O46=Washing Machine | P46=Valerie Hook | Q46=1000 | R46=360 | S46=0.64
+  K47=Dublin | L47=Ireland | M47=EMEA | N47=2018-06-18 | O47=Blender | P47=Robert Harris | Q47=70 | R47=28 | S47=0.6
+  K48=Madria | L48=Spain | M48=EMEA | N48=2018-06-20 | O48=Iron | P48=Roy Nunes | Q48=150 | R48=65 | S48=0.566667
+  K49=Kuala Lumpur | L49=Malaysia | M49=APAC | N49=2018-06-21 | O49=Microwave | P49=Ian Baker | Q49=700 | R49=273 | S49=0.61
+  K50=Sydney | L50=Australia | M50=APAC | N50=2018-06-22 | O50=Blender | P50=Richard Manning | Q50=150 | R50=45 | S50=0.7
+  K51=London | L51=UK | M51=EMEA | N51=2018-06-23 | O51=Vacuum Cleaner | P51=Claire Brooks | Q51=50 | R51=20 | S51=0.6
+  A53=10 | K53=Create a Pie Chart showing the $ amount of sales per store in the USA.
+  A55=11 | K55=Add a Slicer to your last Pivot Chart that allows you to filter your chart by Item.
+
+######## TAB 'Pivot Table 39'  (0 non-empty rows, dims A1:F88, state=visible)
+
+######## TAB 'Pivot Table 38'  (10 non-empty rows, dims A1:E76, state=visible)
+  D48=Region | E48=SUM of Discount %
+  D49=APAC | E49=1.88667
+  D52=EMEA | E52=0.6
+  D55=EMEA | E55=0.533333
+  D58=APAC | E58=1.25
+  D61=EMEA | E61=0.65
+  D64=EMEA | E64=0.6
+  D67=EMEA | E67=0.566667
+  D70=EMEA | E70=0.55
+  D73=EMEA | E73=0.6
+
+######## TAB 'Data'  (3086 non-empty rows, dims A1:M3340, state=visible)
+  A1=Region | B1=Date | C1=Item | D1=Salesp | E1=list price | F1=Actual price | G1=Discount
+  A2=EMEA | B2=2014-01-17 | C2=Washing Machine | D2=Zulfiqar Mirza | E2=800 | F2=528 | G2=0.34
+  A3=EMEA | B3=2015-02-07 | C3=Washing Machine | D3=Zulfiqar Mirza | E3=800 | F3=576 | G3=0.28
+  A4=EMEA | B4=2015-09-05 | C4=Air conditioner | D4=Zulfiqar Mirza | E4=700 | F4=700 | G4=0
+  A5=EMEA | B5=2015-10-20 | C5=Air conditioner | D5=Zulfiqar Mirza | E5=700 | F5=679 | G5=0.03
+  A6=EMEA | B6=2016-03-10 | C6=Microwave | D6=Zulfiqar Mirza | E6=80 | F6=77 | G6=0.0375
+  A7=EMEA | B7=2016-09-07 | C7=Dishwasher | D7=Zulfiqar Mirza | E7=500 | F7=480 | G7=0.04
+  A8=EMEA | B8=2017-01-10 | C8=Ceiling fan | D8=Zulfiqar Mirza | E8=150 | F8=149 | G8=0.00666667
+  A9=EMEA | B9=2017-02-12 | C9=Dishwasher | D9=Zulfiqar Mirza | E9=500 | F9=485 | G9=0.03
+  A10=EMEA | B10=2017-12-11 | C10=Toaster | D10=Zulfiqar Mirza | E10=351.06 | F10=296.548 | G10=0.125276
+  A11=EMEA | B11=2018-03-10 | C11=Ceiling fan | D11=Zulfiqar Mirza | E11=150 | F11=143 | G11=0.0466667
+  A12=EMEA | B12=2018-04-12 | C12=Microwave | D12=Zulfiqar Mirza | E12=80 | F12=79 | G12=0.0125
+  A13=EMEA | B13=2018-09-11 | C13=Blender | D13=Zulfiqar Mirza | E13=50 | F13=49 | G13=0.02
+  A14=Americas | B14=2014-09-02 | C14=Dishwasher | D14=Zoe Munday | E14=500 | F14=355 | G14=0.29
+  A15=Americas | B15=2015-01-02 | C15=Microwave | D15=Zoe Munday | E15=80 | F15=70 | G15=0.125
+  A16=Americas | B16=2015-02-01 | C16=Refrigerator | D16=Zoe Munday | E16=1000 | F16=580 | G16=0.42
+  A17=Americas | B17=2015-02-05 | C17=Oven | D17=Zoe Munday | E17=500 | F17=495 | G17=0.01
+  A18=Americas | B18=2016-01-12 | C18=Dishwasher | D18=Zoe Munday | E18=500 | F18=495 | G18=0.01
+  A19=Americas | B19=2017-10-26 | C19=Microwave | D19=Zoe Munday | E19=80 | F19=74 | G19=0.075
+  A20=Americas | B20=2018-09-03 | C20=Ceiling fan | D20=Zoe Munday | E20=150 | F20=144 | G20=0.04
+  A21=EMEA | B21=2015-07-26 | C21=Ceiling fan | D21=Zhan Whitfield | E21=150 | F21=140 | G21=0.0666667
+  A22=EMEA | B22=2018-03-04 | C22=Air conditioner | D22=Zhan Whitfield | E22=700 | F22=686 | G22=0.02
+  A23=Americas | B23=2014-07-30 | C23=Iron | D23=Xun Simms | E23=30 | F23=29 | G23=0.0333333
+  A24=Americas | B24=2016-01-25 | C24=Microwave | D24=Xun Simms | E24=80 | F24=72 | G24=0.1
+  A25=Americas | B25=2016-01-25 | C25=Microwave | D25=Xun Simms | E25=351.826 | F25=297.044 | G25=0.125835
+   ....
+  A3079=Americas | B3079=2017-05-14 | C3079=Blender | D3079=Nick Blacklock | E3079=389.499 | F3079=326.648 | G3079=0.11732
+  A3080=Americas | B3080=2017-06-09 | C3080=Washing Machine | D3080=Nick Blacklock | E3080=389.653 | F3080=326.757 | G3080=0.117338
+  A3081=Americas | B3081=2018-11-24 | C3081=Blender | D3081=Nick Blacklock | E3081=389.807 | F3081=326.865 | G3081=0.117355
+  A3082=EMEA | B3082=2017-09-16 | C3082=Blender | D3082=Nicholas Timbrell | E3082=389.962 | F3082=326.974 | G3082=0.117373
+  A3083=EMEA | B3083=2017-10-14 | C3083=Washing Machine | D3083=Nicholas Timbrell | E3083=390.116 | F3083=327.083 | G3083=0.11739
+  A3084=EMEA | B3084=2017-11-27 | C3084=Microwave | D3084=Nicholas Timbrell | E3084=390.27 | F3084=327.192 | G3084=0.117408
+  A3085=EMEA | B3085=2018-08-01 | C3085=Toaster | D3085=Nicholas Timbrell | E3085=390.424 | F3085=327.301 | G3085=0.117425
+  A3086=Americas | B3086=2015-06-13 | C3086=Vacuum Cleaner | D3086=Nicholas Knight | E3086=390.578 | F3086=327.41 | G3086=0.117443
+
+######## TAB 'Pivot Table 47'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 46'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 45'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 44'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 43'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 42'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 41'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 40'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 36'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 35'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 34'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 33'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 32'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 31'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 30'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 29'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'sa\n\npv 1st'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB '2nd ans'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB '3rd question'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB '4th ques answer'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB '5th q solution'  (15 non-empty rows, dims A1:E5138, state=visible)
+  A1=Salesperson | C1=Discount % | D1=best sales person
+  A962=Alison Lazar Average | C962=0.0894
+  A1085=Antony Westlake Average | C1085=0.1762
+  A5118=Basil Nolan Average | C5118=0.285
+  A5119=David Finnie Average | C5119=0.0816
+  A5120=Gary Percival Average | C5120=0.0684 | D5120=yes
+  A5121=Lisa Manning Average | C5121=0.1408
+  A5122=Margaret Buck Average | C5122=0.1215
+  A5123=Paul Puri Average | C5123=0.1229
+  A5124=Philip Mishra Average | C5124=0.1733
+  A5125=Ronald Curtis Average | C5125=0.1517
+  A5126=Russell Thorley Average | C5126=0.095
+  A5127=Sandra Rew Average | C5127=0.1
+  A5128=Shelley Mannix Average | C5128=0.1273
+  A5129=Grand Average | C5129=0.1339
+
+######## TAB 'ques - 6 solution'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'ans 7th'  (0 non-empty rows, dims A1:E1, state=visible)
+
+######## TAB 'ANS 8'  (0 non-empty rows, dims A1:F11, state=visible)
+
+######## TAB 'Data for answer 9'  (2352 non-empty rows, dims A1:M3340, state=visible)
+  A1=Store | B1=Country | C1=Region | D1=Date | E1=Item | F1=Salesperson | G1=List Price | H1=Actual Price | I1=Store
+  A2=Moscow | B2=Russia | C2=EMEA | D2=2018-06-10 | E2=Microwave | F2=May Wilmot | G2=80 | H2=79 | I2=Moscow
+  A3=Toronto | B3=Canada | C3=Americas | D3=2015-04-23 | E3=Microwave | F3=David Shiner | G3=80 | H3=54 | I3=Toronto
+  A4=Sao Paolo | B4=Brazil | C4=Americas | D4=2017-03-04 | E4=Air conditioner | F4=Gary Reynolds | G4=700 | H4=686 | I4=Sao Paolo
+  A5=Istanbul | B5=Turkey | C5=EMEA | D5=2018-08-14 | E5=Ceiling fan | F5=Mark Buntain | G5=150 | H5=137 | I5=Istanbul
+  A6=Sydney | B6=Australia | C6=APAC | D6=2015-03-03 | E6=Toaster | F6=Christine Davies | G6=50 | H6=37 | I6=Sydney
+  A7=Shenzhen | B7=China | C7=APAC | D7=2016-04-25 | E7=Iron | F7=Gary Shaw | G7=30 | H7=29 | I7=Shenzhen
+  A8=Lima | B8=Peru | C8=Americas | D8=2016-06-06 | E8=Dishwasher | F8=Christopher Cresswell | G8=500 | H8=465 | I8=Lima
+  A9=Tijuana | B9=Mexico | C9=Americas | D9=2016-07-06 | E9=Iron | F9=Gillian Allnutt | G9=30 | H9=28 | I9=Tijuana
+  A10=London | B10=UK | C10=EMEA | D10=2015-11-12 | E10=Washing Machine | F10=Francis Godden | G10=800 | H10=760 | I10=London
+  A11=Lima | B11=Peru | C11=Americas | D11=2014-07-09 | E11=Iron | F11=Christopher Cresswell | G11=30 | H11=28 | I11=Lima
+  A12=Riyadh | B12=Saudi Arabia | C12=EMEA | D12=2017-07-10 | E12=Refrigerator | F12=Danny Brooks | G12=1000 | H12=500 | I12=Riyadh
+  A13=Bangkok | B13=Thailand | C13=APAC | D13=2014-08-21 | E13=Air conditioner | F13=John Jenkins | G13=700 | H13=679 | I13=Bangkok
+  A14=Tijuana | B14=Mexico | C14=Americas | D14=2015-09-03 | E14=Iron | F14=Richard Allnutt | G14=30 | H14=28 | I14=Tijuana
+  A15=Delhi | B15=India | C15=APAC | D15=2014-05-30 | E15=Oven | F15=Tessa Morrow | G15=500 | H15=490 | I15=Delhi
+  A16=Sydney | B16=Australia | C16=APAC | D16=2018-12-11 | E16=Washing Machine | F16=James Ricketts | G16=800 | H16=672 | I16=Sydney
+  A17=Ho Chi Minh City | B17=Vietnam | C17=APAC | D17=2015-05-24 | E17=Microwave | F17=Susan Dixon | G17=80 | H17=78 | I17=Ho Chi Minh City
+  A18=Tel Aviv | B18=Israel | C18=EMEA | D18=2014-06-12 | E18=Refrigerator | F18=Thomas Gordon | G18=1000 | H18=620 | I18=Tel Aviv
+  A19=Athens | B19=Greece | C19=EMEA | D19=2017-11-07 | E19=Oven | F19=David Walker | G19=500 | H19=500 | I19=Athens
+  A20=Toronto | B20=Canada | C20=Americas | D20=2014-11-03 | E20=Ceiling fan | F20=Robin Hall | G20=150 | H20=150 | I20=Toronto
+  A21=Osaka | B21=Japan | C21=APAC | D21=2016-07-23 | E21=Refrigerator | F21=Kenneth Walter | G21=1000 | H21=950 | I21=Osaka
+  A22=Prague | B22=Czech Republic | C22=EMEA | D22=2017-09-28 | E22=Washing Machine | F22=Edward Khan | G22=800 | H22=736 | I22=Prague
+  A23=Capetown | B23=South Africa | C23=EMEA | D23=2015-04-17 | E23=Iron | F23=Nicholas Holloway | G23=30 | H23=22 | I23=Capetown
+  A24=Bangalore | B24=India | C24=APAC | D24=2018-11-13 | E24=Coffee grinder | F24=Delia Muhammad | G24=70 | H24=67 | I24=Bangalore
+  A25=Seattle | B25=USA | C25=Americas | D25=2018-02-13 | E25=Iron | F25=Lesleyann Pope | G25=30 | H25=27 | I25=Seattle
+   ....
+  A2345=Tel Aviv | B2345=Israel | C2345=EMEA | D2345=2018-06-15 | E2345=Toaster | F2345=David Isaacs | G2345=30 | H2345=14 | I2345=Tel Aviv
+  A2346=Istanbul | B2346=Turkey | C2346=EMEA | D2346=2018-06-16 | E2346=Ceiling fan | F2346=George Sherwin | G2346=700 | H2346=315 | I2346=Istanbul
+  A2347=Kuala Lumpur | B2347=Malaysia | C2347=APAC | D2347=2018-06-17 | E2347=Washing Machine | F2347=Valerie Hook | G2347=1000 | H2347=360 | I2347=Kuala Lumpur
+  A2348=Dublin | B2348=Ireland | C2348=EMEA | D2348=2018-06-18 | E2348=Blender | F2348=Robert Harris | G2348=70 | H2348=28 | I2348=Dublin
+  A2349=Madria | B2349=Spain | C2349=EMEA | D2349=2018-06-20 | E2349=Iron | F2349=Roy Nunes | G2349=150 | H2349=65 | I2349=Madria
+  A2350=Kuala Lumpur | B2350=Malaysia | C2350=APAC | D2350=2018-06-21 | E2350=Microwave | F2350=Ian Baker | G2350=700 | H2350=273 | I2350=Kuala Lumpur
+  A2351=Sydney | B2351=Australia | C2351=APAC | D2351=2018-06-22 | E2351=Blender | F2351=Richard Manning | G2351=150 | H2351=45 | I2351=Sydney
+  A2352=London | B2352=UK | C2352=EMEA | D2352=2018-06-23 | E2352=Vacuum Cleaner | F2352=Claire Brooks | G2352=50 | H2352=20 | I2352=London
+
+######## TAB 'Table-answer 9'  (2364 non-empty rows, dims A1:M3352, state=visible)
+  A1=Store | B1=Country | C1=Region | D1=Date | E1=Item | F1=Salesperson | G1=List Price | H1=Actual Price | I1=Discount %
+  A2=Moscow | B2=Russia | C2=EMEA | D2=2018-06-10 | E2=Microwave | F2=May Wilmot | G2=80 | H2=79 | I2=0.0125
+  A3=Toronto | B3=Canada | C3=Americas | D3=2015-04-23 | E3=Microwave | F3=David Shiner | G3=80 | H3=54 | I3=0.325
+  A4=Sao Paolo | B4=Brazil | C4=Americas | D4=2017-03-04 | E4=Air conditioner | F4=Gary Reynolds | G4=700 | H4=686 | I4=0.02
+  A5=Istanbul | B5=Turkey | C5=EMEA | D5=2018-08-14 | E5=Ceiling fan | F5=Mark Buntain | G5=150 | H5=137 | I5=0.0866667
+  A6=Sydney | B6=Australia | C6=APAC | D6=2015-03-03 | E6=Toaster | F6=Christine Davies | G6=50 | H6=37 | I6=0.26
+  A7=Shenzhen | B7=China | C7=APAC | D7=2016-04-25 | E7=Iron | F7=Gary Shaw | G7=30 | H7=29 | I7=0.0333333
+  A8=Lima | B8=Peru | C8=Americas | D8=2016-06-06 | E8=Dishwasher | F8=Christopher Cresswell | G8=500 | H8=465 | I8=0.07
+  A9=D | B9=Mexico | C9=Americas | D9=2016-07-06 | E9=Iron | F9=Gillian Allnutt | G9=30 | H9=28 | I9=0.0666667
+  A10=London | B10=UK | C10=EMEA | D10=2015-11-12 | E10=Washing Machine | F10=Francis Godden | G10=800 | H10=760 | I10=0.05
+  A11=Lima | B11=Peru | C11=Americas | D11=2014-07-09 | E11=Iron | F11=Christopher Cresswell | G11=30 | H11=28 | I11=0.0666667
+  A12=Riyadh | B12=Saudi Arabia | C12=EMEA | D12=2017-07-10 | E12=Refrigerator | F12=Danny Brooks | G12=1000 | H12=500 | I12=0.5
+  A13=Bangkok | B13=Thailand | C13=APAC | D13=2014-08-21 | E13=Air conditioner | F13=John Jenkins | G13=700 | H13=679 | I13=0.03
+  A14=Tijuana | B14=Mexico | C14=Americas | D14=2015-09-03 | E14=Iron | F14=Richard Allnutt | G14=30 | H14=28 | I14=0.0666667
+  A15=Delhi | B15=India | C15=APAC | D15=2014-05-30 | E15=Oven | F15=Tessa Morrow | G15=500 | H15=490 | I15=0.02
+  A16=Sydney | B16=Australia | C16=APAC | D16=2018-12-11 | E16=Washing Machine | F16=James Ricketts | G16=800 | H16=672 | I16=0.16
+  A17=Ho Chi Minh City | B17=Vietnam | C17=APAC | D17=2015-05-24 | E17=Microwave | F17=Susan Dixon | G17=80 | H17=78 | I17=0.025
+  A18=Tel Aviv | B18=Israel | C18=EMEA | D18=2014-06-12 | E18=Refrigerator | F18=Thomas Gordon | G18=1000 | H18=620 | I18=0.38
+  A19=Athens | B19=Greece | C19=EMEA | D19=2017-11-07 | E19=Oven | F19=David Walker | G19=500 | H19=500 | I19=0
+  A20=Toronto | B20=Canada | C20=Americas | D20=2014-11-03 | E20=Ceiling fan | F20=Robin Hall | G20=150 | H20=150 | I20=0
+  A21=Osaka | B21=Japan | C21=APAC | D21=2016-07-23 | E21=Refrigerator | F21=Kenneth Walter | G21=1000 | H21=950 | I21=0.05
+  A22=Prague | B22=Czech Republic | C22=EMEA | D22=2017-09-28 | E22=Washing Machine | F22=Edward Khan | G22=800 | H22=736 | I22=0.08
+  A23=Capetown | B23=South Africa | C23=EMEA | D23=2015-04-17 | E23=Iron | F23=Nicholas Holloway | G23=30 | H23=22 | I23=0.266667
+  A24=Bangalore | B24=India | C24=APAC | D24=2018-11-13 | E24=Coffee grinder | F24=Delia Muhammad | G24=70 | H24=67 | I24=0.0428571
+  A25=Seattle | B25=USA | C25=Americas | D25=2018-02-13 | E25=Iron | F25=Lesleyann Pope | G25=30 | H25=27 | I25=0.1
+   ....
+  A2357=Tel Aviv | B2357=Israel | C2357=EMEA | D2357=2018-06-15 | E2357=Toaster | F2357=David Isaacs | G2357=30 | H2357=14 | I2357=0.533333
+  A2358=Istanbul | B2358=Turkey | C2358=EMEA | D2358=2018-06-16 | E2358=Ceiling fan | F2358=George Sherwin | G2358=700 | H2358=315 | I2358=0.55
+  A2359=Kuala Lumpur | B2359=Malaysia | C2359=APAC | D2359=2018-06-17 | E2359=Washing Machine | F2359=Valerie Hook | G2359=1000 | H2359=360 | I2359=0.64
+  A2360=Dublin | B2360=Ireland | C2360=EMEA | D2360=2018-06-18 | E2360=Blender | F2360=Robert Harris | G2360=70 | H2360=28 | I2360=0.6
+  A2361=Madria | B2361=Spain | C2361=EMEA | D2361=2018-06-20 | E2361=Iron | F2361=Roy Nunes | G2361=150 | H2361=65 | I2361=0.566667
+  A2362=Kuala Lumpur | B2362=Malaysia | C2362=APAC | D2362=2018-06-21 | E2362=Microwave | F2362=Ian Baker | G2362=700 | H2362=273 | I2362=0.61
+  A2363=Sydney | B2363=Australia | C2363=APAC | D2363=2018-06-22 | E2363=Blender | F2363=Richard Manning | G2363=150 | H2363=45 | I2363=0.7
+  A2364=London | B2364=UK | C2364=EMEA | D2364=2018-06-23 | E2364=Vacuum Cleaner | F2364=Claire Brooks | G2364=50 | H2364=20 | I2364=0.6
+
+######## TAB 'ans 11'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 28'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Sheet3'  (17 non-empty rows, dims A1:F74, state=visible)
+  A39=answer-2
+  A58=COUNTA of Region | B58=Region
+  A59=Item | B59=APAC | C59=EMEA | D59=LATAM | E59=NA | F59=Grand Total
+  A60=Air conditioner | B60=48 | C60=72 | D60=22 | E60=32 | F60=174
+  A61=Blender | B61=41 | C61=79 | D61=33 | E61=29 | F61=182
+  A62=Ceiling fan | B62=35 | C62=74 | D62=24 | E62=30 | F62=163
+  A63=Coffee grinder | B63=50 | C63=71 | D63=27 | E63=30 | F63=178
+  A64=Dishwasher | B64=33 | C64=84 | D64=22 | E64=18 | F64=157
+  A65=Iron | B65=56 | C65=91 | D65=31 | E65=40 | F65=218
+  A66=Microwave | B66=48 | C66=75 | D66=25 | E66=25 | F66=173
+  A67=Oven | B67=46 | C67=74 | D67=28 | E67=34 | F67=182
+  A68=Refrigerator | B68=48 | C68=75 | D68=25 | E68=20 | F68=168
+  A69=Toaster | B69=41 | C69=62 | D69=30 | E69=39 | F69=172
+  A70=Vacuum Cleaner | B70=37 | C70=88 | D70=30 | E70=26 | F70=181
+  A71=Washing Machine | B71=42 | C71=83 | D71=26 | E71=28 | F71=179
+  A72=Grand Total | B72=525 | C72=928 | D72=323 | E72=351 | F72=2127
+  A74=answer4
+
+######## TAB 'Pivot Table 3'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 4'  (0 non-empty rows, dims A1:A1, state=visible)
+
+######## TAB 'Pivot Table 5'  (0 non-empty rows, dims A1:C17, state=visible)
+
+######## TAB 'Pivot Table 7'  (1 non-empty rows, dims A1:F11, state=visible)
+  A11=[To group the sales by region, We just have to change the (+) sign into (-) sign by single click ]
+
+######## TAB 'Pivot Table 6'  (0 non-empty rows, dims A1:A1, state=visible)

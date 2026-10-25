@@ -1,0 +1,1639 @@
+
+######## TAB 'Table 1'  (37 non-empty rows, dims A1:AL46, state=visible)
+  B1=You are the proud owner of  home appliances retailer. | K1=You have decided to use Pivot Table to analyze your data and see how business can be improved.
+  K3=Your data contains information about the type of product sold, the Date each product was sold, its List Price (in $), its actual Sale Price ($), the Discount %,
+  K4=And also - Where it was sold - City, Country and Region (APAC = Asia Pacific, EMEA - Europe, Middle East and Africa, NA = North America, LATAM = Latin America)
+  K5=The data is located in the following sheet: | O5=Data
+  A7=1 | K7=Now, time to answer some questions… (You can place your pivot tables in a new worksheet)
+  K8=How much in $ did you sell in each city?
+  A10=2 | K10=Per each home appliance item, how many items were sold by your company?
+  A11=3 | K11=Now, create a table which shows a breakdown of Total Revenue from each of Items Sold (in Rows), and the Regions each item was sold (in Columns).
+  A13=4 | K13=Now, based on your last Pivot Table, Apply filter so only Microwave, Oven and Refrigerators will show in "Item".
+  K14=Additionally, remove NA from the "Region" field.
+  A15=5 | K15=Now, show the Average Discount % per Sales Person. Apply an external filter that will show only sales made in Columbia. Sort the results in Ascending Order. Who's the best sales agent?
+  A17=6 | K17=Create a report detailing the $ Sales by Region, Country and Store, in the following format:
+  K20=Region | L20=Country | M20=Store | N20=Sales
+  K21=EMEA | L21=Russia | M21=Moscow | N21=123
+  K22=APAC | L22=Japan | M22=Tokyo | N22=456
+  A23=7 | K23=and so on…
+  K24=Based on the table from the previous question, and without removing any field - How can you change the pivot to group the values to be shown on a Region basis only? For Example:
+  K26=EMEA | L26=123
+  K27=APAC | L27=456
+  A28=8 | K28=As part of a re-organization process, you have decided that NA (North America) and LATAM (Latin America) should be consolidated into one entity called "Americas".
+  A29=9 | K29=Rename the data accordingly to have the Pivot from previous question show the new "Americas" value instead of LATAM and NA.
+  K30=You found out that your Financial Controller, whom you fired last week for falling asleep during work hours, has ommitted the following transactions from APAC and EMEA from your books. Add them to the bottom of your data, and make sure that the last Pivot Table includes these rows!
+  K32=#REF! | L32=Country | M32=Region | N32=Date | O32=Item | P32=Salespers | Q32=List Price | R32=Actual Pri | S32=Discount | T32=% | U32=No need to copy this row!
+  K33=Capetown | L33=South Afri | M33=EMEA | N33=6/10/201 | O33=Coffee gri | P33=Noel Bull | Q33=50 | R33=20 | S33=0.6
+  K34=Sydney | L34=Australia | M34=APAC | N34=6/12/201 | O34=Iron | P34=Christine | Q34=50 | R34=18 | S34=0.64
+  K35=Sydney | L35=Australia | M35=APAC | N35=6/13/201 | O35=Toaster | P35=Susan Luk | Q35=150 | R35=68 | S35=0.5467
+  K36=Riyadh | L36=Saudi Ara | M36=EMEA | N36=6/14/201 | O36=Toaster | P36=Victoria S | Q36=500 | R36=175 | S36=0.65
+  K37=Tel Aviv | L37=Israel | M37=EMEA | N37=6/15/201 | O37=Toaster | P37=David Isaa | Q37=30 | R37=14 | S37=0.5333
+  K38=Istanbul | L38=Turkey | M38=EMEA | N38=6/16/201 | O38=Ceiling fan | P38=George Sh | Q38=700 | R38=315 | S38=0.55
+  K39=Kuala Lum | L39=Malaysia | M39=APAC | N39=6/17/201 | O39=Washing | P39=Valerie Ho | Q39=1000 | R39=360 | S39=0.64
+  K40=Dublin | L40=Ireland | M40=EMEA | N40=6/18/201 | O40=Blender | P40=Robert Ha | Q40=70 | R40=28 | S40=0.6
+  K41=Madria | L41=Spain | M41=EMEA | N41=6/20/201 | O41=Iron | P41=Roy Nune | Q41=150 | R41=65 | S41=0.5667
+  K42=Kuala Lum | L42=Malaysia | M42=APAC | N42=6/21/201 | O42=Microwav | P42=Ian Baker | Q42=700 | R42=273 | S42=0.61
+  A43=10 | K43=Sydney London | L43=Australia UK | M43=APAC EMEA | N43=6/22/201\n6/23/201 | O43=Blender Vacuum C | P43=Richard M Claire Bro | Q43=150\n50 | R43=45\n20 | S43=70.00%\n60.00%
+  K44=Create a Pie Chart showing the $ amount of sales per store in the USA.
+  A45=11
+  K46=Add a Slicer to your last Pivot Chart that allows you to filter your chart by Item.
+
+######## TAB 'Table 2'  (2 non-empty rows, dims A1:B2, state=visible)
+  B1=Columns
+  A2=Rows | B2=Values
+
+######## TAB 'Table 3'  (38 non-empty rows, dims A1:F39, state=visible)
+  A1=Country                           #REF!            Region | D1=SUM of Discount
+  A2=Australia | B2=Sydney | C2=APAC | D2=1.8867
+  B3=Sydney Total | D3=1.8867
+  A4=Australia Total | D4=1.8867
+  A5=Ireland | B5=Dublin | C5=EMEA | D5=0.6
+  B6=Dublin Total | D6=0.6
+  A7=Ireland Total | D7=0.6
+  A8=Israel | B8=Tel Aviv | C8=EMEA | D8=0.5333
+  B9=Tel Aviv Total | D9=0.5333
+  A10=Israel Total | D10=0.5333
+  A11=Malaysia | B11=Kuala Lumpur | C11=APAC | D11=1.25
+  B12=Kuala Lumpur Total | D12=1.25
+  A13=Malaysia Total | D13=1.25
+  A14=Saudi Arabia | B14=Riyadh | C14=EMEA | D14=0.65
+  B15=Riyadh Total | D15=0.65
+  A16=Saudi Arabia Total | D16=0.65
+  A17=South Africa | B17=Capetown | C17=EMEA | D17=0.6
+  B18=Capetown Total | D18=0.6
+  A19=South Africa Total | D19=0.6
+  A20=Spain | B20=Madria | C20=EMEA | D20=0.5667
+  B21=Madria Total | D21=0.5667
+  A22=Spain Total | D22=0.5667
+  A23=Turkey | B23=Istanbul | C23=EMEA | D23=0.55
+  B24=Istanbul Total | D24=0.55
+  A25=Turkey Total | D25=0.55
+  A26=UK | B26=London | C26=EMEA | D26=0.6
+  B27=London Total | D27=0.6
+  A28=UK Total | D28=0.6
+  A29=Grand Total | D29=7.2367
+  A30=Region                    SUM of Discount %\nAPAC                                    188.67%
+  A31=EMEA                                      60.00%
+  A32=EMEA                                      53.33%
+  A34=APAC                                    125.00%
+  A35=EMEA                                      65.00%
+  A36=EMEA                                      60.00%
+  A37=EMEA                                      56.67%
+  A38=EMEA                                      55.00%
+  A39=EMEA                                      60.00%
+
+######## TAB 'Sheet3'  (69 non-empty rows, dims A1:B71, state=visible)
+  A3=Row Labels | B3=Sum of Actual Price
+  A4= Amsterdam | B4=0
+  A5= Bangkok | B5=0
+  A6= Berlin | B6=0
+  A7= Chicago | B7=0
+  A8= Moscow | B8=0
+  A9= Vienna | B9=0
+  A10=\nBangalore | B10=0
+  A11=\nBangkok | B11=0
+  A12=\nBerlin | B12=0
+  A13=\nBirmingham | B13=0
+  A14=\nCairo | B14=0
+  A15=\nCapetown | B15=0
+  A16=\nHo Chi Minh City | B16=0
+  A17=\nKuala Lumpur | B17=0
+  A18=\nLondon | B18=0
+  A19=\nMexico City | B19=0
+  A20=\nMoscow | B20=0
+  A21=\nNew York | B21=0
+  A22=\nOsaka | B22=0
+  A23=\nRiyadh | B23=0
+  A24=\nRome | B24=0
+  A25=\nSao Paolo | B25=0
+  A26=\nSeattle | B26=0
+  A27=\nShanghai | B27=0
+  A28=\nTel Aviv | B28=0
+  A29=\nTijuana | B29=0
+  A30=\nToronto | B30=0
+  A31=Athens | B31=520
+  A32=Bangalore | B32=490
+  A33=Bangkok
+  A34=Banglore
+  A35=Berlin | B35=64
+  A36=Birmingham | B36=220
+  A37=Bogota | B37=741
+  A38=Buenos Aires
+  A39=Capetown
+  A40=Delhi | B40=490
+  A41=Dublin
+  A42=Guangzhou | B42=495
+  A43=Ho Chi Minh City | B43=78
+  A44=Istanbul | B44=155
+  A45=Istanbul  | B45=0
+  A46=Jerusalem
+  A47=Kansas City | B47=786
+  A48=Kuala Lumpur
+  A49=Lima | B49=36
+  A50=Los Angeles
+  A51=Madria
+  A52=moscow | B52=79
+  A53=Osaka | B53=930
+  A54=Paris
+  A55=Prague | B55=1424
+  A56=San Fransisco | B56=43
+  A57=sao paolo | B57=689
+  A58=Seoul
+  A59=Shanghai
+  A60=Shenzhen | B60=1630
+  A61=Shenzhen\n | B61=0
+  A62=Sydney | B62=709
+  A63=Tel Aviv | B63=35
+  A64=Tel Aviv  | B64=0
+  A65=Tijuana
+  A66=Tokyo
+  A67=Toronto
+  A68=Toronto  | B68=54
+  A69=Warsaw
+  A70=Grand Total | B70=9668
+  A71=Answer 1
+
+######## TAB 'Sheet4'  (56 non-empty rows, dims A1:B58, state=visible)
+  A3=Row Labels | B3=Count of Item
+  A4=Air conditioner | B4=2
+  A5=Air conditioner Microwave | B5=1
+  A6=Air conditioner\nDishwasher | B6=1
+  A7=Air conditioner\nIron | B7=1
+  A8=Air conditioner\nMicrowave | B8=1
+  A9=Air conditioner\nToaster | B9=1
+  A10=Blender | B10=2
+  A11=Blender\nAir conditioner | B11=1
+  A12=Blender\nIron | B12=1
+  A13=Ceiling fan | B13=1
+  A14=Ceiling fan  | B14=1
+  A15=Ceiling fan Refrigerator | B15=2
+  A16=Ceiling fan\nCoffee grinder | B16=1
+  A17=Coffee grinder | B17=2
+  A18=Coffee grinder Toaster | B18=1
+  A19=Coffee grinder\nIron | B19=1
+  A20=Dishwasher | B20=1
+  A21=Dishwasher  Air conditioner | B21=1
+  A22=Dishwasher\nBlender | B22=1
+  A23=Iron\n | B23=1
+  A24=Iron\nCeiling fan | B24=1
+  A25=Iron\nCoffee grinder | B25=1
+  A26=Iron\nIron | B26=1
+  A27=Iron\nMicrowave | B27=1
+  A28=Iron\nRefrigerator | B28=1
+  A29=Iron\nWashing Machine | B29=1
+  A30=Microwave | B30=2
+  A31=Microwave\n | B31=1
+  A32=Microwave\nBlender | B32=1
+  A33=Microwave\nCoffee grinder | B33=1
+  A34=Microwave\nIron | B34=1
+  A35=Microwave\nMicrowave | B35=1
+  A36=Oven | B36=3
+  A37=Oven\nCeiling fan | B37=1
+  A38=Oven\nVacuum Cleaner | B38=1
+  A39=Refrigerator | B39=2
+  A40=Refrigerator Iron | B40=1
+  A41=Refrigerator Oven | B41=1
+  A42=Refrigerator\nBlender | B42=1
+  A43=Refrigerator\nIron | B43=1
+  A44=Toaster | B44=2
+  A45=Toaster Ceiling fan | B45=1
+  A46=Toaster\nRefrigerator | B46=1
+  A47=Vacuum Cleaner | B47=2
+  A48=Vacuum Cleaner Ceiling fan | B48=1
+  A49=Vacuum Cleaner\nBlender | B49=1
+  A50=Vacuum Cleaner\nWashing Machine | B50=1
+  A51=Washing Machine | B51=6
+  A52=Washing Machine Microwave | B52=1
+  A53=Washing Machine\nIron | B53=1
+  A54=Washing Machine\nMicrowave | B54=1
+  A55=Washing Machine\nRefrigerator | B55=1
+  A56=(blank)
+  A57=Grand Total | B57=67
+  A58=Answer 2
+
+######## TAB 'Sheet5'  (8 non-empty rows, dims A1:D59, state=visible)
+  A3=Sum of Actual Price | B3=Column Labels
+  A4=Row Labels | B4=APAC | C4=EMEA | D4=Grand Total
+  A5=Microwave | B5=78 | C5=79 | D5=157
+  A6=Oven | B6=1475 | D6=1475
+  A7=Refrigerator | B7=1920 | D7=1920
+  A8=Grand Total | B8=3473 | C8=79 | D8=3552
+  A9=Answer 4
+  A59=Answer 3
+
+######## TAB 'Sheet6'  (71 non-empty rows, dims A1:B72, state=visible)
+  A1=Country | B1=(All)
+  A3=Row Labels | B3=Average of Discount %
+  A4=Abdul Heywood\nMary Mitchell | B4=#DIV/0!
+  A5=Andrew Phillips\nAlan Davie | B5=#DIV/0!
+  A6=Antony Westlake | B6=0.01
+  A7=Caroline Eccles\nSteven Bell | B7=#DIV/0!
+  A8=Cheryl Glover | B8=0.28
+  A9=Christina Pedley | B9=0.19
+  A10=Christine Davies | B10=0.26
+  A11=Christopher Cresswell\nDanny Brooks | B11=#DIV/0!
+  A12=Christopher Snape\nJohn Barnett | B12=#DIV/0!
+  A13=Claire Storey\nJames Whitehead | B13=#DIV/0!
+  A14=Colin Matthews\nStephen Cohen | B14=#DIV/0!
+  A15=David Gow Darren Brooks | B15=#DIV/0!
+  A16=David Shiner  | B16=0.325
+  A17=David Stewart | B17=0.1
+  A18=Delia Muhammad\nLesleyann Pope | B18=#DIV/0!
+  A19=Edward Khan | B19=0.12
+  A20=Edward Khan\nNicholas Holloway | B20=#DIV/0!
+  A21=Fiona Johnson\nRita Hill | B21=#DIV/0!
+  A22=Gary Reynolds\n | B22=0.02
+  A23=Gary Reynolds\nCraig Johnson | B23=#DIV/0!
+  A24=Gary Shaw Donald Barratt | B24=#DIV/0!
+  A25=Gary Shaw\n | B25=#DIV/0!
+  A26=Gary Shaw\nStephen Burch | B26=#DIV/0!
+  A27=Gillan Clark | B27=0.14
+  A28=Gillian Allnutt\nFrancis Godden | B28=#DIV/0!
+  A29=Glen Campbell\nStephen Smith | B29=#DIV/0!
+  A30=Glenys Wright | B30=0.01
+  A31=Hin Bragg Allyson Rush | B31=#DIV/0!
+  A32=Hin Bragg\nJames Whitehead | B32=#DIV/0!
+  A33=Howard Jones Heather McGill | B33=#DIV/0!
+  A34=Ian McCartan | B34=0.38
+  A35=Jacqueline Clamp\nSusan Reay | B35=#DIV/0!
+  A36=James Carley\nFrancis Walsh | B36=#DIV/0!
+  A37=James Ricketts | B37=0.16
+  A38=James Scott\nElaine Whitfield | B38=#DIV/0!
+  A39=James White\nJill Thompson | B39=#DIV/0!
+  A40=Janet Ford Janet Ward | B40=#DIV/0!
+  A41=John Jenkins\nRichard Allnutt | B41=#DIV/0!
+  A42=Kate Pearce | B42=0.0857
+  A43=Mark Buntain  | B43=0.0867
+  A44=May Wilmot | B44=0.0125
+  A45=Neil McAvoy | B45=0.07
+  A46=Nicholas Holloway Mayank Ali | B46=#DIV/0!
+  A47=Paul Rule | B47=0.02
+  A48=Penelope Freeland\nMichelle Murray | B48=#DIV/0!
+  A49=Richard McGrath | B49=0.3
+  A50=Richard Perrott | B50=0.35
+  A51=Rita Hill\nDeanna Wang | B51=#DIV/0!
+  A52=Robert Arnold | B52=0.08
+  A53=Robert Jenkins\nTrudi Griffin | B53=#DIV/0!
+  A54=Robert Reed | B54=0.12
+  A55=Robin Hall Kenneth Walter | B55=#DIV/0!
+  A56=Roger Rust | B56=0.2
+  A57=Ronald Butler | B57=0.01
+  A58=Shelley Mannix | B58=0.3143
+  A59=Stephen James Christopher Martin | B59=#DIV/0!
+  A60=Steven Wood\nDavid Shiner | B60=#DIV/0!
+  A61=Stuart Brown\nAlen Dinan | B61=#DIV/0!
+  A62=Susan Carley\nDamien Smith | B62=#DIV/0!
+  A63=Susan Dixon | B63=0.025
+  A64=Tessa Morrow | B64=0.02
+  A65=Thomas Gordon David Walker | B65=#DIV/0!
+  A66=Trudi Griffin\nAlexander Hillier | B66=#DIV/0!
+  A67=Valerie Brown\nDermot Bailey | B67=#DIV/0!
+  A68=William Martin\nMichael Bell | B68=#DIV/0!
+  A69=Wolf Christian\nBrendon Dyer | B69=#DIV/0!
+  A70=(blank)
+  A71=Grand Total | B71=0.141892
+  A72=Answer 5
+
+######## TAB 'Sheet7'  (12 non-empty rows, dims A1:E177, state=visible)
+  A3=Row Labels | B3=Sum of Actual Price
+  A4=Americas | B4=1606
+  A5=Columbia | B5=741
+  A6=Bogota | B6=741
+  A7=Peru | B7=36
+  A8=Lima | B8=36
+  A9=USA | B9=829
+  A10=Kansas City | B10=786
+  A11=San Fransisco | B11=43
+  A12=Grand Total | B12=1606
+  A13=Answer 6
+  A177=Answer 6
+
+######## TAB 'Sheet8'  (5 non-empty rows, dims A1:G18, state=visible)
+  A3=Row Labels | B3=Sum of Actual Price
+  A4=Americas | B4=1606
+  A5=Grand Total | B5=1606
+  A6=Answer 7
+  G18=Answer 11
+
+######## TAB 'Sheet9'  (70 non-empty rows, dims A1:B71, state=visible)
+  A1=Country | B1=(All)
+  A3=Row Labels | B3=Count of Actual Price
+  A4= Amsterdam | B4=2
+  A5= Bangkok | B5=1
+  A6= Berlin | B6=1
+  A7= Chicago | B7=1
+  A8= Moscow | B8=1
+  A9= Vienna | B9=1
+  A10=\nBangalore | B10=1
+  A11=\nBangkok | B11=2
+  A12=\nBerlin | B12=1
+  A13=\nBirmingham | B13=2
+  A14=\nCairo | B14=1
+  A15=\nCapetown | B15=1
+  A16=\nHo Chi Minh City | B16=1
+  A17=\nKuala Lumpur | B17=1
+  A18=\nLondon | B18=1
+  A19=\nMexico City | B19=1
+  A20=\nMoscow | B20=3
+  A21=\nNew York | B21=1
+  A22=\nOsaka | B22=1
+  A23=\nRiyadh | B23=1
+  A24=\nRome | B24=2
+  A25=\nSao Paolo | B25=1
+  A26=\nSeattle | B26=2
+  A27=\nShanghai | B27=3
+  A28=\nTel Aviv | B28=1
+  A29=\nTijuana | B29=1
+  A30=\nToronto | B30=1
+  A31=Athens | B31=1
+  A32=Bangalore | B32=1
+  A33=Bangkok
+  A34=Banglore
+  A35=Berlin | B35=1
+  A36=Birmingham | B36=1
+  A37=Bogota | B37=2
+  A38=Buenos Aires
+  A39=Capetown
+  A40=Delhi | B40=1
+  A41=Dublin
+  A42=Guangzhou | B42=1
+  A43=Ho Chi Minh City | B43=1
+  A44=Istanbul | B44=1
+  A45=Istanbul  | B45=1
+  A46=Jerusalem
+  A47=Kansas City | B47=2
+  A48=Kuala Lumpur
+  A49=Lima | B49=1
+  A50=Los Angeles
+  A51=Madria
+  A52=moscow | B52=1
+  A53=Osaka | B53=1
+  A54=Paris
+  A55=Prague | B55=3
+  A56=San Fransisco | B56=1
+  A57=sao paolo | B57=1
+  A58=Seoul
+  A59=Shanghai
+  A60=Shenzhen | B60=2
+  A61=Shenzhen\n | B61=1
+  A62=Sydney | B62=2
+  A63=Tel Aviv | B63=1
+  A64=Tel Aviv  | B64=1
+  A65=Tijuana
+  A66=Tokyo
+  A67=Toronto
+  A68=Toronto  | B68=2
+  A69=Warsaw
+  A70=Grand Total | B70=66
+  A71=Answer 9
+
+######## TAB 'Table 4'  (562 non-empty rows, dims A1:I563, state=visible)
+  A1=store | B1=Country | C1=Region | D1=Date | E1=Item | F1=Salesperson | G1=List Price | H1=Actual Price | I1=Discount %
+  A2=moscow | B2=Russia | C2=EMEA | D2=6/10/201 | E2=Microwave | F2=May Wilmot | G2=80 | H2=79 | I2=0.0125
+  A3=Toronto  | B3=Canada | C3=NA | D3=4/23/2015\n | E3=Microwave\n | F3=David Shiner  | G3=80 | H3=54 | I3=0.325
+  A4=sao paolo | B4=brazil | C4=LATAM | D4=2017-03-04 | E4=Air conditioner | F4=Gary Reynolds\n | G4=700 | H4=689 | I4=0.02
+  A5=Istanbul  | B5=Turkey | C5=EMEA  | D5=2018-08-14 | E5=Ceiling fan  | F5=Mark Buntain  | G5=\n150 | H5=\n137 | I5=0.0867
+  A6=Sydney | B6=Australia | C6=APAC | D6=2025-03-03 | E6=Toaster | F6=Christine Davies | G6=50 | H6=37 | I6=0.26
+  A7=Shenzhen\n | B7=China\n | C7=APAC\n | D7=4/25/201\n | E7=Iron\n | F7=Gary Shaw\n | G7=30\n | H7=29\n | I7=3.33%\n
+  A8=Lima | B8=Peru | C8=LATAM | D8=2026-06-06 | E8=Dishwasher
+  A9=Tijuana
+  A10=\nLondon | B10=Mexico\nUK | C10=Americas\nEMEA | D10=7/6/2016\n11/12/20 | E10=Iron\nWashing Machine | F10=Gillian Allnutt\nFrancis Godden | G10=30\n800 | H10=28\n760 | I10=6.67%\n5.00%
+  A11=Lima
+  A12=\nRiyadh | B12=Peru\nSaudi Arabia | C12=Americas\nEMEA | D12=7/9/2014\n7/10/201 | E12=Iron\nRefrigerator | F12=Christopher Cresswell\nDanny Brooks | G12=30\n1000 | H12=28\n500 | I12=6.67%\n50.00%
+  A13=Bangkok
+  A14=\nTijuana | B14=Thailand\nMexico | C14=APAC\nAmericas | D14=8/21/201\n9/3/2015 | E14=Air conditioner\nIron | F14=John Jenkins\nRichard Allnutt | G14=700\n30 | H14=679\n28 | I14=3.00%\n6.67%
+  A15=Delhi | B15=India | C15=APAC | D15=5/30/201 | E15=Oven | F15=Tessa Morrow | G15=500 | H15=490 | I15=0.02
+  A16=Sydney | B16=Australia | C16=APAC | D16=2020-12-11 | E16=Washing Machine | F16=James Ricketts | G16=800 | H16=672 | I16=0.16
+  A17=Ho Chi Minh City | B17=Vietnam | C17=APAC | D17=5/24/201 | E17=Microwave | F17=Susan Dixon | G17=80 | H17=78 | I17=0.025
+  A18=Tel Aviv  | B18=Israel Greece | C18=EMEA EMEA | D18=6/12/201\n11/7/201 | E18=Refrigerator Oven | F18=Thomas Gordon David Walker | G18=1000\n500 | H18=620\n500 | I18=38.00%\n0.00%
+  A19=Athens
+  A20=Toronto  | B20=Canada Japan | C20=Americas APAC | D20=11/3/201\n7/23/201 | E20=Ceiling fan Refrigerator | F20=Robin Hall Kenneth Walter | G20=150\n1000 | H20=150\n950 | I20=0.00%\n5.00%
+  A21=Osaka
+  A22=Prague
+  A23=\nCapetown | B23=Czech Republic\nSouth Africa | C23=EMEA\nEMEA | D23=9/28/201\n4/17/201 | E23=Washing Machine\nIron | F23=Edward Khan\nNicholas Holloway | G23=800\n30 | H23=736\n22 | I23=8.00%\n26.67%
+  A24=Banglore
+  A25=\nSeattle | B25=India\nUSA | C25=APAC\nAmericas | D25=11/13/20\n2/13/201 | E25=Coffee grinder\nIron | F25=Delia Muhammad\nLesleyann Pope | G25=70\n30 | H25=67\n27 | I25=4.29%\n10.00%
+   ....
+  A556=Osaka\nVienna | B556=Japan\nAustria | C556=APAC\nEMEA | D556=4/17/201\n12/15/20 | E556=Ceiling fan\nCoffee grinder | F556=Kyle Walter\nGillian Rodrigues | G556=150\n70 | H556=150\n63 | I556=0.00%\n10.00%
+  A557=Prague\nParis | B557=Czech Republic\nFrance | C557=EMEA\nEMEA | D557=12/11/20\n2/1/2018 | E557=Coffee grinder\nCeiling fan | F557=Stephen Nolan\nNicola Rea | G557=70\n150 | H557=57\n143 | I557=18.57%\n4.67%
+  A558=Toronto\nRome | B558=Canada\nItaly | C558=Americas\nEMEA | D558=7/19/201\n4/4/2017 | E558=Iron\nWashing Machine | F558=Robin Hall\nPeter Allan | G558=30\n800 | H558=27\n648 | I558=10.00%\n19.00%
+  A559=Dublin | B559=Ireland | C559=EMEA | D559=1/31/201 | E559=Refrigerator | F559=Penelope Norton | G559=1000 | H559=970 | I559=0.03
+  A560=Bogota | B560=Columbia | C560=Americas | D560=6/19/201 | E560=Coffee grinder | F560=David Finnie | G560=70 | H560=67 | I560=0.0429
+  A561=Tokyo | B561=Japan | C561=APAC | D561=8/18/201 | E561=Refrigerator | F561=Pauline Pope | G561=1000 | H561=890 | I561=0.11
+  A562=New York Capetown | B562=USA\nSouth Africa | C562=Americas EMEA | D562=8/3/2015\n7/1/2015 | E562=Air conditioner Coffee grinder | F562=Barbara Turner Lucy Downs | G562=700\n70 | H562=476\n52 | I562=32.00%\n25.71%
+  A563=Tokyo | B563=Japan | C563=APAC | D563=10/9/201 | E563=Air conditioner | F563=Alexander Uddin | G563=700 | H563=686 | I563=0.02
+
+######## TAB 'Sheet14'  (5 non-empty rows, dims A1:B7, state=visible)
+  A2=Region2 | B2=(All)
+  A4=Row Labels | B4=Sum of Actual Price
+  A5=USA | B5=1603
+  A6=Grand Total | B6=1603
+  A7=Answer 10
+
+######## TAB 'Table 5'  (201 non-empty rows, dims A1:I201, state=visible)
+  A1=Store | B1=Region | C1=Region | D1=Date | E1=Items | F1=Salesperson | G1=List Price | H1=Actual Price | I1=Discount
+  A2=New York | B2=USA | C2=Americas | D2=2018-05-08 | E2=Refrigerator | F2=Simon Hirst | G2=1000 | H2=640 | I2=0.36
+  A3=Tokyo | B3=Japan | C3=APAC | D3=2/13/201 | E3=Dishwasher | F3=Rose Rowntree | G3=500 | H3=440 | I3=0.12
+  A4=Ho Chi Minh City Istanbul | B4=Vietnam Turkey | C4=APAC EMEA | D4=12/15/20\n11/25/20 | E4=Microwave Ceiling fan | F4=Ken Rogerson Chloe Lyons | G4=80\n150 | H4=75\n144 | I4=6.25%\n4.00%
+  A5=Santiago Tokyo | B5=Chile Japan | C5=Americas APAC | D5=12/10/20\n1/15/201 | E5=Iron Microwave | F5=Ram Mathews Nicholas Goude | G5=30\n80 | H5=26\n74 | I5=13.33%\n7.50%
+  A6=Guangzhou\nBerlin | B6=China\nGermany | C6=APAC\nEMEA | D6=7/16/201\n6/29/201 | E6=Vacuum Cleaner\nRefrigerator | F6=Glenys Wright\nPaul Sherwin | G6=250\n1000 | H6=245\n940 | I6=2.00%\n6.00%
+  A7=Vienna\nHo Chi Minh City | B7=Austria\nVietnam | C7=EMEA\nAPAC | D7=6/11/201\n6/29/201 | E7=Toaster\nToaster | F7=Paul Drage\nTerence Jones | G7=50\n50 | H7=50\n46 | I7=0.00%\n8.00%
+  A8=Dubai\nBirmingham | B8=UAE\nUK | C8=EMEA\nEMEA | D8=8/12/201\n3/4/2014 | E8=Air conditioner\nRefrigerator | F8=Peter Kelly\nRobert Stocks | G8=700\n1000 | H8=665\n950 | I8=5.00%\n5.00%
+  A9=Warsaw\nKansas City | B9=Poland\nUSA | C9=EMEA\nAmericas | D9=3/10/201\n3/31/201 | E9=Ceiling fan\nIron | F9=Barbara McDevitt\nRobert Arnold | G9=150\n30 | H9=135\n29 | I9=10.00%\n3.33%
+  A10=Vienna | B10=Austria | C10=EMEA | D10=7/28/201 | E10=Vacuum Cleaner | F10=Baljinder Anderson | G10=250 | H10=243 | I10=0.028
+  A11=Tokyo | B11=Japan | C11=APAC | D11=4/13/201 | E11=Iron | F11=David Gow | G11=30 | H11=29 | I11=0.0333
+  A12=Guangzhou | B12=China | C12=APAC | D12=2020-12-15 | E12=Dishwasher | F12=Mark Searle | G12=500 | H12=490 | I12=0.02
+  A13=Toronto Bangalore | B13=Canada India | C13=Americas APAC | D13=11/30/20\n5/18/201 | E13=Air conditioner Microwave | F13=Robin Hall Colin Lima | G13=700\n80 | H13=686\n75 | I13=2.00%\n6.25%
+  A14=Delhi Birmingham | B14=India UK | C14=APAC EMEA | D14=5/10/201\n4/6/2016 | E14=Vacuum Cleaner Dishwasher | F14=Francis Hughes Robert Stocks | G14=250\n500 | H14=223\n480 | I14=10.80%\n4.00%
+  A15=Osaka\nGuangzhou | B15=Japan\nChina | C15=APAC\nAPAC | D15=4/11/201\n9/17/201 | E15=Blender\nToaster | F15=Kenneth Walter\nDonald Higgs | G15=50\n50 | H15=50\n42 | I15=0.00%\n16.00%
+  A16=Toronto\nSan Fransisco | B16=Canada\nUSA | C16=Americas\nAmericas | D16=1/19/201\n7/29/201 | E16=Iron\nOven | F16=Michael Patel\nGillan Clark | G16=30\n500 | H16=21\n500 | I16=30.00%\n0.00%
+  A17=San Fransisco\nTokyo | B17=USA\nJapan | C17=Americas\nAPAC | D17=12/18/20\n2/26/201 | E17=Washing Machine\nBlender | F17=John Osborne\nMichelle Hunter | G17=800\n50 | H17=632\n46 | I17=21.00%\n8.00%
+  A18=Guangzhou\nLos Angeles | B18=China\nUSA | C18=APAC\nAmericas | D18=10/16/20\n8/24/201 | E18=Toaster\nWashing Machine | F18=Glenys Wright\nColin Matthews | G18=50\n800 | H18=48\n528 | I18=4.00%\n34.00%
+  A19=Dublin | B19=Ireland | C19=EMEA | D19=2016-01-09 | E19=Blender | F19=John Curtis | G19=50 | H19=47 | I19=0.06
+  A20=Shanghai | B20=China | C20=APAC | D20=1/24/201 | E20=Ceiling fan | F20=Glenys Raymond | G20=150 | H20=129 | I20=0.14
+  A21=Buenos Aires | B21=Argentina | C21=Americas | D21=2020-11-24 | E21=Air conditioner | F21=Stuart Brown | G21=700 | H21=581 | I21=0.17
+  A22=Shanghai Tokyo | B22=China Japan | C22=APAC APAC | D22=1/13/201\n11/14/20 | E22=Iron Microwave | F22=Craig Johnson Nicholas Goude | G22=30\n80 | H22=27\n75 | I22=10.00%\n6.25%
+  A23=Tokyo Seoul | B23=Japan\nSouth Korea | C23=APAC APAC | D23=10/15/20\n3/31/201 | E23=Washing Machine Refrigerator | F23=Basil Bell Mark Brook | G23=800\n1000 | H23=736\n880 | I23=8.00%\n12.00%
+  A24=Athens\nMexico City | B24=Greece\nMexico | C24=EMEA\nAmericas | D24=8/22/201\n9/15/201 | E24=Toaster\nBlender | F24=Aidan Perrott\nBrendon Dyer | G24=50\n50 | H24=48\n49 | I24=4.00%\n2.00%
+  A25=Lima\nTel Aviv | B25=Peru\nIsrael | C25=Americas\nEMEA | D25=4/8/2014\n11/19/20 | E25=Iron\nRefrigerator | F25=Jacqueline Swaine\nDeanna Wang | G25=30\n1000 | H25=27\n850 | I25=10.00%\n15.00%
+   ....
+  A194=Shanghai\nShenzhen | B194=China\nChina | C194=APAC\nAPAC | D194=12/8/201\n1/3/2014 | E194=Microwave\nVacuum Cleaner | F194=Wolf Christian\nKeith Drage | G194=80\n250 | H194=58\n235 | I194=27.50%\n6.00%
+  A195=Dublin\nBerlin | B195=Ireland\nGermany | C195=EMEA\nEMEA | D195=3/23/201\n10/21/20 | E195=Dishwasher\nBlender | F195=Andrew Phillips\nKate Pearce | G195=500\n50 | H195=440\n46 | I195=12.00%\n8.00%
+  A196=San Fransisco\nBuenos Aires | B196=USA\nArgentina | C196=Americas\nAmericas | D196=6/7/2018\n3/14/201 | E196=Coffee grinder\nCeiling fan | F196=Patricia Sewell\nNaeem Perry | G196=70\n150 | H196=63\n128 | I196=10.00%\n14.67%
+  A197=Bangkok | B197=Thailand | C197=APAC | D197=2020-12-11 | E197=Ceiling fan | F197=Nicole Marshall | G197=150 | H197=150 | I197=0
+  A198=Moscow | B198=Russia | C198=EMEA | D198=2/12/201 | E198=Dishwasher | F198=Zulfiqar Mirza | G198=500 | H198=485 | I198=0.03
+  A199=Athens | B199=Greece | C199=EMEA | D199=5/26/201 | E199=Vacuum Cleaner | F199=Sarah Chadwick | G199=250 | H199=230 | I199=0.08
+  A200=Birmingham Bangkok | B200=UK\nThailand | C200=EMEA APAC | D200=9/30/201\n7/8/2017 | E200=Coffee grinder Air conditioner | F200=Philip Collins Jonathan Pereira | G200=70\n700 | H200=62\n665 | I200=11.43%\n5.00%
+  A201=Kansas City | B201=USA | C201=Americas | D201=2020-10-30 | E201=Toaster | F201=Nick Gee | G201=50 | H201=50 | I201=0
+
+######## TAB 'Table 6'  (600 non-empty rows, dims A1:I600, state=visible)
+  A1=Dublin | B1=Ireland | C1=EMEA | D1=2014-06-05 | E1=Microwave | F1=Robert Harris | G1=80 | H1=56 | I1=0.3
+  A2=Prague | B2=Czech Republic | C2=EMEA | D2=6/30/201 | E2=Coffee grinder | F2=Stephen Nolan | G2=70 | H2=65 | I2=0.0714
+  A3=Santiago Delhi | B3=Chile India | C3=Americas APAC | D3=5/18/201\n10/11/20 | E3=Toaster Ceiling fan | F3=Karen Hopewell Roger Silvester | G3=50\n150 | H3=43\n126 | I3=14.00%\n16.00%
+  A4=Shanghai Buenos Aires | B4=China Argentina | C4=APAC\nAmericas | D4=1/31/201\n9/9/2016 | E4=Dishwasher Microwave | F4=Paul Power Nicola Nathan | G4=500\n80 | H4=360\n71 | I4=28.00%\n11.25%
+  A5=Kansas City\nWarsaw | B5=USA\nPoland | C5=Americas\nEMEA | D5=1/15/201\n12/29/20 | E5=Iron\nVacuum Cleaner | F5=Robert Arnold\nAlexandra Wright | G5=30\n250 | H5=29\n248 | I5=3.33%\n0.80%
+  A6=Tokyo\nParis | B6=Japan\nFrance | C6=APAC\nEMEA | D6=10/21/20\n8/1/2017 | E6=Iron\nCoffee grinder | F6=Nicholas Goude\nRory Bullion | G6=30\n70 | H6=27\n66 | I6=10.00%\n5.71%
+  A7=Toronto\nRome | B7=Canada\nItaly | C7=Americas\nEMEA | D7=9/22/201\n5/10/201 | E7=Toaster\nRefrigerator | F7=David Shiner\nMichael Toy | G7=50\n1000 | H7=50\n690 | I7=0.00%\n31.00%
+  A8=Kansas City\nBangalore | B8=USA\nIndia | C8=Americas\nAPAC | D8=5/25/201\n8/11/201 | E8=Ceiling fan\nAir conditioner | F8=Ronnette Stocks\nPaul Rule | G8=150\n700 | H8=150\n560 | I8=0.00%\n20.00%
+  A9=Mexico City | B9=Mexico | C9=Americas | D9=3/18/201 | E9=Oven | F9=Malcolm Griffith | G9=500 | H9=495 | I9=0.01
+  A10=Chicago | B10=USA | C10=Americas | D10=1/16/201 | E10=Iron | F10=Amelia Scott | G10=30 | H10=30 | I10=0
+  A11=Sydney | B11=Australia | C11=APAC | D11=12/1/201 | E11=Ceiling fan | F11=Armand Ahmed | G11=150 | H11=132 | I11=0.12
+  A12=Lima Dubai | B12=Peru UAE | C12=Americas EMEA | D12=12/12/20\n12/6/201 | E12=Dishwasher Refrigerator | F12=Cheryl Glover George Smith | G12=500\n1000 | H12=425\n790 | I12=15.00%\n21.00%
+  A13=Istanbul Tel Aviv | B13=Turkey Israel | C13=EMEA EMEA | D13=6/14/201\n4/8/2015 | E13=Refrigerator Dishwasher | F13=David Philp Maureen Reynolds | G13=1000\n500 | H13=980\n345 | I13=2.00%\n31.00%
+  A14=Istanbul\nMexico City | B14=Turkey\nMexico | C14=EMEA\nAmericas | D14=10/25/20\n1/30/201 | E14=Blender\nBlender | F14=Mark Sayer\nMalcolm Griffith | G14=50\n50 | H14=44\n43 | I14=12.00%\n14.00%
+  A15=Kuala Lumpur\nKuala Lumpur | B15=Malaysia\nMalaysia | C15=APAC\nAPAC | D15=4/11/201\n6/30/201 | E15=Iron\nIron | F15=Harold Lunn\nRachel Oliver | G15=30\n30 | H15=29\n29 | I15=3.33%\n3.33%
+  A16=Chicago\nLondon | B16=USA\nUK | C16=Americas\nEMEA | D16=9/7/2016\n2/9/2015 | E16=Air conditioner\nVacuum Cleaner | F16=Heather McGill\nWilliam Cruse | G16=700\n250 | H16=700\n238 | I16=0.00%\n4.80%
+  A17=Riyadh\nNew York | B17=Saudi Arabia\nUSA | C17=EMEA\nAmericas | D17=1/19/201\n5/26/201 | E17=Dishwasher\nWashing Machine | F17=David Adams\nSimon Hirst | G17=500\n800 | H17=485\n456 | I17=3.00%\n43.00%
+  A18=Seattle | B18=USA | C18=Americas | D18=8/10/201 | E18=Coffee grinder | F18=Lesleyann Pope | G18=70 | H18=66 | I18=0.0571
+  A19=London | B19=UK | C19=EMEA | D19=7/11/201 | E19=Iron | F19=James Neville | G19=30 | H19=30 | I19=0
+  A20=Seoul | B20=South Korea | C20=APAC | D20=2020-11-12 | E20=Iron | F20=Steven Wood | G20=30 | H20=29 | I20=0.0333
+  A21=Paris Kansas City | B21=France USA | C21=EMEA\nAmericas | D21=7/2/2015\n7/3/2015 | E21=Coffee grinder Oven | F21=Darren Webb Nick Gee | G21=70\n500 | H21=62\n500 | I21=11.43%\n0.00%
+  A22=Toronto Madria | B22=Canada Spain | C22=Americas EMEA | D22=7/1/2016\n3/16/201 | E22=Blender\nAir conditioner | F22=Alison Storey Martin Mishra | G22=50\n700 | H22=45\n623 | I22=10.00%\n11.00%
+  A23=Delhi\nPrague | B23=India\nCzech Republic | C23=APAC\nEMEA | D23=8/21/201\n6/14/201 | E23=Oven\nBlender | F23=Gillian Harris\nEdward Khan | G23=500\n50 | H23=490\n22 | I23=2.00%\n56.00%
+  A24=Bogota\nBirmingham | B24=Columbia\nUK | C24=Americas\nEMEA | D24=6/8/2018\n8/5/2014 | E24=Ceiling fan\nMicrowave | F24=Philip Mishra\nPhilip Collins | G24=150\n80 | H24=129\n78 | I24=14.00%\n2.50%
+  A25=Berlin\nCapetown | B25=Germany\nSouth Africa | C25=EMEA\nEMEA | D25=5/28/201\n5/23/201 | E25=Vacuum Cleaner\nBlender | F25=Kate Pearce\nMarcus Jacob | G25=250\n50 | H25=208\n37 | I25=16.80%\n26.00%
+   ....
+  A593=Athens\nToronto | B593=Greece\nCanada | C593=EMEA\nAmericas | D593=11/7/201\n11/3/201 | E593=Oven\nCeiling fan | F593=David Walker\nRobin Hall | G593=349.9063598\n349.9165698 | H593=295.8000494\n295.8066672 | I593=12.44%\n12.44%
+  A594=Osaka\nPrague | B594=Japan\nCzech Republic | C594=APAC\nEMEA | D594=7/23/201\n9/28/201 | E594=Refrigerator\nWashing Machine | F594=Kenneth Walter\nEdward Khan | G594=349.9267798\n349.9369899 | H594=295.8132851\n295.8199029 | I594=12.44%\n12.45%
+  A595=Capetown\nBangalore | B595=South Africa\nIndia | C595=EMEA\nAPAC | D595=4/17/201\n11/13/20 | E595=Iron\nCoffee grinder | F595=Nicholas Holloway\nDelia Muhammad | G595=349.9471999\n349.95741 | H595=295.8265207\n295.8331385 | I595=12.45%\n12.45%
+  A596=Seattle | B596=USA | C596=Americas | D596=2/13/201 | E596=Iron | F596=Lesleyann Pope | G596=349.968 | H596=295.84 | I596=0.1245
+  A597=Jerusalem | B597=Israel | C597=EMEA | D597=2/20/201 | E597=Oven | F597=Susan Carley | G597=349.978 | H597=295.846 | I597=0.1245
+  A598=Birmingham | B598=UK | C598=EMEA | D598=3/22/201 | E598=Vacuum Cleaner | F598=Damien Smith | G598=349.988 | H598=295.853 | I598=0.1245
+  A599=Seoul Toronto | B599=South Korea Canada | C599=APAC\nAmericas | D599=2/7/2017\n1/23/201 | E599=Vacuum Cleaner Blender | F599=Steven Wood David Shiner | G599=349.9982502\n350.0084602 | H599=295.8596097\n295.8662275 | I599=12.45%\n12.45%
+  A600=Guangzhou | B600=China | C600=APAC | D600=2020-10-28 | E600=Oven | F600=Glenys Wright | G600=350.019 | H600=295.873 | I600=0.1245
+
+######## TAB 'Table 7'  (40 non-empty rows, dims A1:I40, state=visible)
+  A1=Berlin | B1=Germany | C1=EMEA | D1=2020-12-14 | E1=Coffee grinder | F1=Kate Pearce | G1=350.029 | H1=295.879 | I1=0.1245
+  A2=Kansas City | B2=USA | C2=Americas | D2=7/10/201 | E2=Ceiling fan | F2=Robert Arnold | G2=350.039 | H2=295.886 | I2=0.1245
+  A3=Tokyo Moscow | B3=Japan Russia | C3=APAC EMEA | D3=10/19/20\n10/19/20 | E3=Ceiling fan Refrigerator | F3=David Gow Darren Brooks | G3=350.0493004\n350.0595104 | H3=295.8926988\n295.8993166 | I3=12.45%\n12.45%
+  A4=Capetown Bangkok | B4=South Africa Thailand | C4=EMEA APAC | D4=12/13/20\n10/13/20 | E4=Washing Machine Microwave | F4=Nicholas Holloway Mayank Ali | G4=350.0697205\n350.0799305 | H4=295.9059344\n295.9125522 | I4=12.46%\n12.46%
+  A5=Delhi\nSao Paolo | B5=India\nBrazil | C5=APAC\nAmericas | D5=11/23/20\n7/31/201 | E5=Oven\nCeiling fan | F5=Glen Campbell\nStephen Smith | G5=350.0901406\n350.1003506 | H5=295.91917\n295.9257878 | I5=12.46%\n12.46%
+  A6=Paris\nRome | B6=France\nItaly | C6=EMEA\nEMEA | D6=11/30/20\n8/15/201 | E6=Dishwasher\nBlender | F6=Caroline Eccles\nSteven Bell | G6=350.1105606\n350.1207707 | H6=295.9324056\n295.9390234 | I6=12.46%\n12.46%
+  A7=Los Angeles\nNew York | B7=USA\nUSA | C7=Americas\nAmericas | D7=9/15/201\n7/20/201 | E7=Microwave\nMicrowave | F7=Colin Matthews\nStephen Cohen | G7=350.1309807\n350.1411908 | H7=295.9456412\n295.952259 | I7=12.46%\n12.46%
+  A8=Sydney\nHo Chi Minh City | B8=Australia\nVietnam | C8=APAC\nAPAC | D8=10/30/20\n3/25/201 | E8=Iron\nIron | F8=William Martin\nMichael Bell | G8=350.1514008\n350.1616109 | H8=295.9588768\n295.9654946 | I8=12.46%\n12.46%
+  A9=Shenzhen | B9=China | C9=APAC | D9=7/27/201 | E9=Washing Machine | F9=Roger Rust | G9=350.172 | H9=295.972 | I9=0.1246
+  A10=Athens | B10=Greece | C10=EMEA | D10=2020-11-16 | E10=Washing Machine | F10=Richard Perrott | G10=350.182 | H10=295.979 | I10=0.1246
+  A11=Birmingham | B11=UK | C11=EMEA | D11=1/20/201 | E11=Vacuum Cleaner | F11=Robert Reed | G11=350.192 | H11=295.985 | I11=0.1246
+  A12=Warsaw Amsterdam | B12=Poland Netherlands | C12=EMEA EMEA | D12=3/2/2015\n2/11/201 | E12=Air conditioner Microwave | F12=Hin Bragg Allyson Rush | G12=350.202451\n350.2126611 | H12=295.9919659\n295.9985837 | I12=12.46%\n12.47%
+  A13=Toronto Prague | B13=Canada\nCzech Republic | C13=Americas EMEA | D13=9/6/2017\n10/24/20 | E13=Vacuum Cleaner Ceiling fan | F13=Stephen James Christopher Martin | G13=350.2228711\n350.2330812 | H13=296.0052015\n296.0118193 | I13=12.47%\n12.47%
+  A14=San Fransisco\nRome | B14=USA\nItaly | C14=Americas\nEMEA | D14=11/21/20\n6/9/2014 | E14=Refrigerator\nIron | F14=James Scott\nElaine Whitfield | G14=350.2432912\n350.2535013 | H14=296.0184371\n296.0250549 | I14=12.47%\n12.47%
+  A15=Dublin\nBangalore | B15=Ireland\nIndia | C15=EMEA\nAPAC | D15=10/23/20\n7/15/201 | E15=Air conditioner\nDishwasher | F15=James Carley\nFrancis Walsh | G15=350.2637113\n350.2739214 | H15=296.0316727\n296.0382905 | I15=12.47%\n12.47%
+  A16=Moscow\nTel Aviv | B16=Russia\nIsrael | C16=EMEA\nEMEA | D16=9/16/201\n5/10/201 | E16=Microwave\nBlender | F16=Rita Hill\nDeanna Wang | G16=350.2841314\n350.2943414 | H16=296.0449083\n296.0515261 | I16=12.47%\n12.47%
+  A17=Sydney\nOsaka | B17=Australia\nJapan | C17=APAC\nAPAC | D17=7/20/201\n3/26/201 | E17=Iron\nCoffee grinder | F17=James White\nJill Thompson | G17=350.3045515\n350.3147615 | H17=296.058144\n296.0647618 | I17=12.47%\n12.47%
+  A18=Lima | B18=Peru | C18=Americas | D18=6/23/201 | E18=Toaster | F18=Cheryl Glover | G18=350.325 | H18=296.071 | I18=0.1247
+  A19=San Fransisco | B19=USA | C19=Americas | D19=8/30/201 | E19=Blender | F19=Gillan Clark | G19=350.335 | H19=296.078 | I19=0.1247
+  A20=Bogota | B20=Columbia | C20=Americas | D20=2018-04-01 | E20=Air conditioner | F20=Antony Westlake | G20=350.345 | H20=296.085 | I20=0.1248
+  A21=Warsaw Berlin | B21=Poland Germany | C21=EMEA EMEA | D21=5/24/201\n7/3/2015 | E21=Refrigerator Iron | F21=Hin Bragg\nJames Whitehead | G21=350.3556017\n350.3658118 | H21=296.091233\n296.0978508 | I21=12.48%\n12.48%
+  A22=Kansas City Shenzhen | B22=USA\nChina | C22=Americas APAC | D22=2/17/201\n3/16/201 | E22=Washing Machine Refrigerator | F22=Christina Pedley Ronald Butler | G22=350.3760218\n350.3862318 | H22=296.1044686\n296.1110864 | I22=12.48%\n12.48%
+  A23=Prague\nShenzhen | B23=Czech Republic\nChina | C23=EMEA\nAPAC | D23=4/23/201\n12/4/201 | E23=Washing Machine\nToaster | F23=David Stewart\nGary Shaw | G23=350.3964419\n350.4066519 | H23=296.1177042\n296.124322 | I23=12.48%\n12.48%
+  A24=Amsterdam\nShanghai | B24=Netherlands\nChina | C24=EMEA\nAPAC | D24=12/10/20\n9/15/201 | E24=Ceiling fan\nAir conditioner | F24=Donald Barratt\nWolf Christian | G24=350.416862\n350.427072 | H24=296.1309398\n296.1375576 | I24=12.48%\n12.48%
+  A25=Mexico City\nBuenos Aires | B25=Mexico\nArgentina | C25=Americas\nAmericas | D25=7/26/201\n10/1/201 | E25=Toaster\nRefrigerator | F25=Brendon Dyer\nStuart Brown | G25=350.4372821\n350.4474921 | H25=296.1441755\n296.1507933 | I25=12.48%\n12.48%
+  A26=Shanghai\nBerlin | B26=China\nGermany | C26=APAC\nEMEA | D26=2/19/201\n11/17/20 | E26=Blender\nWashing Machine | F26=Alen Dinan\nJacqueline Clamp | G26=350.4577022\n350.4679122 | H26=296.1574111\n296.1640289 | I26=12.48%\n12.48%
+  A27=Birmingham | B27=UK | C27=EMEA | D27=7/17/201 | E27=Microwave | F27=Susan Reay | G27=350.478 | H27=296.171 | I27=0.1249
+  A28=Dublin | B28=Ireland | C28=EMEA | D28=4/29/201 | E28=Air conditioner | F28=Andrew Phillips | G28=350.488 | H28=296.177 | I28=0.1249
+  A29=Seattle | B29=USA | C29=Americas | D29=8/15/201 | E29=Microwave | F29=Alan Davie | G29=350.499 | H29=296.184 | I29=0.1249
+  A30=Madria Shanghai | B30=Spain China | C30=EMEA APAC | D30=3/14/201\n10/6/201 | E30=Iron Ceiling fan | F30=Penelope Freeland Michelle Murray | G30=350.5087524\n350.5189624 | H30=296.1905001\n296.1971179 | I30=12.49%\n12.49%
+  A31=Bangalore Istanbul | B31=India Turkey | C31=APAC EMEA | D31=8/31/201\n8/23/201 | E31=Oven\nVacuum Cleaner | F31=Paul Rule\nIan McCartan | G31=350.5291725\n350.5393825 | H31=296.2037357\n296.2103535 | I31=12.49%\n12.49%
+  A32=Bogota\nLima | B32=Columbia\nPeru | C32=Americas\nAmericas | D32=8/24/201\n4/11/201 | E32=Coffee grinder\nCoffee grinder | F32=Shelley Mannix\nJanet Ford | G32=350.5495926\n350.5598026 | H32=296.2169713\n296.2235892 | I32=12.49%\n12.49%
+  A33=Vienna\nSao Paolo | B33=Austria\nBrazil | C33=EMEA\nAmericas | D33=12/16/20\n11/25/20 | E33=Toaster\nVacuum Cleaner | F33=Janet Ward\nGary Reynolds | G33=350.5700126\n350.5802227 | H33=296.230207\n296.2368248 | I33=12.49%\n12.49%
+  A34=Shanghai\nShanghai | B34=China\nChina | C34=APAC\nAPAC | D34=12/7/201\n3/16/201 | E34=Washing Machine\nMicrowave | F34=Craig Johnson\nChristopher Snape | G34=350.5904327\n350.6006428 | H34=296.2434426\n296.2500604 | I34=12.49%\n12.49%
+  A35=Cairo\nKansas City | B35=Egypt\nUSA | C35=EMEA\nAmericas | D35=6/14/201\n7/15/201 | E35=Coffee grinder\nCeiling fan | F35=John Barnett\nRobert Jenkins | G35=350.6108528\n350.6210629 | H35=296.2566782\n296.263296 | I35=12.49%\n12.50%
+  A36=Kuala Lumpur | B36=Malaysia | C36=APAC | D36=4/22/201 | E36=Coffee grinder | F36=Trudi Griffin | G36=350.631 | H36=296.27 | I36=0.125
+  A37=Warsaw | B37=Poland | C37=EMEA | D37=2015-03-03 | E37=Toaster | F37=Valerie Brown | G37=350.641 | H37=296.277 | I37=0.125
+  A38=Moscow | B38=Russia | C38=EMEA | D38=2020-11-20 | E38=Refrigerator | F38=Dermot Bailey | G38=350.652 | H38=296.283 | I38=0.125
+  A39=Buenos Aires Bangkok | B39=Argentina Thailand | C39=Americas APAC | D39=3/1/2014\n7/15/201 | E39=Washing Machine Refrigerator | F39=Abdul Heywood Mary Mitchell | G39=350.661903\n350.6721131 | H39=296.2897672\n296.296385 | I39=12.50%\n12.50%
+  A40=Tel Aviv | B40=Israel | C40=EMEA | D40=2/15/201 | E40=Blender | F40=Richard McGrath | G40=350.682 | H40=296.303 | I40=0.125
+
+######## TAB 'Table 8'  (40 non-empty rows, dims A1:I40, state=visible)
+  A1=Prague | B1=Czech Republic | C1=EMEA | D1=2020-11-27 | E1=Washing Machine | F1=Edward Khan | G1=350.693 | H1=296.31 | I1=0.125
+  A2=Osaka | B2=Japan | C2=APAC | D2=2018-04-08 | E2=Refrigerator | F2=Neil McAvoy | G2=350.703 | H2=296.316 | I2=0.125
+  A3=Madria Chicago | B3=Spain USA | C3=EMEA\nAmericas | D3=6/30/201\n10/29/20 | E3=Dishwasher  Air conditioner | F3=Howard Jones Heather McGill | G3=350.7129533\n350.7231633 | H3=296.3228563\n296.3294741 | I3=12.50%\n12.50%
+  A4=Kuala Lumpur Moscow | B4=Malaysia Russia | C4=APAC EMEA | D4=12/11/20\n4/27/201 | E4=Microwave Iron | F4=Trudi Griffin Alexander Hillier | G4=350.7333734\n350.7435834 | H4=296.3360919\n296.3427097 | I4=12.50%\n12.50%
+  A5=Jerusalem\nMoscow | B5=Israel\nRussia | C5=EMEA\nEMEA | D5=4/5/2017\n4/17/201 | E5=Blender\nAir conditioner | F5=Fiona Johnson\nRita Hill | G5=350.7537934\n350.7640035 | H5=296.3493275\n296.3559453 | I5=12.51%\n12.51%
+  A6=Shenzhen\nBangkok | B6=China\nThailand | C6=APAC\nAPAC | D6=7/13/201\n3/17/201 | E6=Blender\nIron | F6=Gary Shaw\nStephen Burch | G6=350.7742135\n350.7844236 | H6=296.3625631\n296.3691809 | I6=12.51%\n12.51%
+  A7=Lima\nBerlin | B7=Peru\nGermany | C7=Americas\nEMEA | D7=7/24/201\n11/18/20 | E7=Iron\nMicrowave | F7=Claire Storey\nJames Whitehead | G7=350.7946336\n350.8048437 | H7=296.3757987\n296.3824165 | I7=12.51%\n12.51%
+  A8=New York\nRome | B8=USA\nItaly | C8=Americas\nEMEA | D8=9/22/201\n1/30/201 | E8=Microwave\nToaster | F8=Barbara Turner\nAudrey Kane | G8=350.8150537\n350.8252638 | H8=296.3890344\n296.3956522 | I8=12.51%\n12.51%
+  A9=Cairo | B9=Egypt | C9=EMEA | D9=2015-05-09 | E9=Refrigerator | F9=Robert Payne | G9=350.835 | H9=296.402 | I9=0.1251
+  A10=Sao Paolo | B10=Brazil | C10=Americas | D10=2020-10-17 | E10=Coffee grinder | F10=Cheryl Tubbs | G10=350.846 | H10=296.409 | I10=0.1251
+  A11=Riyadh | B11=Saudi Arabia | C11=EMEA | D11=4/10/201 | E11=Coffee grinder | F11=Victoria Sherwin | G11=350.856 | H11=296.416 | I11=0.1251
+  A12=Cairo Berlin | B12=Egypt Germany | C12=EMEA EMEA | D12=10/16/20\n7/21/201 | E12=Toaster Oven | F12=Marek Kwiatkowski Kate Pearce | G12=350.8661039\n350.876314 | H12=296.4221234\n296.4287412 | I12=12.51%\n12.51%
+  A13=Ho Chi Minh City Amsterdam | B13=Vietnam Netherlands | C13=APAC EMEA | D13=9/7/2014\n11/4/201 | E13=Coffee grinder Oven | F13=Ken Rogerson Danny Grant | G13=350.886524\n350.8967341 | H13=296.435359\n296.4419768 | I13=12.51%\n12.52%
+  A14=Lima\nIstanbul | B14=Peru\nTurkey | C14=Americas\nEMEA | D14=3/11/201\n1/11/201 | E14=Microwave\nAir conditioner | F14=Jacqueline Swaine\nMark Buntain | G14=350.9069441\n350.9171542 | H14=296.4485946\n296.4552124 | I14=12.52%\n12.52%
+  A15=Bucharest\nDelhi | B15=Romania\nIndia | C15=EMEA\nAPAC | D15=12/12/20\n11/16/20 | E15=Iron\nIron | F15=Constance Tidey\nRoy Johnson | G15=350.9273642\n350.9375742 | H15=296.4618302\n296.468448 | I15=12.52%\n12.52%
+  A16=Kansas City\nMadria | B16=USA\nSpain | C16=Americas\nEMEA | D16=9/19/201\n4/17/201 | E16=Toaster\nOven | F16=Christina Pedley\nBarrie Murray | G16=350.9477843\n350.9579943 | H16=296.4750659\n296.4816837 | I16=12.52%\n12.52%
+  A17=Prague\nIstanbul | B17=Czech Republic\nTurkey | C17=EMEA\nEMEA | D17=9/10/201\n11/2/201 | E17=Washing Machine\nOven | F17=Andrew Waddell\nRichard Barr | G17=350.9682044\n350.9784144 | H17=296.4883015\n296.4949193 | I17=12.52%\n12.52%
+  A18=Kuala Lumpur | B18=Malaysia | C18=APAC | D18=3/15/201 | E18=Ceiling fan | F18=Ian Baker | G18=350.989 | H18=296.502 | I18=0.1252
+  A19=San Fransisco | B19=USA | C19=Americas | D19=1/19/201 | E19=Oven | F19=Gillan Clark | G19=350.999 | H19=296.508 | I19=0.1252
+  A20=Athens | B20=Greece | C20=EMEA | D20=4/28/201 | E20=Ceiling fan | F20=Sarah Chadwick | G20=351.009 | H20=296.515 | I20=0.1252
+  A21=Birmingham San Fransisco | B21=UK USA | C21=EMEA\nAmericas | D21=3/13/201\n8/28/201 | E21=Iron Oven | F21=Robert Reed James Scott | G21=351.0192546\n351.0294646 | H21=296.5213905\n296.5280083 | I21=12.52%\n12.53%
+  A22=Osaka Chicago | B22=Japan USA | C22=APAC\nAmericas | D22=7/7/2014\n2/22/201 | E22=Refrigerator Oven | F22=Denise Clark Paul Collier | G22=351.0396747\n351.0498847 | H22=296.5346261\n296.5412439 | I22=12.53%\n12.53%
+  A23=Moscow\nMadria | B23=Russia\nSpain | C23=EMEA\nEMEA | D23=12/11/20\n7/6/2016 | E23=Toaster\nAir conditioner | F23=Zulfiqar Mirza\nPhilip Sutherland | G23=351.0600948\n351.0703048 | H23=296.5478617\n296.5544796 | I23=12.53%\n12.53%
+  A24=Los Angeles\nSeattle | B24=USA\nUSA | C24=Americas\nAmericas | D24=8/2/2014\n10/30/20 | E24=Vacuum Cleaner\nBlender | F24=Chandrakant Atkins\nDerek Harris | G24=351.0805149\n351.0907249 | H24=296.5610974\n296.5677152 | I24=12.53%\n12.53%
+  A25=Madria\nBangkok | B25=Spain\nThailand | C25=EMEA\nAPAC | D25=4/19/201\n5/25/201 | E25=Ceiling fan\nCeiling fan | F25=Penelope Freeland\nMary Mitchell | G25=351.100935\n351.111145 | H25=296.574333\n296.5809508 | I25=12.53%\n12.53%
+  A26=Paris\nRiyadh | B26=France\nSaudi Arabia | C26=EMEA\nEMEA | D26=10/5/201\n11/7/201 | E26=Coffee grinder\nBlender | F26=Joanne Sayer\nVictoria Sherwin | G26=351.121355\n351.1315651 | H26=296.5875686\n296.5941864 | I26=12.53%\n12.53%
+  A27=Bogota | B27=Columbia | C27=Americas | D27=2020-12-25 | E27=Iron | F27=Lisa Manning | G27=351.142 | H27=296.601 | I27=0.1253
+  A28=Athens | B28=Greece | C28=EMEA | D28=2014-04-05 | E28=Dishwasher | F28=Mark Lawton | G28=351.152 | H28=296.607 | I28=0.1253
+  A29=Bucharest | B29=Romania | C29=EMEA | D29=2018-07-07 | E29=Dishwasher | F29=Jacqueline Todd | G29=351.162 | H29=296.614 | I29=0.1254
+  A30=Birmingham Cairo | B30=UK\nEgypt | C30=EMEA EMEA | D30=11/3/201\n10/5/201 | E30=Vacuum Cleaner Iron | F30=Philip Collins Basil Bain | G30=351.1724053\n351.1826153 | H30=296.6206576\n296.6272754 | I30=12.54%\n12.54%
+  A31=Bogota Jerusalem | B31=Columbia Israel | C31=Americas EMEA | D31=1/28/201\n12/9/201 | E31=Iron Blender | F31=Lisa Manning John Bond | G31=351.1928254\n351.2030354 | H31=296.6338932\n296.6405111 | I31=12.54%\n12.54%
+  A32=Tokyo\nVienna | B32=Japan\nAustria | C32=APAC\nEMEA | D32=11/8/201\n4/30/201 | E32=Oven\nRefrigerator | F32=Tony Milner\nPeter Thompson | G32=351.2132454\n351.2234555 | H32=296.6471289\n296.6537467 | I32=12.54%\n12.54%
+  A33=Tijuana\nMadria | B33=Mexico\nSpain | C33=Americas\nEMEA | D33=3/5/2017\n1/20/201 | E33=Vacuum Cleaner\nWashing Machine | F33=Stephen Carlin\nRoy Lloyd | G33=351.2336655\n351.2438756 | H33=296.6603645\n296.6669823 | I33=12.54%\n12.54%
+  A34=Kansas City\nToronto | B34=USA\nCanada | C34=Americas\nAmericas | D34=5/7/2018\n10/15/20 | E34=Coffee grinder\nOven | F34=Nick Gee\nStephen James | G34=351.2540856\n351.2642957 | H34=296.6736001\n296.6802179 | I34=12.54%\n12.54%
+  A35=Berlin\nTel Aviv | B35=Germany\nIsrael | C35=EMEA\nEMEA | D35=9/4/2018\n8/31/201 | E35=Washing Machine\nCoffee grinder | F35=Paul Mannion\nJacob Percival | G35=351.2745057\n351.2847158 | H35=296.6868357\n296.6934535 | I35=12.54%\n12.54%
+  A36=Bangalore | B36=India | C36=APAC | D36=8/18/201 | E36=Iron | F36=Paul Rule | G36=351.295 | H36=296.7 | I36=0.1254
+  A37=Rome | B37=Italy | C37=EMEA | D37=6/15/201 | E37=Coffee grinder | F37=Steven Bell | G37=351.305 | H37=296.707 | I37=0.1255
+  A38=Delhi | B38=India | C38=APAC | D38=2016-04-05 | E38=Microwave | F38=Geoffrey Patel | G38=351.315 | H38=296.713 | I38=0.1255
+  A39=Shanghai\nHo Chi Minh City | B39=China Vietnam | C39=APAC APAC | D39=6/16/201\n4/15/201 | E39=Blender Iron | F39=Alen Dinan Rosemary Aziz | G39=351.3255559\n351.335766 | H39=296.7199248\n296.7265426 | I39=12.55%\n12.55%
+  A40=Istanbul | B40=Turkey | C40=EMEA | D40=6/25/201 | E40=Dishwasher | F40=Cordia Alston | G40=351.346 | H40=296.733 | I40=0.1255
+
+######## TAB 'Table 9'  (40 non-empty rows, dims A1:I40, state=visible)
+  A1=Tijuana | B1=Mexico | C1=Americas | D1=2016-05-05 | E1=Iron | F1=Kevin McLauchlin | G1=351.356 | H1=296.74 | I1=0.1255
+  A2=Dubai | B2=UAE | C2=EMEA | D2=5/19/201 | E2=Air conditioner | F2=Marie Whitfield | G2=351.366 | H2=296.746 | I2=0.1255
+  A3=London Tijuana | B3=UK\nMexico | C3=EMEA\nAmericas | D3=2/26/201\n11/26/20 | E3=Oven\nVacuum Cleaner | F3=Philip Dewar Gillian Allnutt | G3=351.3766062\n351.3868162 | H3=296.7530138\n296.7596316 | I3=12.55%\n12.55%
+  A4=Kansas City\nOsaka | B4=USA\nJapan | C4=Americas\nAPAC | D4=1/26/201\n4/26/201 | E4=Toaster\nCoffee grinder | F4=Robert Arnold\nNeil McAvoy | G4=351.3970262\n351.4072363 | H4=296.7662494\n296.7728672 | I4=12.55%\n12.55%
+  A5=Rome\nWarsaw | B5=Italy\nPoland | C5=EMEA\nEMEA | D5=4/6/2015\n6/3/2015 | E5=Blender\nOven | F5=Andrew Hirst\nRobert Brook | G5=351.4174463\n351.4276564 | H5=296.779485\n296.7861028 | I5=12.55%\n12.55%
+  A6=Mexico City\nDublin | B6=Mexico\nIreland | C6=Americas\nEMEA | D6=3/25/201\n1/16/201 | E6=Microwave\nBlender | F6=Malcolm Griffith\nAlison Younger | G6=351.4378664\n351.4480765 | H6=296.7927206\n296.7993384 | I6=12.56%\n12.56%
+  A7=Delhi\nBangkok | B7=India\nThailand | C7=APAC\nAPAC | D7=8/7/2018\n6/9/2015 | E7=Ceiling fan\nRefrigerator | F7=Steven Batty\nJohn Jenkins | G7=351.4582865\n351.4684966 | H7=296.8059563\n296.8125741 | I7=12.56%\n12.56%
+  A8=Tel Aviv\nChicago | B8=Israel\nUSA | C8=EMEA\nAmericas | D8=6/5/2014\n6/20/201 | E8=Toaster\nIron | F8=Jacob Percival\nNicholas Knight | G8=351.4787066\n351.4889166 | H8=296.8191919\n296.8258097 | I8=12.56%\n12.56%
+  A9=Berlin | B9=Germany | C9=EMEA | D9=2020-10-29 | E9=Microwave | F9=Paul Mannion | G9=351.499 | H9=296.832 | I9=0.1256
+  A10=Istanbul | B10=Turkey | C10=EMEA | D10=2020-12-10 | E10=Vacuum Cleaner | F10=David Philp | G10=351.509 | H10=296.839 | I10=0.1256
+  A11=Madria | B11=Spain | C11=EMEA | D11=5/20/201 | E11=Iron | F11=Roy Nunes | G11=351.52 | H11=296.846 | I11=0.1256
+  A12=Delhi Seattle | B12=India USA | C12=APAC\nAmericas | D12=1/21/201\n7/15/201 | E12=Coffee grinder Coffee grinder | F12=Glen Campbell Lesleyann Pope | G12=351.5297568\n351.5399669 | H12=296.8522809\n296.8588987 | I12=12.56%\n12.56%
+  A13=Sao Paolo\nLima | B13=Brazil\nPeru | C13=Americas\nAmericas | D13=7/11/201\n7/26/201 | E13=Toaster\nOven | F13=Stephen Smith\nWilliam Lant | G13=351.5501769\n351.560387 | H13=296.8655165\n296.8721343 | I13=12.56%\n12.56%
+  A14=Lima\nSantiago | B14=Peru\nChile | C14=Americas\nAmericas | D14=6/16/201\n7/9/2015 | E14=Oven\nRefrigerator | F14=Christopher Cresswell\nRam Mathews | G14=351.570597\n351.580807 | H14=296.8787521\n296.88537 | I14=12.56%\n12.57%
+  A15=Buenos Aires\nWarsaw | B15=Argentina\nPoland | C15=Americas\nEMEA | D15=8/19/201\n2/1/2014 | E15=Iron\nToaster | F15=Naeem Perry\nAnthony Connolly | G15=351.5910171\n351.6012271 | H15=296.8919878\n296.8986056 | I15=12.57%\n12.57%
+  A16=Madria\nDubai | B16=Spain\nUAE | C16=EMEA\nEMEA | D16=5/25/201\n6/22/201 | E16=Microwave\nVacuum Cleaner | F16=Howard Jones\nBrenda Lightfoot | G16=351.6114372\n351.6216472 | H16=296.9052234\n296.9118412 | I16=12.57%\n12.57%
+  A17=Istanbul\nBuenos Aires | B17=Turkey\nArgentina | C17=EMEA\nAmericas | D17=9/24/201\n9/21/201 | E17=Iron\nVacuum Cleaner | F17=Chloe Lyons\nAbdul Heywood | G17=351.6318573\n351.6420673 | H17=296.918459\n296.9250768 | I17=12.57%\n12.57%
+  A18=Moscow | B18=Russia | C18=EMEA | D18=4/26/201 | E18=Vacuum Cleaner | F18=Rita Hill | G18=351.652 | H18=296.932 | I18=0.1257
+  A19=Warsaw | B19=Poland | C19=EMEA | D19=2020-12-27 | E19=Dishwasher | F19=Tony Green | G19=351.662 | H19=296.938 | I19=0.1257
+  A20=Sydney | B20=Australia | C20=APAC | D20=2016-03-04 | E20=Refrigerator | F20=Armand Ahmed | G20=351.673 | H20=296.945 | I20=0.1257
+  A21=Bucharest Kansas City | B21=Romania USA | C21=EMEA\nAmericas | D21=7/21/201\n3/26/201 | E21=Ceiling fan\nAir conditioner | F21=Geoffrey Shiner Robert Arnold | G21=351.6829075\n351.6931175 | H21=296.951548\n296.9581658 | I21=12.57%\n12.57%
+  A22=Jerusalem\nJerusalem | B22=Israel\nIsrael | C22=EMEA\nEMEA | D22=4/13/201\n7/5/2018 | E22=Coffee grinder\nAir conditioner | F22=Isla Parsons\nJohn Bond | G22=351.7033276\n351.7135376 | H22=296.9647836\n296.9714015 | I22=12.57%\n12.58%
+  A23=Shanghai\nPrague | B23=China\nCzech Republic | C23=APAC\nEMEA | D23=1/27/201\n11/30/20 | E23=Blender\nMicrowave | F23=Christopher Snape\nStephen Nolan | G23=351.7237477\n351.7339577 | H23=296.9780193\n296.9846371 | I23=12.58%\n12.58%
+  A24=Santiago\nNew York | B24=Chile\nUSA | C24=Americas\nAmericas | D24=11/25/20\n1/5/2014 | E24=Toaster\nVacuum Cleaner | F24=Julia Hurren\nSimon Hirst | G24=351.7441678\n351.7543778 | H24=296.9912549\n296.9978727 | I24=12.58%\n12.58%
+  A25=Moscow\nKansas City | B25=Russia\nUSA | C25=EMEA\nAmericas | D25=2/16/201\n10/23/20 | E25=Microwave\nAir conditioner | F25=Alexander Hillier\nChristina Pedley | G25=351.7645878\n351.7747979 | H25=297.0044905\n297.0111083 | I25=12.58%\n12.58%
+  A26=Amsterdam\nIstanbul | B26=Netherlands\nTurkey | C26=EMEA\nEMEA | D26=12/26/20\n11/8/201 | E26=Iron\nMicrowave | F26=Danny Grant\nFrancis Hall | G26=351.7850079\n351.795218 | H26=297.0177261\n297.0243439 | I26=12.58%\n12.58%
+  A27=Dubai | B27=UAE | C27=EMEA | D27=2015-06-08 | E27=Blender | F27=Marie Whitfield | G27=351.805 | H27=297.031 | I27=0.1258
+  A28=Amsterdam | B28=Netherlands | C28=EMEA | D28=2/12/201 | E28=Dishwasher | F28=Alan Evora | G28=351.816 | H28=297.038 | I28=0.1258
+  A29=Kansas City | B29=USA | C29=Americas | D29=1/25/201 | E29=Microwave | F29=Xun Simms | G29=351.826 | H29=297.044 | I29=0.1258
+  A30=Birmingham Toronto | B30=UK\nCanada | C30=EMEA\nAmericas | D30=1/26/201\n10/3/201 | E30=Microwave Microwave | F30=Gustavo Taiwo James Hammond | G30=351.8360582\n351.8462682 | H30=297.0508152\n297.057433 | I30=12.58%\n12.58%
+  A31=Los Angeles\nChicago | B31=USA\nUSA | C31=Americas\nAmericas | D31=3/6/2015\n8/26/201 | E31=Washing Machine\nCeiling fan | F31=Colin Matthews\nBarry Baldwin | G31=351.8564782\n351.8666883 | H31=297.0640508\n297.0706686 | I31=12.59%\n12.59%
+  A32=Sao Paolo\nWarsaw | B32=Brazil\nPoland | C32=Americas\nEMEA | D32=1/9/2016\n7/15/201 | E32=Ceiling fan\nIron | F32=Elizabeth Holloway\nAnthony Connolly | G32=351.8768983\n351.8871084 | H32=297.0772864\n297.0839042 | I32=12.59%\n12.59%
+  A33=Dubai\nSantiago | B33=UAE\nChile | C33=EMEA\nAmericas | D33=11/29/20\n9/22/201 | E33=Ceiling fan\nCoffee grinder | F33=Peter Kelly\nJulia Hurren | G33=351.8973184\n351.9075285 | H33=297.090522\n297.0971398 | I33=12.59%\n12.59%
+  A34=Bangalore\nLos Angeles | B34=India\nUSA | C34=APAC\nAmericas | D34=12/20/20\n2/19/201 | E34=Refrigerator\nDishwasher | F34=Paul Rule\nChristopher Kitching | G34=351.9177385\n351.9279486 | H34=297.1037576\n297.1103754 | I34=12.59%\n12.59%
+  A35=Bucharest\nToronto | B35=Romania\nCanada | C35=EMEA\nAmericas | D35=2/16/201\n1/10/201 | E35=Toaster\nBlender | F35=Constance Tidey\nMichael Patel | G35=351.9381586\n351.9483686 | H35=297.1169932\n297.123611 | I35=12.59%\n12.59%
+  A36=Osaka | B36=Japan | C36=APAC | D36=2015-09-04 | E36=Air conditioner | F36=Tracy Stanley | G36=351.959 | H36=297.13 | I36=0.1259
+  A37=Bangalore | B37=India | C37=APAC | D37=2014-08-04 | E37=Refrigerator | F37=Stuart Sykes | G37=351.969 | H37=297.137 | I37=0.1259
+  A38=Los Angeles | B38=USA | C38=Americas | D38=8/13/201 | E38=Oven | F38=Christopher Kitching | G38=351.979 | H38=297.143 | I38=0.1259
+  A39=Chicago\nSan Fransisco | B39=USA USA | C39=Americas Americas | D39=10/4/201\n7/6/2014 | E39=Iron Blender | F39=Marie Foster\nGary Acheampong | G39=351.9892088\n351.9994189 | H39=297.1500823\n297.1567001 | I39=12.60%\n12.60%
+  A40=Jerusalem | B40=Israel | C40=EMEA | D40=2014-09-03 | E40=Refrigerator | F40=John Bond | G40=352.01 | H40=297.163 | I40=0.126
+
+######## TAB 'Table 10'  (7 non-empty rows, dims A1:I7, state=visible)
+  A1=Capetown | B1=South Africa | C1=EMEA | D1=6/10/201 | E1=Coffee grinder | F1=Noel Bull | G1=50 | H1=20 | I1=0.6
+  A2=Sydney | B2=Australia | C2=APAC | D2=6/12/201 | E2=Iron | F2=Christine Davies | G2=50 | H2=18 | I2=0.64
+  A3=Sydney Riyadh | B3=Australia Saudi Arabia | C3=APAC EMEA | D3=6/13/201\n6/14/201 | E3=Toaster Toaster | F3=Susan Luker Victoria Sherwin | G3=150\n500 | H3=68\n175 | I3=54.67%\n65.00%
+  A4=Tel Aviv\nIstanbul | B4=Israel\nTurkey | C4=EMEA\nEMEA | D4=6/15/201\n6/16/201 | E4=Toaster\nCeiling fan | F4=David Isaacs\nGeorge Sherwin | G4=30\n700 | H4=14\n315 | I4=53.33%\n55.00%
+  A5=Kuala Lumpur\nDublin | B5=Malaysia\nIreland | C5=APAC\nEMEA | D5=6/17/201\n6/18/201 | E5=Washing Machine\nBlender | F5=Valerie Hook\nRobert Harris | G5=1000\n70 | H5=360\n28 | I5=64.00%\n60.00%
+  A6=Madria\nKuala Lumpur | B6=Spain\nMalaysia | C6=EMEA\nAPAC | D6=6/20/201\n6/21/201 | E6=Iron\nMicrowave | F6=Roy Nunes\nIan Baker | G6=150\n700 | H6=65\n273 | I6=56.67%\n61.00%
+  A7=Sydney\nLondon | B7=Australia\nUK | C7=APAC\nEMEA | D7=6/22/201\n6/23/201 | E7=Blender\nVacuum Cleaner | F7=Richard Manning\nClaire Brooks | G7=150\n50 | H7=45\n20 | I7=70.00%\n60.00%
+
+######## TAB 'Table 11'  (52 non-empty rows, dims A1:C52, state=visible)
+  A1=Item                        Region | C1=COUNTA of Item
+  A2=Air conditioner | B2=Americas | C2=58
+  B3=APAC | C3=51
+  B4=EMEA | C4=80
+  A5=Air conditioner Total | C5=189
+  A6=Blender | B6=Americas | C6=67
+  B7=APAC | C7=46
+  B8=EMEA | C8=88
+  A9=Blender Total | C9=201
+  A10=Ceiling fan | B10=Americas | C10=59
+  B11=APAC | C11=40
+  B12=EMEA | C12=82
+  A13=Ceiling fan Total | C13=181
+  A14=Coffee grinder | B14=Americas | C14=63
+  B15=APAC | C15=55
+  B16=EMEA | C16=79
+  A17=Coffee grinder Total | C17=197
+  A18=Dishwasher | B18=Americas | C18=42
+  B19=APAC | C19=34
+  B20=EMEA | C20=90
+  A21=Dishwasher Total | C21=166
+  A22=Iron | B22=Americas | C22=82
+  B23=APAC | C23=65
+  B24=EMEA | C24=103
+  A25=Iron Total | C25=250
+  A26=Item | B26=Region | C26=1
+  A27=Item Total | C27=1
+  A28=Microwave | B28=Americas | C28=59
+  B29=APAC | C29=53
+  B30=EMEA | C30=86
+  A31=Microwave Total | C31=198
+  A32=Oven | B32=Americas | C32=69
+  B33=APAC | C33=51
+  B34=EMEA | C34=82
+  A35=Oven Total | C35=202
+  A36=Refrigerator | B36=Americas | C36=48
+  B37=APAC | C37=55
+  B38=EMEA | C38=82
+  A39=Refrigerator Total | C39=185
+  A40=Toaster | B40=Americas | C40=75
+  B41=APAC | C41=44
+  B42=EMEA | C42=71
+  A43=Toaster Total | C43=190
+  A44=Vacuum Cleaner | B44=Americas | C44=63
+  B45=APAC | C45=38
+  B46=EMEA | C46=96
+  A47=Vacuum Cleaner Total | C47=197
+  A48=Washing Machin | B48=Americas | C48=56
+  B49=APAC | C49=46
+  B50=EMEA | C50=92
+  A51=Washing Machine Total | C51=194
+  A52=Grand Total | C52=2351
+
+######## TAB 'Table 12'  (7 non-empty rows, dims A1:C7, state=visible)
+  A1=Region | B1=SUM of Actual Pri
+  A2=Americas | B2=201882
+  A3=APAC | B3=167075
+  A4=EMEA | B4=307731
+  A5=Region | B5=0
+  A6=Grand Total | B6=676688
+  A7=ce
+
+######## TAB 'Table 13'  (46 non-empty rows, dims A1:E46, state=visible)
+  A1=Region | B1=Country                  City | D1=SUM of Actual Pri
+  A2=Americas | B2=Argentina | C2=Buenos Aires | D2=15901.3
+  B3=Argentina Total | D3=15901.3
+  B4=Brazil | C4=Sao Paolo | D4=13256.2
+  B5=Brazil Total | D5=13256.2
+  B6=Canada | C6=Toronto | D6=13908.2
+  C7=Vancouver | D7=2460
+  B8=Canada Total | D8=16368.2
+  B9=Chile | C9=Santiago | D9=12310
+  B10=Chile Total | D10=12310
+  B11=Columbia | C11=Bogota | D11=15489.5
+  B12=Columbia Total | D12=15489.5
+  B13=Mexico | C13=Mexico City | D13=11444.9
+  C14=Tijuana | D14=17521.7
+  B15=Mexico Total | D15=28966.6
+  B16=Peru | C16=Lima | D16=10310.3
+  B17=Peru Total | D17=10310.3
+  B18=USA | C18=Chicago | D18=12861.9
+  C19=Houston | D19=2849
+  C20=Kansas City | D20=16402.2
+  C21=Los Angeles | D21=16116.8
+  C22=New York | D22=13279.3
+  C23=Rochester | D23=2735
+  C24=San Fransisco | D24=14608.3
+  C25=Seattle | D25=10427.5
+  B26=USA Total | D26=89280
+  A27=Americas Total | D27=201882
+  A28=APAC | B28=Australia | C28=Sydney | D28=15846.5
+  B29=Australia Total | D29=15846.5
+  B30=China | C30=Guangzhou | D30=9560.87
+  C31=Shanghai | D31=16503.7
+  C32=Shenzhen | D32=10790.3
+  B33=China Total | D33=36854.8
+  B34=India | C34=Bangalore | D34=16284
+  C35=Delhi | D35=16780.5
+  B36=India Total | D36=33064.5
+  B37=Japan | C37=Osaka | D37=14504.6
+  C38=Tokyo | D38=15229.5
+  B39=Japan Total | D39=29734.2
+  B40=Malaysia | C40=Kuala Lumpur | D40=11883.1
+  B41=Malaysia Total | D41=11883.1
+  B42=South Korea | C42=Seoul | D42=13848.9
+  B43=South Korea Total | D43=13848.9
+  B44=Thailand | C44=Bangkok | D44=14850.7
+  B45=Thailand Total | D45=14850.7
+  A46=ce
+
+######## TAB 'Table 14'  (46 non-empty rows, dims A1:D46, state=visible)
+  B1=Vietnam | C1=Ho Chi Minh City | D1=10991.9
+  B2=Vietnam Total                                        10991.91421
+  A3=APAC Total                                                                            167074.637
+  A4=EMEA | B4=Austria | C4=Vienna | D4=14048.9
+  B5=Austria Total | D5=14048.9
+  B6=Czech Republic | C6=Prague | D6=15238.7
+  B7=Czech Republic Total | D7=15238.7
+  B8=Egypt | C8=Cairo | D8=13091.7
+  B9=Egypt Total | D9=13091.7
+  B10=France | C10=Paris | D10=16293.5
+  B11=France Total | D11=16293.5
+  B12=Germany | C12=Berlin | D12=17403.5
+  B13=Germany Total | D13=17403.5
+  B14=Greece | C14=Athens | D14=11673.9
+  B15=Greece Total | D15=11673.9
+  B16=Ireland | C16=Dublin | D16=17007
+  B17=Ireland Total | D17=17007
+  B18=Israel | C18=Jerusalem\nTel Aviv | D18=10873.93572\n14590.66061
+  B19=Israel Total | D19=25464.6
+  B20=Italy | C20=Rome | D20=12247.8
+  B21=Italy Total | D21=12247.8
+  B22=Netherlands | C22=Amsterdam | D22=14343.6
+  B23=Netherlands Total | D23=14343.6
+  B24=Poland | C24=Warsaw | D24=14366.1
+  B25=Poland Total | D25=14366.1
+  B26=Romania | C26=Bucharest | D26=12965.1
+  B27=Romania Total | D27=12965.1
+  B28=Russia | C28=Moscow\nStore | D28=21671.09762\n79
+  B29=Russia Total | D29=21750.1
+  B30=Saudi Arabia | C30=Riyadh | D30=12920.8
+  B31=Saudi Arabia Total | D31=12920.8
+  B32=South Africa | C32=Capetown | D32=16116.7
+  B33=South Africa Total | D33=16116.7
+  B34=Spain | C34=Madria | D34=18428.5
+  B35=Spain Total | D35=18428.5
+  B36=Turkey | C36=Istanbul | D36=12982.4
+  B37=Turkey Total | D37=12982.4
+  B38=UAE | C38=Dubai | D38=11181.8
+  B39=UAE Total | D39=11181.8
+  B40=UK | C40=Birmingham\nLondon | D40=14247.20185\n15959.4935
+  B41=UK Total | D41=30206.7
+  A42=EMEA Total                                                                         307731.4986
+  A43=Region | B43=Country | C43=Store | D43=0
+  B44=Country Total                                                            0
+  A45=Region Total                                                                                           0
+  A46=Grand Total                                                                        676688.2968
+
+######## TAB 'Table 15'  (15 non-empty rows, dims A1:B15, state=visible)
+  A1=Salesperson | B1=AVERAGE of Disc
+  A2=Gary Percival | B2=0.0683
+  A3=David Finnie | B3=0.0816
+  A4=Alison Lazar | B4=0.0894
+  A5=Russell Thorley | B5=0.095
+  A6=Sandra Rew | B6=0.1
+  A7=Margaret Buck | B7=0.1215
+  A8=Paul Puri | B8=0.1229
+  A9=Shelley Mannix | B9=0.1273
+  A10=Lisa Manning | B10=0.1408
+  A11=Ronald Curtis | B11=0.1517
+  A12=Philip Mishra | B12=0.1733
+  A13=Antony Westlake | B13=0.1762
+  A14=Basil Nolan | B14=0.285
+  A15=Grand Total | B15=0.1339
+
+######## TAB 'Table 16'  (6 non-empty rows, dims A1:C6, state=visible)
+  A1=Item | B1=SUM of Actual Pri
+  A2=Microwave | B2=13535.1
+  A3=Oven | B3=63296.4
+  A4=Refrigerator | B4=97569.1
+  A5=Grand Total | B5=174401
+  A6=ce
+
+######## TAB 'Table 17'  (16 non-empty rows, dims A1:G16, state=visible)
+  A1=SUM of Actual Pr Region
+  A2=Item | B2=Americas | C2=APAC | D2=EMEA | E2=Region | G2=Grand Total
+  A3=Air conditioner | B3=35159.1 | C3=30156 | D3=47563.3 | G3=112878
+  A4=Blender | B4=4244.79 | C4=3044.22 | D4=6111.49 | G4=13400.5
+  A5=Ceiling fan | B5=8973.03 | C5=6279.98 | D5=12185 | G5=27438
+  A6=Coffee grinder | B6=5284.48 | C6=4859.23 | D6=6595.5 | G6=16739.2
+  A7=Dishwasher | B7=18277.8 | C7=14631 | D7=39191.2 | G7=72100.1
+  A8=Iron | B8=5190.31 | C8=3890.97 | D8=5978.96 | G8=15060.2
+  A9=Item | E9=0 | G9=0
+  A10=Microwave | B10=6205.51 | C10=4929 | D10=8606.09 | G10=19740.6
+  A11=Oven | B11=32757.2 | C11=24245.4 | D11=39051 | G11=96053.6
+  A12=Refrigerator | B12=33999.1 | C12=37049.1 | D12=60520 | G12=131568
+  A13=Toaster | B13=4909.31 | C13=2387.84 | D13=5099.71 | G13=12396.9
+  A14=Vacuum Cleaner | B14=14824.1 | C14=8657.86 | D14=21475.4 | G14=44957.4
+  A15=Washing Machin | B15=32057.5 | C15=26944 | D15=55353.9 | G15=114355
+  A16=Grand Total | B16=201882 | C16=167075 | D16=307731 | E16=0 | G16=676688
+
+######## TAB 'Table 18'  (15 non-empty rows, dims A1:B15, state=visible)
+  A1=Item | B1=COUNTA of Item
+  A2=Air conditioner | B2=189
+  A3=Blender | B3=199
+  A4=Ceiling fan | B4=180
+  A5=Coffee grinder | B5=196
+  A6=Dishwasher | B6=166
+  A7=Iron | B7=248
+  A8=Item | B8=1
+  A9=Microwave | B9=197
+  A10=Oven | B10=202
+  A11=Refrigerator | B11=185
+  A12=Toaster | B12=187
+  A13=Vacuum Cleaner | B13=196
+  A14=Washing Machin | B14=193
+  A15=Grand Total | B15=2339
+
+######## TAB 'Table 19'  (46 non-empty rows, dims A1:C46, state=visible)
+  A1=City | B1=SUM of Actual Pri
+  A2=Amsterdam | B2=14343.6
+  A3=Athens | B3=11673.9
+  A4=Bangalore | B4=16284
+  A5=Bangkok | B5=14850.7
+  A6=Berlin | B6=17403.5
+  A7=Birmingham | B7=14247.2
+  A8=Bogota | B8=15489.5
+  A9=Bucharest | B9=12965.1
+  A10=Buenos Aires | B10=15901.3
+  A11=Cairo | B11=13091.7
+  A12=Capetown | B12=16116.7
+  A13=Chicago | B13=12861.9
+  A14=Delhi | B14=16780.5
+  A15=Dubai | B15=11181.8
+  A16=Dublin | B16=17007
+  A17=Guangzhou | B17=9560.87
+  A18=Ho Chi Minh City | B18=10991.9
+  A19=Houston | B19=2849
+  A20=Istanbul | B20=12982.4
+  A21=Jerusalem | B21=10873.9
+  A22=Kansas City | B22=16402.2
+  A23=Kuala Lumpur | B23=11883.1
+  A24=Lima | B24=10310.3
+  A25=London | B25=15959.5
+  A26=Los Angeles | B26=16116.8
+  A27=Madria | B27=18428.5
+  A28=Mexico City | B28=11444.9
+  A29=Moscow | B29=21671.1
+  A30=New York | B30=13279.3
+  A31=Osaka | B31=14504.6
+  A32=Paris | B32=16293.5
+  A33=Prague | B33=15238.7
+  A34=Riyadh | B34=12920.8
+  A35=Rochester | B35=2735
+  A36=Rome | B36=12247.8
+  A37=San Fransisco | B37=14608.3
+  A38=Santiago | B38=12310
+  A39=Sao Paolo | B39=13256.2
+  A40=Seattle | B40=10427.5
+  A41=Seoul | B41=13848.9
+  A42=Shanghai | B42=16503.7
+  A43=Shenzhen | B43=10790.3
+  A44=Store | B44=79
+  A45=Sydney | B45=15846.5
+  A46=ce
+
+######## TAB 'Table 20'  (8 non-empty rows, dims A1:B8, state=visible)
+  A1=Tel Aviv | B1=14590.7
+  A2=Tijuana | B2=17521.7
+  A3=Tokyo | B3=15229.5
+  A4=Toronto | B4=13908.2
+  A5=Vancouver | B5=2460
+  A6=Vienna | B6=14048.9
+  A7=Warsaw | B7=14366.1
+  A8=Grand Total | B8=676688
+
+######## TAB 'Table 21'  (46 non-empty rows, dims A1:C46, state=visible)
+  A1=City | B1=SUM of Actual Pri
+  A2=Amsterdam | B2=14343.6
+  A3=Athens | B3=11673.9
+  A4=Bangalore | B4=16284
+  A5=Bangkok | B5=14850.7
+  A6=Berlin | B6=17403.5
+  A7=Birmingham | B7=14247.2
+  A8=Bogota | B8=15489.5
+  A9=Bucharest | B9=12965.1
+  A10=Buenos Aires | B10=15901.3
+  A11=Cairo | B11=13091.7
+  A12=Capetown | B12=16116.7
+  A13=Chicago | B13=12861.9
+  A14=Delhi | B14=16780.5
+  A15=Dubai | B15=11181.8
+  A16=Dublin | B16=17007
+  A17=Guangzhou | B17=9560.87
+  A18=Ho Chi Minh City | B18=10991.9
+  A19=Houston | B19=2849
+  A20=Istanbul | B20=12982.4
+  A21=Jerusalem | B21=10873.9
+  A22=Kansas City | B22=16402.2
+  A23=Kuala Lumpur | B23=11883.1
+  A24=Lima | B24=10310.3
+  A25=London | B25=15959.5
+  A26=Los Angeles | B26=16116.8
+  A27=Madria | B27=18428.5
+  A28=Mexico City | B28=11444.9
+  A29=Moscow | B29=21671.1
+  A30=New York | B30=13279.3
+  A31=Osaka | B31=14504.6
+  A32=Paris | B32=16293.5
+  A33=Prague | B33=15238.7
+  A34=Riyadh | B34=12920.8
+  A35=Rochester | B35=2735
+  A36=Rome | B36=12247.8
+  A37=San Fransisco | B37=14608.3
+  A38=Santiago | B38=12310
+  A39=Sao Paolo | B39=13256.2
+  A40=Seattle | B40=10427.5
+  A41=Seoul | B41=13848.9
+  A42=Shanghai | B42=16503.7
+  A43=Shenzhen | B43=10790.3
+  A44=Store | B44=79
+  A45=Sydney | B45=15846.5
+  A46=ce
+
+######## TAB 'Table 22'  (8 non-empty rows, dims A1:B8, state=visible)
+  A1=Tel Aviv | B1=14590.7
+  A2=Tijuana | B2=17521.7
+  A3=Tokyo | B3=15229.5
+  A4=Toronto | B4=13908.2
+  A5=Vancouver | B5=2460
+  A6=Vienna | B6=14048.9
+  A7=Warsaw | B7=14366.1
+  A8=Grand Total | B8=676688
+
+######## TAB 'Table 23'  (15 non-empty rows, dims A1:B15, state=visible)
+  A1=Item | B1=COUNTA of Item
+  A2=Air conditioner | B2=189
+  A3=Blender | B3=199
+  A4=Ceiling fan | B4=180
+  A5=Coffee grinder | B5=196
+  A6=Dishwasher | B6=166
+  A7=Iron | B7=248
+  A8=Item | B8=1
+  A9=Microwave | B9=197
+  A10=Oven | B10=202
+  A11=Refrigerator | B11=185
+  A12=Toaster | B12=187
+  A13=Vacuum Cleaner | B13=196
+  A14=Washing Machin | B14=193
+  A15=Grand Total | B15=2339
+
+######## TAB 'Table 24'  (17 non-empty rows, dims A1:H17, state=visible)
+  A1=SUM of Actual Price  Region
+  A2=Item | C2=Americas | D2=APAC | E2=EMEA | F2=Region | H2=Grand Total
+  B3=0 | H3=0
+  A4=Air conditioner | C4=35159.1 | D4=30156 | E4=47563.3 | H4=112878
+  A5=Blender | C5=4244.79 | D5=3089.22 | E5=6139.49 | H5=13473.5
+  A6=Ceiling fan | C6=8973.03 | D6=6279.98 | E6=12500 | H6=27753
+  A7=Coffee grinder | C7=5284.48 | D7=4859.23 | E7=6615.5 | H7=16759.2
+  A8=Dishwasher | C8=18277.8 | D8=14631 | E8=39191.2 | H8=72100.1
+  A9=Iron | C9=5190.31 | D9=3908.97 | E9=6043.96 | H9=15143.2
+  A10=Item | F10=0 | H10=0
+  A11=Microwave | C11=6205.51 | D11=5202 | E11=8606.09 | H11=20013.6
+  A12=Oven | C12=32757.2 | D12=24245.4 | E12=39051 | H12=96053.6
+  A13=Refrigerator | C13=33999.1 | D13=37049.1 | E13=60520 | H13=131568
+  A14=Toaster | C14=4909.31 | D14=2455.84 | E14=5288.71 | H14=12653.9
+  A15=Vacuum Cleaner | C15=14824.1 | D15=8657.86 | E15=21495.4 | H15=44977.4
+  A16=Washing Machine | C16=32057.5 | D16=27304 | E16=55353.9 | H16=114715
+  A17=Grand Total | B17=0 | C17=201882 | D17=167839 | E17=308368 | F17=0 | H17=678089
+
+######## TAB 'Table 25'  (4 non-empty rows, dims A1:D4, state=visible)
+  A1=SUM of Actual Price | B1=Region
+  A2=Microwave | B2=4929 | C2=8606.09 | D2=13535.1
+  A3=Oven | B3=24245.4 | C3=39051 | D3=63296.4
+  A4=Refrigerator | B4=37049.1 | C4=60520 | D4=97569.1
+
+######## TAB 'Table 26'  (14 non-empty rows, dims A1:C14, state=visible)
+  A1=Salesperson\nAlison Lazar Average | B1=Discount %\n8.94% | C1=best sales person
+  A2=Antony Westlake Average | B2=0.1762
+  A3=Basil Nolan Average | B3=0.285
+  A4=David Finnie Average | B4=0.0816
+  A5=Gary Percival Average | B5=0.0684 | C5=yes
+  A6=Lisa Manning Average | B6=0.1408
+  A7=Margaret Buck Average | B7=0.1215
+  A8=Paul Puri Average | B8=0.1229
+  A9=Philip Mishra Average | B9=0.1733
+  A10=Ronald Curtis Average | B10=0.1517
+  A11=Russell Thorley Average | B11=0.095
+  A12=Sandra Rew Average | B12=0.1
+  A13=Shelley Mannix Average | B13=0.1273
+  A14=Grand Average | B14=0.1339
+
+######## TAB 'Table 27'  (46 non-empty rows, dims A1:E46, state=visible)
+  A1=Region | B1=Country                  City | D1=SUM of Actual Pri
+  A2=Americas | B2=Argentina | C2=Buenos Aires | D2=15901.3
+  B3=Argentina Total | D3=15901.3
+  B4=Brazil | C4=Sao Paolo | D4=13256.2
+  B5=Brazil Total | D5=13256.2
+  B6=Canada | C6=Toronto | D6=13908.2
+  C7=Vancouver | D7=2460
+  B8=Canada Total | D8=16368.2
+  B9=Chile | C9=Santiago | D9=12310
+  B10=Chile Total | D10=12310
+  B11=Columbia | C11=Bogota | D11=15489.5
+  B12=Columbia Total | D12=15489.5
+  B13=Mexico | C13=Mexico City | D13=11444.9
+  C14=Tijuana | D14=17521.7
+  B15=Mexico Total | D15=28966.6
+  B16=Peru | C16=Lima | D16=10310.3
+  B17=Peru Total | D17=10310.3
+  B18=USA | C18=Chicago | D18=12861.9
+  C19=Houston | D19=2849
+  C20=Kansas City | D20=16402.2
+  C21=Los Angeles | D21=16116.8
+  C22=New York | D22=13279.3
+  C23=Rochester | D23=2735
+  C24=San Fransisco | D24=14608.3
+  C25=Seattle | D25=10427.5
+  B26=USA Total | D26=89280
+  A27=Americas Total | D27=201882
+  A28=APAC | B28=Australia | C28=Sydney | D28=15846.5
+  B29=Australia Total | D29=15846.5
+  B30=China | C30=Guangzhou | D30=9560.87
+  C31=Shanghai | D31=16503.7
+  C32=Shenzhen | D32=10790.3
+  B33=China Total | D33=36854.8
+  B34=India | C34=Bangalore | D34=16284
+  C35=Delhi | D35=16780.5
+  B36=India Total | D36=33064.5
+  B37=Japan | C37=Osaka | D37=14504.6
+  C38=Tokyo | D38=15229.5
+  B39=Japan Total | D39=29734.2
+  B40=Malaysia | C40=Kuala Lumpur | D40=11883.1
+  B41=Malaysia Total | D41=11883.1
+  B42=South Korea | C42=Seoul | D42=13848.9
+  B43=South Korea Total | D43=13848.9
+  B44=Thailand | C44=Bangkok | D44=14850.7
+  B45=Thailand Total | D45=14850.7
+  A46=ce
+
+######## TAB 'Table 28'  (46 non-empty rows, dims A1:D46, state=visible)
+  B1=Vietnam | C1=Ho Chi Minh City | D1=10991.9
+  B2=Vietnam Total                                        10991.91421
+  A3=APAC Total                                                                            167074.637
+  A4=EMEA | B4=Austria | C4=Vienna | D4=14048.9
+  B5=Austria Total | D5=14048.9
+  B6=Czech Republic | C6=Prague | D6=15238.7
+  B7=Czech Republic Total | D7=15238.7
+  B8=Egypt | C8=Cairo | D8=13091.7
+  B9=Egypt Total | D9=13091.7
+  B10=France | C10=Paris | D10=16293.5
+  B11=France Total | D11=16293.5
+  B12=Germany | C12=Berlin | D12=17403.5
+  B13=Germany Total | D13=17403.5
+  B14=Greece | C14=Athens | D14=11673.9
+  B15=Greece Total | D15=11673.9
+  B16=Ireland | C16=Dublin | D16=17007
+  B17=Ireland Total | D17=17007
+  B18=Israel | C18=Jerusalem\nTel Aviv | D18=10873.93572\n14590.66061
+  B19=Israel Total | D19=25464.6
+  B20=Italy | C20=Rome | D20=12247.8
+  B21=Italy Total | D21=12247.8
+  B22=Netherlands | C22=Amsterdam | D22=14343.6
+  B23=Netherlands Total | D23=14343.6
+  B24=Poland | C24=Warsaw | D24=14366.1
+  B25=Poland Total | D25=14366.1
+  B26=Romania | C26=Bucharest | D26=12965.1
+  B27=Romania Total | D27=12965.1
+  B28=Russia | C28=Moscow\nStore | D28=21671.09762\n79
+  B29=Russia Total | D29=21750.1
+  B30=Saudi Arabia | C30=Riyadh | D30=12920.8
+  B31=Saudi Arabia Total | D31=12920.8
+  B32=South Africa | C32=Capetown | D32=16116.7
+  B33=South Africa Total | D33=16116.7
+  B34=Spain | C34=Madria | D34=18428.5
+  B35=Spain Total | D35=18428.5
+  B36=Turkey | C36=Istanbul | D36=12982.4
+  B37=Turkey Total | D37=12982.4
+  B38=UAE | C38=Dubai | D38=11181.8
+  B39=UAE Total | D39=11181.8
+  B40=UK | C40=Birmingham\nLondon | D40=14247.20185\n15959.4935
+  B41=UK Total | D41=30206.7
+  A42=EMEA Total                                                                         307731.4986
+  A43=Region | B43=Country | C43=Store | D43=0
+  B44=Country Total                                                            0
+  A45=Region Total                                                                                           0
+  A46=Grand Total                                                                        676688.2968
+
+######## TAB 'Table 29'  (33 non-empty rows, dims A1:E33, state=visible)
+  A1=Region | B1=Country | C1=City | D1=SUM of Actual Pri
+  A2=Americas | B2=Argentina | C2=Buenos Aires | D2=15901.3
+  B3=Argentina Total | D3=15901.3
+  B4=Brazil | C4=Sao Paolo | D4=13256.2
+  B5=Brazil Total | D5=13256.2
+  B6=Canada | C6=Toronto\nVancouver | D6=13908.23352\n2460
+  B7=Canada Total | D7=16368.2
+  B8=Chile | C8=Santiago | D8=12310
+  B9=Chile Total | D9=12310
+  B10=Columbia | C10=Bogota | D10=15489.5
+  B11=Columbia Total | D11=15489.5
+  B12=Mexico | C12=Mexico City\nTijuana | D12=11444.9369\n17521.66061
+  B13=Mexico Total | D13=28966.6
+  B14=Peru | C14=Lima | D14=10310.3
+  B15=Peru Total | D15=10310.3
+  B16=USA | C16=Chicago Houston Kansas City Los Angeles New York Rochester San Fransisco\nSeattle | D16=12861.91728\n2849\n16402.18223\n16116.82463\n13279.33917\n2735\n14608.2893\n10427.45025
+  B17=USA Total | D17=89280
+  A18=Americas Total | D18=201882
+  A19=APAC | B19=Australia | C19=Sydney | D19=15846.5
+  B20=Australia Total | D20=15846.5
+  B21=China | C21=Guangzhou Shanghai\nShenzhen | D21=9560.872845\n16503.68353\n10790.29072
+  B22=China Total | D22=36854.8
+  B23=India | C23=Bangalore\nDelhi | D23=16284.01584\n16780.53274
+  B24=India Total | D24=33064.5
+  B25=Japan | C25=Osaka\nTokyo | D25=14504.63201\n15229.53983
+  B26=Japan Total | D26=29734.2
+  B27=Malaysia | C27=Kuala Lumpur | D27=11883.1
+  B28=Malaysia Total | D28=11883.1
+  B29=South Korea | C29=Seoul | D29=13848.9
+  B30=South Korea Total | D30=13848.9
+  B31=Thailand | C31=Bangkok | D31=14850.7
+  B32=Thailand Total | D32=14850.7
+  A33=ce
+
+######## TAB 'Table 30'  (42 non-empty rows, dims A1:D42, state=visible)
+  B1=Vietnam | C1=Ho Chi Minh City | D1=10991.9
+  B2=Vietnam Total | D2=10991.9
+  A3=APAC Total | D3=167075
+  A4=EMEA | B4=Austria | C4=Vienna | D4=14048.9
+  B5=Austria Total | D5=14048.9
+  B6=Czech Republic | C6=Prague | D6=15238.7
+  B7=Czech Republic Total | D7=15238.7
+  B8=Egypt | C8=Cairo | D8=13091.7
+  B9=Egypt Total | D9=13091.7
+  B10=France | C10=Paris | D10=16293.5
+  B11=France Total | D11=16293.5
+  B12=Germany | C12=Berlin | D12=17403.5
+  B13=Germany Total | D13=17403.5
+  B14=Greece | C14=Athens | D14=11673.9
+  B15=Greece Total | D15=11673.9
+  B16=Ireland | C16=Dublin | D16=17007
+  B17=Ireland Total | D17=17007
+  B18=Israel | C18=Jerusalem\nTel Aviv | D18=10873.93572\n14590.66061
+  B19=Israel Total | D19=25464.6
+  B20=Italy | C20=Rome | D20=12247.8
+  B21=Italy Total | D21=12247.8
+  B22=Netherlands | C22=Amsterdam | D22=14343.6
+  B23=Netherlands Total | D23=14343.6
+  B24=Poland | C24=Warsaw | D24=14366.1
+  B25=Poland Total | D25=14366.1
+  B26=Romania | C26=Bucharest | D26=12965.1
+  B27=Romania Total | D27=12965.1
+  B28=Russia | C28=Moscow\nStore | D28=21671.09762\n79
+  B29=Russia Total | D29=21750.1
+  B30=Saudi Arabia | C30=Riyadh | D30=12920.8
+  B31=Saudi Arabia Total | D31=12920.8
+  B32=South Africa | C32=Capetown | D32=16116.7
+  B33=South Africa Total | D33=16116.7
+  B34=Spain | C34=Madria | D34=18428.5
+  B35=Spain Total | D35=18428.5
+  B36=Turkey | C36=Istanbul | D36=12982.4
+  B37=Turkey Total | D37=12982.4
+  B38=UAE | C38=Dubai | D38=11181.8
+  B39=UAE Total | D39=11181.8
+  B40=UK | C40=Birmingham\nLondon | D40=14247.20185\n15959.4935
+  B41=UK Total | D41=30206.7
+  A42=EMEA Total | D42=307731
+
+######## TAB 'Table 31'  (4 non-empty rows, dims A1:E4, state=visible)
+  A1=Region | B1=Country | C1=Store | D1=0
+  B2=Country Total | D2=0
+  A3=Region Total | D3=0
+  A4=Grand Total | D4=676688
+
+######## TAB 'Table 32'  (32 non-empty rows, dims A1:E32, state=visible)
+  A1=Region | B1=Country | C1=City | D1=SUM of Actual Pri
+  A2=Americas | B2=Argentina | C2=Buenos Aires | D2=15901.3
+  B3=Argentina Total | D3=15901.3
+  B4=Brazil | C4=Sao Paolo | D4=13256.2
+  B5=Brazil Total | D5=13256.2
+  B6=Canada | C6=Toronto | D6=13908.2
+  C7=Vancouver | D7=2460
+  B8=Canada Total | D8=16368.2
+  B9=Chile | C9=Santiago | D9=12310
+  B10=Chile Total | D10=12310
+  B11=Columbia | C11=Bogota | D11=15489.5
+  B12=Columbia Total | D12=15489.5
+  B13=Mexico | C13=Mexico City | D13=11444.9
+  C14=Tijuana | D14=17521.7
+  B15=Mexico Total | D15=28966.6
+  B16=Peru | C16=Lima | D16=10310.3
+  B17=Peru Total | D17=10310.3
+  B18=USA | C18=Chicago | D18=12861.9
+  C19=Houston | D19=2849
+  C20=Kansas City | D20=16402.2
+  C21=Los Angeles | D21=16116.8
+  C22=New York | D22=13279.3
+  C23=Rochester | D23=2735
+  C24=San Fransisco | D24=14608.3
+  C25=Seattle | D25=10427.5
+  B26=USA Total | D26=89280
+  A27=Americas Total | D27=201882
+  A28=APAC | D28=167075
+  A29=EMEA | D29=307731
+  A30=Region | D30=0
+  A31=Grand Total | D31=676688
+  A32=ce
+
+######## TAB 'Table 33'  (520 non-empty rows, dims A1:I520, state=visible)
+  A1=Store | B1=Country | C1=Region | D1=Date | E1=Item | F1=Salesperson | G1=List Price | H1=Actual Price | I1=Discount %
+  A2=Moscow | B2=Russia | C2=EMEA | D2=6/10/201 | E2=Microwave | F2=May Wilmot | G2=80 | H2=79 | I2=0.0125
+  A3=Toronto Sao Paolo | B3=Canada Brazil | C3=Americas Americas | D3=4/23/201\n3/4/2017 | E3=Microwave\nAir conditioner | F3=David Shiner Gary Reynolds | G3=80\n700 | H3=54\n686 | I3=32.50%\n2.00%
+  A4=Istanbul Sydney | B4=Turkey Australia | C4=EMEA APAC | D4=8/14/201\n3/3/2015 | E4=Ceiling fan Toaster | F4=Mark Buntain Christine Davies | G4=150\n50 | H4=137\n37 | I4=8.67%\n26.00%
+  A5=Shenzhen\nLima | B5=China\nPeru | C5=APAC\nAmericas | D5=4/25/201\n6/6/2016 | E5=Iron\nDishwasher | F5=Gary Shaw\nChristopher Cresswell | G5=30\n500 | H5=29\n465 | I5=3.33%\n7.00%
+  A6=Tijuana\nLondon | B6=Mexico\nUK | C6=Americas\nEMEA | D6=7/6/2016\n11/12/20 | E6=Iron\nWashing Machine | F6=Gillian Allnutt\nFrancis Godden | G6=30\n800 | H6=28\n760 | I6=6.67%\n5.00%
+  A7=Lima\nRiyadh | B7=Peru\nSaudi Arabia | C7=Americas\nEMEA | D7=7/9/2014\n7/10/201 | E7=Iron\nRefrigerator | F7=Christopher Cresswell\nDanny Brooks | G7=30\n1000 | H7=28\n500 | I7=6.67%\n50.00%
+  A8=Bangkok\nTijuana | B8=Thailand\nMexico | C8=APAC\nAmericas | D8=8/21/201\n9/3/2015 | E8=Air conditioner\nIron | F8=John Jenkins\nRichard Allnutt | G8=700\n30 | H8=679\n28 | I8=3.00%\n6.67%
+  A9=Delhi | B9=India | C9=APAC | D9=5/30/201 | E9=Oven | F9=Tessa Morrow | G9=500 | H9=490 | I9=0.02
+  A10=Sydney | B10=Australia | C10=APAC | D10=2020-12-11 | E10=Washing Machine | F10=James Ricketts | G10=800 | H10=672 | I10=0.16
+  A11=Ho Chi Minh City | B11=Vietnam | C11=APAC | D11=5/24/201 | E11=Microwave | F11=Susan Dixon | G11=80 | H11=78 | I11=0.025
+  A12=Tel Aviv Athens | B12=Israel Greece | C12=EMEA EMEA | D12=6/12/201\n11/7/201 | E12=Refrigerator Oven | F12=Thomas Gordon David Walker | G12=1000\n500 | H12=620\n500 | I12=38.00%\n0.00%
+  A13=Toronto Osaka | B13=Canada Japan | C13=Americas APAC | D13=11/3/201\n7/23/201 | E13=Ceiling fan Refrigerator | F13=Robin Hall Kenneth Walter | G13=150\n1000 | H13=150\n950 | I13=0.00%\n5.00%
+  A14=Prague\nCapetown | B14=Czech Republic\nSouth Africa | C14=EMEA\nEMEA | D14=9/28/201\n4/17/201 | E14=Washing Machine\nIron | F14=Edward Khan\nNicholas Holloway | G14=800\n30 | H14=736\n22 | I14=8.00%\n26.67%
+  A15=Bangalore\nSeattle | B15=India\nUSA | C15=APAC\nAmericas | D15=11/13/20\n2/13/201 | E15=Coffee grinder\nIron | F15=Delia Muhammad\nLesleyann Pope | G15=70\n30 | H15=67\n27 | I15=4.29%\n10.00%
+  A16=Jerusalem\nBirmingham | B16=Israel\nUK | C16=EMEA\nEMEA | D16=2/20/201\n3/22/201 | E16=Oven\nVacuum Cleaner | F16=Susan Carley\nDamien Smith | G16=500\n250 | H16=495\n238 | I16=1.00%\n4.80%
+  A17=Seoul\nToronto | B17=South Korea\nCanada | C17=APAC\nAmericas | D17=2/7/2017\n1/23/201 | E17=Vacuum Cleaner\nBlender | F17=Steven Wood\nDavid Shiner | G17=250\n50 | H17=240\n43 | I17=4.00%\n14.00%
+  A18=Guangzhou | B18=China | C18=APAC | D18=2020-10-28 | E18=Oven | F18=Glenys Wright | G18=500 | H18=495 | I18=0.01
+  A19=Berlin | B19=Germany | C19=EMEA | D19=2020-12-14 | E19=Coffee grinder | F19=Kate Pearce | G19=70 | H19=64 | I19=0.0857
+  A20=Kansas City | B20=USA | C20=Americas | D20=7/10/201 | E20=Ceiling fan | F20=Robert Arnold | G20=150 | H20=138 | I20=0.08
+  A21=Tokyo Moscow | B21=Japan Russia | C21=APAC EMEA | D21=10/19/20\n10/19/20 | E21=Ceiling fan Refrigerator | F21=David Gow Darren Brooks | G21=150\n1000 | H21=117\n910 | I21=22.00%\n9.00%
+  A22=Capetown Bangkok | B22=South Africa Thailand | C22=EMEA APAC | D22=12/13/20\n10/13/20 | E22=Washing Machine Microwave | F22=Nicholas Holloway Mayank Ali | G22=800\n80 | H22=584\n77 | I22=27.00%\n3.75%
+  A23=Delhi\nSao Paolo | B23=India\nBrazil | C23=APAC\nAmericas | D23=11/23/20\n7/31/201 | E23=Oven\nCeiling fan | F23=Glen Campbell\nStephen Smith | G23=500\n150 | H23=500\n146 | I23=0.00%\n2.67%
+  A24=Paris\nRome | B24=France\nItaly | C24=EMEA\nEMEA | D24=11/30/20\n8/15/201 | E24=Dishwasher\nBlender | F24=Caroline Eccles\nSteven Bell | G24=500\n50 | H24=460\n43 | I24=8.00%\n14.00%
+  A25=Los Angeles\nNew York | B25=USA\nUSA | C25=Americas\nAmericas | D25=9/15/201\n7/20/201 | E25=Microwave\nMicrowave | F25=Colin Matthews\nStephen Cohen | G25=80\n80 | H25=72\n75 | I25=10.00%\n6.25%
+   ....
+  A513=Osaka\nVienna | B513=Japan\nAustria | C513=APAC\nEMEA | D513=4/17/201\n12/15/20 | E513=Ceiling fan\nCoffee grinder | F513=Kyle Walter\nGillian Rodrigues | G513=150\n70 | H513=150\n63 | I513=0.00%\n10.00%
+  A514=Prague\nParis | B514=Czech Republic\nFrance | C514=EMEA\nEMEA | D514=12/11/20\n2/1/2018 | E514=Coffee grinder\nCeiling fan | F514=Stephen Nolan\nNicola Rea | G514=70\n150 | H514=57\n143 | I514=18.57%\n4.67%
+  A515=Toronto\nRome | B515=Canada\nItaly | C515=Americas\nEMEA | D515=7/19/201\n4/4/2017 | E515=Iron\nWashing Machine | F515=Robin Hall\nPeter Allan | G515=30\n800 | H515=27\n648 | I515=10.00%\n19.00%
+  A516=Dublin | B516=Ireland | C516=EMEA | D516=1/31/201 | E516=Refrigerator | F516=Penelope Norton | G516=1000 | H516=970 | I516=0.03
+  A517=Bogota | B517=Columbia | C517=Americas | D517=6/19/201 | E517=Coffee grinder | F517=David Finnie | G517=70 | H517=67 | I517=0.0429
+  A518=Tokyo | B518=Japan | C518=APAC | D518=8/18/201 | E518=Refrigerator | F518=Pauline Pope | G518=1000 | H518=890 | I518=0.11
+  A519=New York Capetown | B519=USA\nSouth Africa | C519=Americas EMEA | D519=8/3/2015\n7/1/2015 | E519=Air conditioner Coffee grinder | F519=Barbara Turner Lucy Downs | G519=700\n70 | H519=476\n52 | I519=32.00%\n25.71%
+  A520=Tokyo | B520=Japan | C520=APAC | D520=10/9/201 | E520=Air conditioner | F520=Alexander Uddin | G520=700 | H520=686 | I520=0.02
+
+######## TAB 'Table 34'  (200 non-empty rows, dims A1:I200, state=visible)
+  A1=New York | B1=USA | C1=Americas | D1=2018-05-08 | E1=Refrigerator | F1=Simon Hirst | G1=1000 | H1=640 | I1=0.36
+  A2=Tokyo | B2=Japan | C2=APAC | D2=2/13/201 | E2=Dishwasher | F2=Rose Rowntree | G2=500 | H2=440 | I2=0.12
+  A3=Ho Chi Minh City Istanbul | B3=Vietnam Turkey | C3=APAC EMEA | D3=12/15/20\n11/25/20 | E3=Microwave Ceiling fan | F3=Ken Rogerson Chloe Lyons | G3=80\n150 | H3=75\n144 | I3=6.25%\n4.00%
+  A4=Santiago Tokyo | B4=Chile Japan | C4=Americas APAC | D4=12/10/20\n1/15/201 | E4=Iron Microwave | F4=Ram Mathews Nicholas Goude | G4=30\n80 | H4=26\n74 | I4=13.33%\n7.50%
+  A5=Guangzhou\nBerlin | B5=China\nGermany | C5=APAC\nEMEA | D5=7/16/201\n6/29/201 | E5=Vacuum Cleaner\nRefrigerator | F5=Glenys Wright\nPaul Sherwin | G5=250\n1000 | H5=245\n940 | I5=2.00%\n6.00%
+  A6=Vienna\nHo Chi Minh City | B6=Austria\nVietnam | C6=EMEA\nAPAC | D6=6/11/201\n6/29/201 | E6=Toaster\nToaster | F6=Paul Drage\nTerence Jones | G6=50\n50 | H6=50\n46 | I6=0.00%\n8.00%
+  A7=Dubai\nBirmingham | B7=UAE\nUK | C7=EMEA\nEMEA | D7=8/12/201\n3/4/2014 | E7=Air conditioner\nRefrigerator | F7=Peter Kelly\nRobert Stocks | G7=700\n1000 | H7=665\n950 | I7=5.00%\n5.00%
+  A8=Warsaw\nKansas City | B8=Poland\nUSA | C8=EMEA\nAmericas | D8=3/10/201\n3/31/201 | E8=Ceiling fan\nIron | F8=Barbara McDevitt\nRobert Arnold | G8=150\n30 | H8=135\n29 | I8=10.00%\n3.33%
+  A9=Vienna | B9=Austria | C9=EMEA | D9=7/28/201 | E9=Vacuum Cleaner | F9=Baljinder Anderson | G9=250 | H9=243 | I9=0.028
+  A10=Tokyo | B10=Japan | C10=APAC | D10=4/13/201 | E10=Iron | F10=David Gow | G10=30 | H10=29 | I10=0.0333
+  A11=Guangzhou | B11=China | C11=APAC | D11=2020-12-15 | E11=Dishwasher | F11=Mark Searle | G11=500 | H11=490 | I11=0.02
+  A12=Toronto Bangalore | B12=Canada India | C12=Americas APAC | D12=11/30/20\n5/18/201 | E12=Air conditioner Microwave | F12=Robin Hall Colin Lima | G12=700\n80 | H12=686\n75 | I12=2.00%\n6.25%
+  A13=Delhi Birmingham | B13=India UK | C13=APAC EMEA | D13=5/10/201\n4/6/2016 | E13=Vacuum Cleaner Dishwasher | F13=Francis Hughes Robert Stocks | G13=250\n500 | H13=223\n480 | I13=10.80%\n4.00%
+  A14=Osaka\nGuangzhou | B14=Japan\nChina | C14=APAC\nAPAC | D14=4/11/201\n9/17/201 | E14=Blender\nToaster | F14=Kenneth Walter\nDonald Higgs | G14=50\n50 | H14=50\n42 | I14=0.00%\n16.00%
+  A15=Toronto\nSan Fransisco | B15=Canada\nUSA | C15=Americas\nAmericas | D15=1/19/201\n7/29/201 | E15=Iron\nOven | F15=Michael Patel\nGillan Clark | G15=30\n500 | H15=21\n500 | I15=30.00%\n0.00%
+  A16=San Fransisco\nTokyo | B16=USA\nJapan | C16=Americas\nAPAC | D16=12/18/20\n2/26/201 | E16=Washing Machine\nBlender | F16=John Osborne\nMichelle Hunter | G16=800\n50 | H16=632\n46 | I16=21.00%\n8.00%
+  A17=Guangzhou\nLos Angeles | B17=China\nUSA | C17=APAC\nAmericas | D17=10/16/20\n8/24/201 | E17=Toaster\nWashing Machine | F17=Glenys Wright\nColin Matthews | G17=50\n800 | H17=48\n528 | I17=4.00%\n34.00%
+  A18=Dublin | B18=Ireland | C18=EMEA | D18=2016-01-09 | E18=Blender | F18=John Curtis | G18=50 | H18=47 | I18=0.06
+  A19=Shanghai | B19=China | C19=APAC | D19=1/24/201 | E19=Ceiling fan | F19=Glenys Raymond | G19=150 | H19=129 | I19=0.14
+  A20=Buenos Aires | B20=Argentina | C20=Americas | D20=2020-11-24 | E20=Air conditioner | F20=Stuart Brown | G20=700 | H20=581 | I20=0.17
+  A21=Shanghai Tokyo | B21=China Japan | C21=APAC APAC | D21=1/13/201\n11/14/20 | E21=Iron Microwave | F21=Craig Johnson Nicholas Goude | G21=30\n80 | H21=27\n75 | I21=10.00%\n6.25%
+  A22=Tokyo Seoul | B22=Japan\nSouth Korea | C22=APAC APAC | D22=10/15/20\n3/31/201 | E22=Washing Machine Refrigerator | F22=Basil Bell Mark Brook | G22=800\n1000 | H22=736\n880 | I22=8.00%\n12.00%
+  A23=Athens\nMexico City | B23=Greece\nMexico | C23=EMEA\nAmericas | D23=8/22/201\n9/15/201 | E23=Toaster\nBlender | F23=Aidan Perrott\nBrendon Dyer | G23=50\n50 | H23=48\n49 | I23=4.00%\n2.00%
+  A24=Lima\nTel Aviv | B24=Peru\nIsrael | C24=Americas\nEMEA | D24=4/8/2014\n11/19/20 | E24=Iron\nRefrigerator | F24=Jacqueline Swaine\nDeanna Wang | G24=30\n1000 | H24=27\n850 | I24=10.00%\n15.00%
+  A25=Buenos Aires\nBangalore | B25=Argentina\nIndia | C25=Americas\nAPAC | D25=4/30/201\n5/21/201 | E25=Refrigerator\nIron | F25=Brendon Sykes\nColin Lima | G25=1000\n30 | H25=560\n25 | I25=44.00%\n16.67%
+   ....
+  A193=Shanghai\nShenzhen | B193=China\nChina | C193=APAC\nAPAC | D193=12/8/201\n1/3/2014 | E193=Microwave\nVacuum Cleaner | F193=Wolf Christian\nKeith Drage | G193=80\n250 | H193=58\n235 | I193=27.50%\n6.00%
+  A194=Dublin\nBerlin | B194=Ireland\nGermany | C194=EMEA\nEMEA | D194=3/23/201\n10/21/20 | E194=Dishwasher\nBlender | F194=Andrew Phillips\nKate Pearce | G194=500\n50 | H194=440\n46 | I194=12.00%\n8.00%
+  A195=San Fransisco\nBuenos Aires | B195=USA\nArgentina | C195=Americas\nAmericas | D195=6/7/2018\n3/14/201 | E195=Coffee grinder\nCeiling fan | F195=Patricia Sewell\nNaeem Perry | G195=70\n150 | H195=63\n128 | I195=10.00%\n14.67%
+  A196=Bangkok | B196=Thailand | C196=APAC | D196=2020-12-11 | E196=Ceiling fan | F196=Nicole Marshall | G196=150 | H196=150 | I196=0
+  A197=Moscow | B197=Russia | C197=EMEA | D197=2/12/201 | E197=Dishwasher | F197=Zulfiqar Mirza | G197=500 | H197=485 | I197=0.03
+  A198=Athens | B198=Greece | C198=EMEA | D198=5/26/201 | E198=Vacuum Cleaner | F198=Sarah Chadwick | G198=250 | H198=230 | I198=0.08
+  A199=Birmingham Bangkok | B199=UK\nThailand | C199=EMEA APAC | D199=9/30/201\n7/8/2017 | E199=Coffee grinder Air conditioner | F199=Philip Collins Jonathan Pereira | G199=70\n700 | H199=62\n665 | I199=11.43%\n5.00%
+  A200=Kansas City | B200=USA | C200=Americas | D200=2020-10-30 | E200=Toaster | F200=Nick Gee | G200=50 | H200=50 | I200=0
+
+######## TAB 'Table 35'  (727 non-empty rows, dims A1:I727, state=visible)
+  A1=Dublin | B1=Ireland | C1=EMEA | D1=2014-06-05 | E1=Microwave | F1=Robert Harris | G1=80 | H1=56 | I1=0.3
+  A2=Prague | B2=Czech Republic | C2=EMEA | D2=6/30/201 | E2=Coffee grinder | F2=Stephen Nolan | G2=70 | H2=65 | I2=0.0714
+  A3=Santiago Delhi | B3=Chile India | C3=Americas APAC | D3=5/18/201\n10/11/20 | E3=Toaster Ceiling fan | F3=Karen Hopewell Roger Silvester | G3=50\n150 | H3=43\n126 | I3=14.00%\n16.00%
+  A4=Shanghai Buenos Aires | B4=China Argentina | C4=APAC\nAmericas | D4=1/31/201\n9/9/2016 | E4=Dishwasher Microwave | F4=Paul Power Nicola Nathan | G4=500\n80 | H4=360\n71 | I4=28.00%\n11.25%
+  A5=Kansas City\nWarsaw | B5=USA\nPoland | C5=Americas\nEMEA | D5=1/15/201\n12/29/20 | E5=Iron\nVacuum Cleaner | F5=Robert Arnold\nAlexandra Wright | G5=30\n250 | H5=29\n248 | I5=3.33%\n0.80%
+  A6=Tokyo\nParis | B6=Japan\nFrance | C6=APAC\nEMEA | D6=10/21/20\n8/1/2017 | E6=Iron\nCoffee grinder | F6=Nicholas Goude\nRory Bullion | G6=30\n70 | H6=27\n66 | I6=10.00%\n5.71%
+  A7=Toronto\nRome | B7=Canada\nItaly | C7=Americas\nEMEA | D7=9/22/201\n5/10/201 | E7=Toaster\nRefrigerator | F7=David Shiner\nMichael Toy | G7=50\n1000 | H7=50\n690 | I7=0.00%\n31.00%
+  A8=Kansas City\nBangalore | B8=USA\nIndia | C8=Americas\nAPAC | D8=5/25/201\n8/11/201 | E8=Ceiling fan\nAir conditioner | F8=Ronnette Stocks\nPaul Rule | G8=150\n700 | H8=150\n560 | I8=0.00%\n20.00%
+  A9=Mexico City | B9=Mexico | C9=Americas | D9=3/18/201 | E9=Oven | F9=Malcolm Griffith | G9=500 | H9=495 | I9=0.01
+  A10=Chicago | B10=USA | C10=Americas | D10=1/16/201 | E10=Iron | F10=Amelia Scott | G10=30 | H10=30 | I10=0
+  A11=Sydney | B11=Australia | C11=APAC | D11=12/1/201 | E11=Ceiling fan | F11=Armand Ahmed | G11=150 | H11=132 | I11=0.12
+  A12=Lima Dubai | B12=Peru UAE | C12=Americas EMEA | D12=12/12/20\n12/6/201 | E12=Dishwasher Refrigerator | F12=Cheryl Glover George Smith | G12=500\n1000 | H12=425\n790 | I12=15.00%\n21.00%
+  A13=Istanbul Tel Aviv | B13=Turkey Israel | C13=EMEA EMEA | D13=6/14/201\n4/8/2015 | E13=Refrigerator Dishwasher | F13=David Philp Maureen Reynolds | G13=1000\n500 | H13=980\n345 | I13=2.00%\n31.00%
+  A14=Istanbul\nMexico City | B14=Turkey\nMexico | C14=EMEA\nAmericas | D14=10/25/20\n1/30/201 | E14=Blender\nBlender | F14=Mark Sayer\nMalcolm Griffith | G14=50\n50 | H14=44\n43 | I14=12.00%\n14.00%
+  A15=Kuala Lumpur\nKuala Lumpur | B15=Malaysia\nMalaysia | C15=APAC\nAPAC | D15=4/11/201\n6/30/201 | E15=Iron\nIron | F15=Harold Lunn\nRachel Oliver | G15=30\n30 | H15=29\n29 | I15=3.33%\n3.33%
+  A16=Chicago\nLondon | B16=USA\nUK | C16=Americas\nEMEA | D16=9/7/2016\n2/9/2015 | E16=Air conditioner\nVacuum Cleaner | F16=Heather McGill\nWilliam Cruse | G16=700\n250 | H16=700\n238 | I16=0.00%\n4.80%
+  A17=Riyadh\nNew York | B17=Saudi Arabia\nUSA | C17=EMEA\nAmericas | D17=1/19/201\n5/26/201 | E17=Dishwasher\nWashing Machine | F17=David Adams\nSimon Hirst | G17=500\n800 | H17=485\n456 | I17=3.00%\n43.00%
+  A18=Seattle | B18=USA | C18=Americas | D18=8/10/201 | E18=Coffee grinder | F18=Lesleyann Pope | G18=70 | H18=66 | I18=0.0571
+  A19=London | B19=UK | C19=EMEA | D19=7/11/201 | E19=Iron | F19=James Neville | G19=30 | H19=30 | I19=0
+  A20=Seoul | B20=South Korea | C20=APAC | D20=2020-11-12 | E20=Iron | F20=Steven Wood | G20=30 | H20=29 | I20=0.0333
+  A21=Paris Kansas City | B21=France USA | C21=EMEA\nAmericas | D21=7/2/2015\n7/3/2015 | E21=Coffee grinder Oven | F21=Darren Webb Nick Gee | G21=70\n500 | H21=62\n500 | I21=11.43%\n0.00%
+  A22=Toronto Madria | B22=Canada Spain | C22=Americas EMEA | D22=7/1/2016\n3/16/201 | E22=Blender\nAir conditioner | F22=Alison Storey Martin Mishra | G22=50\n700 | H22=45\n623 | I22=10.00%\n11.00%
+  A23=Delhi\nPrague | B23=India\nCzech Republic | C23=APAC\nEMEA | D23=8/21/201\n6/14/201 | E23=Oven\nBlender | F23=Gillian Harris\nEdward Khan | G23=500\n50 | H23=490\n22 | I23=2.00%\n56.00%
+  A24=Bogota\nBirmingham | B24=Columbia\nUK | C24=Americas\nEMEA | D24=6/8/2018\n8/5/2014 | E24=Ceiling fan\nMicrowave | F24=Philip Mishra\nPhilip Collins | G24=150\n80 | H24=129\n78 | I24=14.00%\n2.50%
+  A25=Berlin\nCapetown | B25=Germany\nSouth Africa | C25=EMEA\nEMEA | D25=5/28/201\n5/23/201 | E25=Vacuum Cleaner\nBlender | F25=Kate Pearce\nMarcus Jacob | G25=250\n50 | H25=208\n37 | I25=16.80%\n26.00%
+   ....
+  A720=Shanghai | B720=China | C720=APAC | D720=2017-09-02 | E720=Microwave | F720=Glenys Raymond | G720=80 | H720=77 | I720=0.0375
+  A721=Capetown | B721=South Africa | C721=EMEA | D721=6/10/201 | E721=Coffee grinder | F721=Noel Bull | G721=50 | H721=20 | I721=0.6
+  A722=Sydney | B722=Australia | C722=APAC | D722=6/12/201 | E722=Iron | F722=Christine Davies | G722=50 | H722=18 | I722=0.64
+  A723=Sydney Riyadh | B723=Australia Saudi Arabia | C723=APAC EMEA | D723=6/13/201\n6/14/201 | E723=Toaster Toaster | F723=Susan Luker Victoria Sherwin | G723=150\n500 | H723=68\n175 | I723=54.67%\n65.00%
+  A724=Tel Aviv\nIstanbul | B724=Israel\nTurkey | C724=EMEA\nEMEA | D724=6/15/201\n6/16/201 | E724=Toaster\nCeiling fan | F724=David Isaacs\nGeorge Sherwin | G724=30\n700 | H724=14\n315 | I724=53.33%\n55.00%
+  A725=Kuala Lumpur\nDublin | B725=Malaysia\nIreland | C725=APAC\nEMEA | D725=6/17/201\n6/18/201 | E725=Washing Machine\nBlender | F725=Valerie Hook\nRobert Harris | G725=1000\n70 | H725=360\n28 | I725=64.00%\n60.00%
+  A726=Madria\nKuala Lumpur | B726=Spain\nMalaysia | C726=EMEA\nAPAC | D726=6/20/201\n6/21/201 | E726=Iron\nMicrowave | F726=Roy Nunes\nIan Baker | G726=150\n700 | H726=65\n273 | I726=56.67%\n61.00%
+  A727=Sydney\nLondon | B727=Australia\nUK | C727=APAC\nEMEA | D727=6/22/201\n6/23/201 | E727=Blender\nVacuum Cleaner | F727=Richard Manning\nClaire Brooks | G727=150\n50 | H727=45\n20 | I727=70.00%\n60.00%
+
+######## TAB 'Table 36'  (2366 non-empty rows, dims A1:J3343, state=visible)
+  A1=Store | B1=Country | C1=Region | D1=Date | E1=Item | F1=Salesperson | G1=List Price | H1=Actual Price | J1=Discount %
+  A2=Moscow | B2=Russia | C2=EMEA | D2=6/10/201 | E2=Microwave | F2=May Wilmot | G2=80 | H2=79 | J2=0.0125
+  A3=Toronto | B3=Canada | C3=Americas | D3=4/23/201 | E3=Microwave | F3=David Shiner | G3=80 | H3=54 | J3=0.325
+  A4=Sao Paolo | B4=Brazil | C4=Americas | D4=2017-03-04 | E4=Air conditioner | F4=Gary Reynolds | G4=700 | H4=686 | J4=0.02
+  A5=Istanbul | B5=Turkey | C5=EMEA | D5=8/14/201 | E5=Ceiling fan | F5=Mark Buntain | G5=150 | H5=137 | J5=0.0867
+  A6=Sydney | B6=Australia | C6=APAC | D6=2015-03-03 | E6=Toaster | F6=Christine Davies | G6=50 | H6=37 | J6=0.26
+  A7=Shenzhen | B7=China | C7=APAC | D7=4/25/201 | E7=Iron | F7=Gary Shaw | G7=30 | H7=29 | J7=0.0333
+  A8=Lima | B8=Peru | C8=Americas | D8=2016-06-06 | E8=Dishwasher | F8=Christopher Cresswell | G8=500 | H8=465 | J8=0.07
+  A9=D | B9=Mexico | C9=Americas | D9=2016-07-06 | E9=Iron | F9=Gillian Allnutt | G9=30 | H9=28 | J9=0.0667
+  A10=London | B10=UK | C10=EMEA | D10=2020-11-12 | E10=Washing Machine | F10=Francis Godden | G10=800 | H10=760 | J10=0.05
+  A11=Lima | B11=Peru | C11=Americas | D11=2014-07-09 | E11=Iron | F11=Christopher Cresswell | G11=30 | H11=28 | J11=0.0667
+  A12=Riyadh | B12=Saudi Arabia | C12=EMEA | D12=7/10/201 | E12=Refrigerator | F12=Danny Brooks | G12=1000 | H12=500 | J12=0.5
+  A13=Bangkok | B13=Thailand | C13=APAC | D13=8/21/201 | E13=Air conditioner | F13=John Jenkins | G13=700 | H13=679 | J13=0.03
+  A14=Tijuana | B14=Mexico | C14=Americas | D14=2015-09-03 | E14=Iron | F14=Richard Allnutt | G14=30 | H14=28 | J14=0.0667
+  A15=Delhi | B15=India | C15=APAC | D15=5/30/201 | E15=Oven | F15=Tessa Morrow | G15=500 | H15=490 | J15=0.02
+  A16=Sydney | B16=Australia | C16=APAC | D16=2020-12-11 | E16=Washing Machine | F16=James Ricketts | G16=800 | H16=672 | J16=0.16
+  A17=Ho Chi Minh City | B17=Vietnam | C17=APAC | D17=5/24/201 | E17=Microwave | F17=Susan Dixon | G17=80 | H17=78 | J17=0.025
+  A18=Tel Aviv | B18=Israel | C18=EMEA | D18=6/12/201 | E18=Refrigerator | F18=Thomas Gordon | G18=1000 | H18=620 | J18=0.38
+  A19=Athens | B19=Greece | C19=EMEA | D19=11/7/201 | E19=Oven | F19=David Walker | G19=500 | H19=500 | J19=0
+  A20=Toronto | B20=Canada | C20=Americas | D20=11/3/201 | E20=Ceiling fan | F20=Robin Hall | G20=150 | H20=150 | J20=0
+  A21=Osaka | B21=Japan | C21=APAC | D21=7/23/201 | E21=Refrigerator | F21=Kenneth Walter | G21=1000 | H21=950 | J21=0.05
+  A22=Prague | B22=Czech Republic | C22=EMEA | D22=9/28/201 | E22=Washing Machine | F22=Edward Khan | G22=800 | H22=736 | J22=0.08
+  A23=Capetown | B23=South Africa | C23=EMEA | D23=4/17/201 | E23=Iron | F23=Nicholas Holloway | G23=30 | H23=22 | J23=0.2667
+  A24=Bangalore | B24=India | C24=APAC | D24=2020-11-13 | E24=Coffee grinder | F24=Delia Muhammad | G24=70 | H24=67 | J24=0.0429
+  A25=Seattle | B25=USA | C25=Americas | D25=2/13/201 | E25=Iron | F25=Lesleyann Pope | G25=30 | H25=27 | J25=0.1
+   ....
+  A2359=Kuala Lumpur | B2359=Malaysia | C2359=APAC | D2359=6/17/201 | E2359=Washing Machine | F2359=Valerie Hook | G2359=1000 | H2359=360 | J2359=0.64
+  A2360=Dublin | B2360=Ireland | C2360=EMEA | D2360=6/18/201 | E2360=Blender | F2360=Robert Harris | G2360=70 | H2360=28 | J2360=0.6
+  A2361=Madria | B2361=Spain | C2361=EMEA | D2361=6/20/201 | E2361=Iron | F2361=Roy Nunes | G2361=150 | H2361=65 | J2361=0.5667
+  A2362=Kuala Lumpur | B2362=Malaysia | C2362=APAC | D2362=6/21/201 | E2362=Microwave | F2362=Ian Baker | G2362=700 | H2362=273 | J2362=0.61
+  A2363=Sydney | B2363=Australia | C2363=APAC | D2363=6/22/201 | E2363=Blender | F2363=Richard Manning | G2363=150 | H2363=45 | J2363=0.7
+  A2364=London | B2364=UK | C2364=EMEA | D2364=6/23/201 | E2364=Vacuum Cleaner | F2364=Claire Brooks | G2364=50 | H2364=20 | J2364=0.6
+  A2407=Store                         Country                    Region                      Date           Item                             Salesperson                        List Price           Actual Price               Discount %
+  A3305=Store                         Country                    Region                      Date           Item                             Salesperson                        List Price           Actual Price               Discount %
+
+######## TAB 'Table 37'  (11 non-empty rows, dims A1:E18, state=visible)
+  A1=Store | B1=Item | C1=SUM of Actual Pri
+  A2=Chicago | B2=12852
+  A3=Houston | B3=3671
+  A4=Kansas City | B4=15163
+  A5=Los Angeles | B5=15424
+  A6=New York | B6=14197
+  A7=Rochester | B7=3095
+  A8=San Fransisco | B8=15800
+  A9=Seattle | B9=9990
+  A10=Grand Total | B10=90192
+  A11=ce
+
+######## TAB 'Table 38'  (11 non-empty rows, dims A1:D11, state=visible)
+  A1=Region | B1=Country | C1=City | D1=SUM of SUM of
+  D2=1.30758e+06
+  A3=Americas | B3=Argentina | C3=Buenos Aires | D3=15901.3
+  A4=Americas Total | D4=201882
+  A5=APAC | D5=15846.5
+  A6=APAC Total | D6=167075
+  A7=EMEA | B7=Austria | C7=Vienna | D7=14048.9
+  A8=EMEA Total | D8=307731
+  A9=Grand Total | D9=676688
+  A10=Region | B10=Country | C10=Store | D10=0
+  A11=Region Total | D11=0
+
+######## TAB 'Table 39'  (44 non-empty rows, dims A1:B44, state=visible)
+  A1=Country | B1=SUM of Actual Price
+  A2=Argentina | B2=15901.3
+  A3=Australia | B3=15846.5
+  A4=Austria | B4=14048.9
+  A5=Brazil | B5=13256.2
+  A6=Canada | B6=16368.2
+  A7=Chile | B7=12310
+  A8=China | B8=36854.8
+  A9=Columbia | B9=15489.5
+  A10=Country | B10=0
+  A11=Czech Republic | B11=15238.7
+  A12=Egypt | B12=13091.7
+  A13=France | B13=16293.5
+  A14=Germany | B14=17403.5
+  A15=Greece | B15=11673.9
+  A16=India | B16=33064.5
+  A17=Ireland | B17=17007
+  A18=Israel | B18=25464.6
+  A19=Italy | B19=12247.8
+  A20=Japan | B20=29734.2
+  A21=Malaysia | B21=11883.1
+  A22=Mexico | B22=28966.6
+  A23=Netherlands | B23=14343.6
+  A24=Peru | B24=10310.3
+  A25=Poland | B25=14366.1
+  A26=Romania | B26=12965.1
+  A27=Russia | B27=21750.1
+  A28=Saudi Arabia | B28=12920.8
+  A29=South Africa | B29=16116.7
+  A30=South Korea | B30=13848.9
+  A31=Spain | B31=18428.5
+  A32=Thailand | B32=14850.7
+  A33=Turkey | B33=12982.4
+  A34=UAE | B34=11181.8
+  A35=UK | B35=30206.7
+  A36=USA | B36=89280
+  A37=Vietnam | B37=10991.9
+  A38=Grand Total | B38=676688
+  A39=answer-2
+  A40=Item | B40=COUNTA of Item
+  A41=Air conditioner | B41=189
+  A42=Blender | B42=199
+  A43=Ceiling fan | B43=180
+  A44=Coffee grinder | B44=196
+
+######## TAB 'Table 40'  (35 non-empty rows, dims A1:K35, state=visible)
+  A1=Dishwasher | B1=166
+  A2=Iron | B2=248
+  A3=Item | B3=1
+  A4=Microwave | B4=197
+  A5=Oven | B5=202
+  A6=Refrigerator | B6=185
+  A7=Toaster | B7=187
+  A8=Vacuum Cleaner | B8=196
+  A9=Washing Machin | B9=193
+  A10=Grand Total | B10=2339
+  A11=answer -3
+  A12=COUNTA of Regio | B12=Region
+  A13=Item | B13=APAC | D13=EMEA | F13=LATAM | H13=NA
+  A14=Air conditioner | C14=48 | E14=72 | G14=22 | I14=32
+  A15=Blender | C15=41 | E15=79 | G15=33 | I15=29
+  A16=Ceiling fan | C16=35 | E16=74 | G16=24 | I16=30
+  A17=Coffee grinder | C17=50 | E17=71 | G17=27 | I17=30
+  A18=Dishwasher | C18=33 | E18=84 | G18=22 | I18=18
+  A19=Iron | C19=56 | E19=91 | G19=31 | I19=40
+  A20=Microwave | C20=48 | E20=75 | G20=25 | I20=25
+  A21=Oven | C21=46 | E21=74 | G21=28 | I21=34
+  A22=Refrigerator | C22=48 | E22=75 | G22=25 | I22=20
+  A23=Toaster | C23=41 | E23=62 | G23=30 | I23=39
+  A24=Vacuum Cleaner | C24=37 | E24=88 | G24=30 | I24=26
+  A25=Washing Machin | C25=42 | E25=83 | G25=26 | I25=28
+  A26=Grand Total | C26=525 | E26=928 | G26=323 | I26=351
+  A27=answer4
+  A28=COUNTA of Regio | B28=Region
+  A29=Item | B29=Americas | D29=APAC | F29=EMEA | H29=Grand Total
+  A30=Microwave | B30=59 | D30=52 | F30=86 | H30=197
+  A31=Oven | B31=69 | D31=51 | F31=82 | H31=202
+  A32=Refrigerator | B32=48 | D32=55 | F32=82 | H32=185
+  A33=Grand Total | B33=176 | D33=158 | F33=250 | H33=584
+  A34=Grand Total | K34=174\n182\n163\n178\n157\n218\n173\n182\n168\n172\n181\n179
+  A35=2127
+
+######## TAB 'Table 41'  (16 non-empty rows, dims A1:G16, state=visible)
+  A1=SUM of Actual Pr Region
+  A2=Item | B2=Americas | C2=APAC | D2=EMEA | E2=Region | G2=Grand Total
+  A3=Air conditioner | B3=35159.1 | C3=30156 | D3=47563.3 | G3=112878
+  A4=Blender | B4=4244.79 | C4=3044.22 | D4=6111.49 | G4=13400.5
+  A5=Ceiling fan | B5=8973.03 | C5=6279.98 | D5=12185 | G5=27438
+  A6=Coffee grinder | B6=5284.48 | C6=4859.23 | D6=6595.5 | G6=16739.2
+  A7=Dishwasher | B7=18277.8 | C7=14631 | D7=39191.2 | G7=72100.1
+  A8=Iron | B8=5190.31 | C8=3890.97 | D8=5978.96 | G8=15060.2
+  A9=Item | E9=0 | G9=0
+  A10=Microwave | B10=6205.51 | C10=4929 | D10=8606.09 | G10=19740.6
+  A11=Oven | B11=32757.2 | C11=24245.4 | D11=39051 | G11=96053.6
+  A12=Refrigerator | B12=33999.1 | C12=37049.1 | D12=60520 | G12=131568
+  A13=Toaster | B13=4909.31 | C13=2387.84 | D13=5099.71 | G13=12396.9
+  A14=Vacuum Cleaner | B14=14824.1 | C14=8657.86 | D14=21475.4 | G14=44957.4
+  A15=Washing Machin | B15=32057.5 | C15=26944 | D15=55353.9 | G15=114355
+  A16=Grand Total | B16=201882 | C16=167075 | D16=307731 | E16=0 | G16=676688
+
+######## TAB 'Table 42'  (6 non-empty rows, dims A1:D6, state=visible)
+  A1=SUM of Actual Pr Region
+  A2=Item | B2=APAC | C2=EMEA | D2=Grand Total
+  A3=Microwave | B3=4929 | C3=8606.09 | D3=13535.1
+  A4=Oven | B4=24245.4 | C4=39051 | D4=63296.4
+  A5=Refrigerator | B5=37049.1 | C5=60520 | D5=97569.1
+  A6=Grand Total | B6=66223.5 | C6=108177 | D6=174401
+
+######## TAB 'Table 43'  (16 non-empty rows, dims A1:C16, state=visible)
+  A1=Salesperson | B1=AVERAGE of Disc
+  A2=Gary Percival | B2=0.0683
+  A3=David Finnie | B3=0.0816
+  A4=Alison Lazar | B4=0.0894
+  A5=Russell Thorley | B5=0.095
+  A6=Sandra Rew | B6=0.1
+  A7=Margaret Buck | B7=0.1215
+  A8=Paul Puri | B8=0.1229
+  A9=Shelley Mannix | B9=0.1273
+  A10=Lisa Manning | B10=0.1408
+  A11=Ronald Curtis | B11=0.1517
+  A12=Philip Mishra | B12=0.1733
+  A13=Antony Westlake | B13=0.1762
+  A14=Basil Nolan | B14=0.285
+  A15=Grand Total | B15=0.1339
+  A16=* Best salesperson in columbia is GARY PERCIVAL
+
+######## TAB 'Table 44'  (46 non-empty rows, dims A1:E46, state=visible)
+  A1=Region | B1=Country                  City | D1=SUM of Actual Pri
+  A2=Americas | B2=Argentina | C2=Buenos Aires | D2=15901.3
+  B3=Argentina Total | D3=15901.3
+  B4=Brazil | C4=Sao Paolo | D4=13256.2
+  B5=Brazil Total | D5=13256.2
+  B6=Canada | C6=Toronto | D6=13908.2
+  C7=Vancouver | D7=2460
+  B8=Canada Total | D8=16368.2
+  B9=Chile | C9=Santiago | D9=12310
+  B10=Chile Total | D10=12310
+  B11=Columbia | C11=Bogota | D11=15489.5
+  B12=Columbia Total | D12=15489.5
+  B13=Mexico | C13=Mexico City | D13=11444.9
+  C14=Tijuana | D14=17521.7
+  B15=Mexico Total | D15=28966.6
+  B16=Peru | C16=Lima | D16=10310.3
+  B17=Peru Total | D17=10310.3
+  B18=USA | C18=Chicago | D18=12861.9
+  C19=Houston | D19=2849
+  C20=Kansas City | D20=16402.2
+  C21=Los Angeles | D21=16116.8
+  C22=New York | D22=13279.3
+  C23=Rochester | D23=2735
+  C24=San Fransisco | D24=14608.3
+  C25=Seattle | D25=10427.5
+  B26=USA Total | D26=89280
+  A27=Americas Total | D27=201882
+  A28=APAC | B28=Australia | C28=Sydney | D28=15846.5
+  B29=Australia Total | D29=15846.5
+  B30=China | C30=Guangzhou | D30=9560.87
+  C31=Shanghai | D31=16503.7
+  C32=Shenzhen | D32=10790.3
+  B33=China Total | D33=36854.8
+  B34=India | C34=Bangalore | D34=16284
+  C35=Delhi | D35=16780.5
+  B36=India Total | D36=33064.5
+  B37=Japan | C37=Osaka | D37=14504.6
+  C38=Tokyo | D38=15229.5
+  B39=Japan Total | D39=29734.2
+  B40=Malaysia | C40=Kuala Lumpur | D40=11883.1
+  B41=Malaysia Total | D41=11883.1
+  B42=South Korea | C42=Seoul | D42=13848.9
+  B43=South Korea Total | D43=13848.9
+  B44=Thailand | C44=Bangkok | D44=14850.7
+  B45=Thailand Total | D45=14850.7
+  A46=ce
+
+######## TAB 'Table 45'  (46 non-empty rows, dims A1:E46, state=visible)
+  B1=Vietnam | C1=Ho Chi Minh City | D1=10991.9
+  B2=Vietnam Total                                        10991.91421
+  A3=APAC Total                                                                            167074.637
+  A4=EMEA | B4=Austria | C4=Vienna | D4=14048.9
+  B5=Austria Total | D5=14048.9
+  B6=Czech Republic | C6=Prague | D6=15238.7
+  B7=Czech Republic Total | D7=15238.7
+  B8=Egypt | C8=Cairo | D8=13091.7
+  B9=Egypt Total | D9=13091.7
+  B10=France | C10=Paris | D10=16293.5
+  B11=France Total | D11=16293.5
+  B12=Germany | C12=Berlin | D12=17403.5
+  B13=Germany Total | D13=17403.5
+  B14=Greece | C14=Athens | D14=11673.9
+  B15=Greece Total | D15=11673.9
+  B16=Ireland | C16=Dublin | D16=17007
+  B17=Ireland Total | D17=17007
+  B18=Israel | C18=Jerusalem\nTel Aviv | D18=10873.93572\n14590.66061
+  B19=Israel Total | D19=25464.6
+  B20=Italy | C20=Rome | D20=12247.8
+  B21=Italy Total | D21=12247.8
+  B22=Netherlands | C22=Amsterdam | D22=14343.6
+  B23=Netherlands Total | D23=14343.6
+  B24=Poland | C24=Warsaw | D24=14366.1
+  B25=Poland Total | D25=14366.1
+  B26=Romania | C26=Bucharest | D26=12965.1
+  B27=Romania Total | D27=12965.1
+  B28=Russia | C28=Moscow\nStore | D28=21671.09762\n79
+  B29=Russia Total | D29=21750.1
+  B30=Saudi Arabia | C30=Riyadh | D30=12920.8
+  B31=Saudi Arabia Total | D31=12920.8
+  B32=South Africa | C32=Capetown | D32=16116.7
+  B33=South Africa Total | D33=16116.7
+  B34=Spain | C34=Madria | D34=18428.5
+  B35=Spain Total | D35=18428.5
+  B36=Turkey | C36=Istanbul | D36=12982.4
+  B37=Turkey Total | D37=12982.4
+  B38=UAE | C38=Dubai | D38=11181.8
+  B39=UAE Total | D39=11181.8
+  B40=UK | C40=Birmingham\nLondon | D40=14247.20185\n15959.4935
+  B41=UK Total | D41=30206.7
+  A42=EMEA Total                                                                         307731.4986
+  A43=Region                                                                                                    0
+  A44=Grand Total                                                                        676688.2968
+  A45=#REF!
+  A46=[To group the sales by region, We just have to change the (+) sign into (-) sign by single click ]

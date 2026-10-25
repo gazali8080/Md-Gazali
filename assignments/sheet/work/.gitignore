@@ -1,0 +1,9 @@
+# rebuildable intermediates
+*.pkl
+base.xlsx
+pivots.xlsx
+roundtrip.xlsx
+render/
+docx_render/
+__pycache__/
+q10_pie.png
