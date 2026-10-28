@@ -1,0 +1,132 @@
+{
+ "bpm": 95.04,
+ "fps": 30,
+ "source": "measured from public/audio/track.m4a (spectral-flux onsets)",
+ "beats": [
+  {
+   "n": 0,
+   "seconds": 0.24,
+   "frame": 7
+  },
+  {
+   "n": 1,
+   "seconds": 0.87,
+   "frame": 26
+  },
+  {
+   "n": 2,
+   "seconds": 1.51,
+   "frame": 45
+  },
+  {
+   "n": 3,
+   "seconds": 2.14,
+   "frame": 64
+  },
+  {
+   "n": 4,
+   "seconds": 2.77,
+   "frame": 83
+  },
+  {
+   "n": 5,
+   "seconds": 3.4,
+   "frame": 102
+  },
+  {
+   "n": 6,
+   "seconds": 4.03,
+   "frame": 121
+  },
+  {
+   "n": 7,
+   "seconds": 4.67,
+   "frame": 140
+  },
+  {
+   "n": 8,
+   "seconds": 5.3,
+   "frame": 159
+  },
+  {
+   "n": 9,
+   "seconds": 5.93,
+   "frame": 178
+  },
+  {
+   "n": 10,
+   "seconds": 6.52,
+   "frame": 196
+  },
+  {
+   "n": 11,
+   "seconds": 7.18,
+   "frame": 215
+  },
+  {
+   "n": 12,
+   "seconds": 7.81,
+   "frame": 234
+  },
+  {
+   "n": 13,
+   "seconds": 8.45,
+   "frame": 253
+  },
+  {
+   "n": 14,
+   "seconds": 9.08,
+   "frame": 272
+  },
+  {
+   "n": 15,
+   "seconds": 9.72,
+   "frame": 292
+  },
+  {
+   "n": 16,
+   "seconds": 10.35,
+   "frame": 310
+  },
+  {
+   "n": 17,
+   "seconds": 10.98,
+   "frame": 329
+  },
+  {
+   "n": 18,
+   "seconds": 11.61,
+   "frame": 348
+  },
+  {
+   "n": 19,
+   "seconds": 12.24,
+   "frame": 367
+  },
+  {
+   "n": 20,
+   "seconds": 12.87,
+   "frame": 386
+  },
+  {
+   "n": 21,
+   "seconds": 13.5,
+   "frame": 405
+  },
+  {
+   "n": 22,
+   "seconds": 14.14,
+   "frame": 424
+  },
+  {
+   "n": 23,
+   "seconds": 14.77,
+   "frame": 443
+  },
+  {
+   "n": 24,
+   "seconds": 15.4,
+   "frame": 462
+  }
+ ]
+}

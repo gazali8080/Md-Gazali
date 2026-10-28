@@ -1,0 +1,7 @@
+node_modules
+out
+.DS_Store
+# The song and your clips are media you supply. Keep them out of the repo.
+public/audio/track.m4a
+public/clips/*
+!public/clips/.gitkeep

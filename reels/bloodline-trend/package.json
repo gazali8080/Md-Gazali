@@ -1,0 +1,14 @@
+{
+  "name": "bloodline-trend",
+  "version": "1.0.0",
+  "description": "Template for the 'never done in my bloodline' trend: four clips, one caption, cuts on the song's beats",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "remotion studio",
+    "lint": "eslint src && tsc",
+    "audio": "bash scripts/extract-audio.sh",
+    "render": "remotion render Trend out/trend.mp4",
+    "sheet": "node ../show-dont-tell/scripts/contact-sheet.mjs --comp=Trend --out=out/contact"
+  }
+}
